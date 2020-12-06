@@ -72,5 +72,6 @@ public class Coordinate {
         else
             return ('\u22C5') + "     ";
     }
+
 }
 
