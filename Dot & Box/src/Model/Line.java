@@ -64,6 +64,10 @@ public class Line {
     public static void addLine(Line line) {
         lines.add(line);
     }
+    
+    public static void setAvailableLines() {
+
+    }
 
     public static void removeAvailabe(Line line) {
         if (availableLines.contains(line)) {
