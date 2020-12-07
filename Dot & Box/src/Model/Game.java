@@ -9,6 +9,10 @@ public class Game {
     private Scanner scanner;
     Random generator = new Random();
 
+    public Game() {
+
+    }
+
     public void setP1(Player p1) {
         this.p1 = p1;
     }

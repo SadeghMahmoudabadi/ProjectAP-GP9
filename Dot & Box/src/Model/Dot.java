@@ -105,4 +105,54 @@ public class Dot {
     public void decrementSideDotsNum() {
         this.sideDotsNum--;
     }
+
+    public static void setAllSideDots() {
+        for (int xPosition = 1; xPosition < 9; xPosition++) {
+            for (int yPosition = 1; yPosition < 9; yPosition++) {
+                if (xPosition == 1 && yPosition == 1) {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition + 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition + 1));
+                } else if (xPosition == 8 && yPosition == 1) {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition - 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition + 1));
+                } else if (xPosition == 1 && yPosition == 8) {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition - 1));
+                    dot.addSideDot(getDotByPosition(xPosition + 1, yPosition));
+                } else if (xPosition == 8 && yPosition == 8) {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition - 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition - 1));
+                } else if ((xPosition > 1 && xPosition < 8) && yPosition == 1) {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition + 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition - 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition + 1));
+                } else if (xPosition == 1 && (yPosition > 1 && yPosition < 8)) {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition - 1));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition + 1));
+                    dot.addSideDot(getDotByPosition(xPosition + 1, yPosition));
+                } else if ((xPosition > 1 && xPosition < 8) && yPosition == 8) {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition + 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition - 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition - 1));
+                } else if (xPosition == 8 && (yPosition < 8 && yPosition > 1)) {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition - 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition - 1));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition + 1));
+                } else {
+                    Dot dot = getDotByPosition(xPosition, yPosition);
+                    dot.addSideDot(getDotByPosition(xPosition + 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition - 1, yPosition));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition - 1));
+                    dot.addSideDot(getDotByPosition(xPosition, yPosition + 1));
+                }
+            }
+        }
+    }
 }
