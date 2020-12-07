@@ -7,10 +7,27 @@ public class Game {
     private Player p2;
     private int turn;
     private Scanner scanner;
+    private boolean isLineDrawn;        //check if line is drawn
     Random generator = new Random();
+
+    {
+        isLineDrawn = false;
+    }
 
     public Game() {
 
+    }
+
+    public Player getP1() {
+        return p1;
+    }
+
+    public Player getP2() {
+        return p2;
+    }
+
+    public boolean isLineDrawn() {
+        return isLineDrawn;
     }
 
     public static void startTheGame() {
@@ -45,6 +62,10 @@ public class Game {
         } else {
             turn = generator.nextInt(2);
         }
+    }
+
+    public void setLineDrawn(boolean bool) {
+        isLineDrawn = bool;
     }
 
     public void changeTurn() {

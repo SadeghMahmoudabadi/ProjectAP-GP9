@@ -14,6 +14,10 @@ public class Player {
         this.wins = wins;
     }
 
+    public String getUser() {
+        return user;
+    }
+
     public int getWins() {
         return wins;
     }

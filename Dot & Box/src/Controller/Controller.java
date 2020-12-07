@@ -7,11 +7,14 @@ import Model.Line;
 import Model.Player;
 import View.View;
 
+import java.security.AllPermission;
 import java.util.*;
 
+
 public class Controller {
-    private static Game game;
-    private static View view;
+    private static Game game = new Game();
+    private static View view = new View(game);
+
 
     public Controller() {
     }
@@ -20,9 +23,17 @@ public class Controller {
         if (command.equalsIgnoreCase("start dot and boxes game")) {
             Game.startTheGame();
         } else if (command.startsWith("draw line between")) {
+            int xStart, yStart, xFinish, yFinish;
 
-            //method Boolean for if draw line method is done.
+            //  Line.drawLine(xStart, yStart, xFinish, yFinish);
+            game.setLineDrawn(true);
         } else if (command.equalsIgnoreCase("end of my turn")) {
+            if (game.isLineDrawn()) {
+
+                game.setLineDrawn(false);
+            } else {
+                View.showErrors(1);
+            }
 
         } else if (command.equalsIgnoreCase("show available lines")) {
             for (Line availableLine : Line.getAvailableLines()) {
@@ -35,7 +46,8 @@ public class Controller {
         } else if (command.equalsIgnoreCase("show result")) {
 
         } else if (command.equalsIgnoreCase("show score")) {
-
+            view.showScore();
         }
+
     }
 }

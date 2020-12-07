@@ -105,7 +105,7 @@ public class Line {
     public static void drawLine(int xStart, int yStart, int xFinish, int yFinish) {
         Dot dot1 = Dot.getDotByPosition(xStart, yStart);
         Dot dot2 = Dot.getDotByPosition(xFinish, yFinish);
-        Line line = new Line(dot1, dot2);
+        Line line = getLineByDots(dot1, dot2);
         lines.add(line);
         removeAvailabe(line);
     }
