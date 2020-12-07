@@ -64,23 +64,42 @@ public class Line {
     public static void addLine(Line line) {
         lines.add(line);
     }
-    
-    public static void setAvailableLines() {
 
+    public static void setAvailableLines() {
+        for (int xPosition = 1; xPosition < 9; xPosition++) {
+            for (int yPosition = 1; yPosition < 9; yPosition++) {
+                Dot dot = Dot.getDotByPosition(xPosition, yPosition);
+                for (Dot sideDot : dot.getSideDots()) {
+                    Line line = new Line(dot, sideDot);
+                    if (!isLineAvailable(line)) {
+                        availableLines.add(line);
+                    }
+                }
+            }
+        }
     }
 
     public static void removeAvailabe(Line line) {
-        if (availableLines.contains(line)) {
+        if (isLineAvailable(line)) {
             availableLines.remove(line);
         }
     }
 
     public static boolean isLineAvailable(Line line) {
-        if (availableLines.contains(line)) {
-            return true;
-        } else {
-            return false;
+        for (Line availableLine : availableLines) {
+            Dot dot1 = availableLine.getStartDot();
+            Dot dot2 = availableLine.getFinishDot();
+            if (line.getStartDot().equals(dot1)) {
+                if (line.getFinishDot().equals(dot2)) {
+                    return true;
+                }
+            } else if (line.getStartDot().equals(dot2)) {
+                if (line.getFinishDot().equals(dot1)) {
+                    return true;
+                }
+            }
         }
+        return false;
     }
 
     public static void drawLine(int xStart, int yStart, int xFinish, int yFinish) {
@@ -112,16 +131,21 @@ public class Line {
 
     public static boolean isConnected(Dot dot1, Dot dot2) {
         for (Line line : lines) {
-            if (line.getStartDot() == dot1) {
-                if (line.getFinishDot() == dot2) {
+            if (line.getStartDot().equals(dot1)) {
+                if (line.getFinishDot().equals(dot2)) {
                     return true;
                 }
-            } else if (line.getStartDot() == dot2) {
-                if (line.getFinishDot() == dot1) {
+            } else if (line.getStartDot().equals(dot2)) {
+                if (line.getFinishDot().equals(dot1)) {
                     return true;
                 }
             }
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(%d,%d) and (%d,%d)", xStart, yStart, xFinish, yFinish);
     }
 }

@@ -13,6 +13,20 @@ public class Game {
 
     }
 
+    public static void startTheGame() {
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 9; j++) {
+                System.out.print("\u26AB    ");
+                Dot dot = new Dot(i, j);
+                Dot.addDot(dot);
+            }
+            System.out.println();
+            System.out.println();
+        }
+        Dot.setAllSideDots();
+        Line.setAvailableLines();
+    }
+
     public void setP1(Player p1) {
         this.p1 = p1;
     }
