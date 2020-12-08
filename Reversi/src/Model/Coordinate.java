@@ -1,3 +1,4 @@
+package Model;
 import java.util.*;
 public class Coordinate {
 
@@ -9,10 +10,10 @@ public class Coordinate {
 
 
     //construtor
-    public Coordinate(int xPosition, int yPosition, HashMap<Integer, Coordinate> coordinates) {
+    public Coordinate(int xPosition, int yPosition) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-        Coordinate.coordinates = coordinates;
+
     }
 
     //new
