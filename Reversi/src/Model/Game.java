@@ -1,7 +1,8 @@
 package Model;
 import java.util.*;
  public class Game {
-    private Player p1;
+     private static int[] countScore = new int[2];
+     private Player p1;
     private Player p2;
     private int turn;
     private int color ;
@@ -84,6 +85,9 @@ import java.util.*;
             System.out.println();
             System.out.println();
         }
+
+        countScore[0] = 2;
+        countScore[1] = 2;
 
     }
     // method for color setting needed
