@@ -7,10 +7,14 @@ public class Game {
     private int turn;
     private Scanner scanner;
     private boolean isLineDrawn;        //check if line is drawn
+    private boolean isGameEnd;
     Random generator = new Random();
 
     {
+        p1 = new Player("Player1");
+        p2 = new Player("Player2");
         isLineDrawn = false;
+        isGameEnd = false;
     }
 
     public Game() {
@@ -27,6 +31,14 @@ public class Game {
 
     public boolean isLineDrawn() {
         return isLineDrawn;
+    }
+
+    public boolean isGameEnd() {
+        return isGameEnd;
+    }
+
+    public void endGame() {
+        this.isGameEnd = true;
     }
 
     public static void startTheGame() {
@@ -52,15 +64,15 @@ public class Game {
     }
 
     public void setTurn() {
-        int win1 = p1.getWins();
+        /*int win1 = p1.getWins();
         int win2 = p2.getWins();
         if (win1 > win2) {
             turn = 0;
         } else if (win1 < win2) {
             turn = 1;
-        } else {
+        } else {*/
             turn = generator.nextInt(2);
-        }
+        //}
     }
 
     public void setLineDrawn(boolean bool) {
@@ -92,6 +104,9 @@ public class Game {
             player.incrementScore();
             player.incrementScore();
             setLineDrawn(false);
+        }
+        if (Line.getAvailableLines().size() == 0) {
+            endGame();
         }
     }
 }

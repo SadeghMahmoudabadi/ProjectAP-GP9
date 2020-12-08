@@ -164,4 +164,9 @@ public class Dot {
         return xPosition == dot.xPosition &&
                 yPosition == dot.yPosition;
     }
+
+    @Override
+    public String toString() {
+        return String.format("(%d,%d)", xPosition, yPosition);
+    }
 }

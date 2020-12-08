@@ -1,5 +1,7 @@
 package Model;
 
+import View.View;
+
 import java.util.*;
 
 @SuppressWarnings("ALL")
@@ -105,7 +107,7 @@ public class Line {
         return false;
     }
 
-    public static Line drawLine(int x1, int y1, int x2, int y2) {
+    public static boolean drawLine(int x1, int y1, int x2, int y2) {
         int xStart, xFinish, yStart, yFinish;
         if (x1 == x2) {
             xStart = x1;
@@ -118,12 +120,22 @@ public class Line {
             xStart = Math.min(x1, x2);
             xFinish = Math.max(x1, x2);
         }
-        Dot startDot = Dot.getDotByPosition(xStart, yStart);
-        Dot finishDot = Dot.getDotByPosition(xFinish, yFinish);
-        Line line = getLineByDots(startDot, finishDot);
-        drawnLines.add(line);
-        removeAvailabe(line);
-        return line;
+        if (((Math.abs(xStart - xFinish) == 1) && (yStart == yFinish)) || ((Math.abs(yStart - yFinish)) == 1 && xStart == xFinish)) {
+            Dot startDot = Dot.getDotByPosition(xStart, yStart);
+            Dot finishDot = Dot.getDotByPosition(xFinish, yFinish);
+            Line line = getLineByDots(startDot, finishDot);
+            if (isLineAvailable(line)) {
+                drawnLines.add(line);
+                removeAvailabe(line);
+                return true;
+            } else {
+                View.showErrors(3);
+                return false;
+            }
+        } else {
+            View.showErrors(3);
+            return false;
+        }
     }
 
     public static Line getLineByDots(Dot dot1, Dot dot2) {

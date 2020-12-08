@@ -21,10 +21,6 @@ public class View {
         }
     }
 
-    public void showAvailableDots() {
-
-    }
-
     public void showAvailableLines() {
         for (Line availableLine : Line.getAvailableLines()) {
             System.out.println(availableLine);
@@ -59,6 +55,25 @@ public class View {
         Player player2 = game.getP2();
         System.out.println(player1.getUser() + ": " + player1.getScore());
         System.out.println(player2.getUser() + ": " + player2.getScore());
+    }
+
+    public void showResult() {
+        if (game.isGameEnd()) {
+            showScore();
+            Player player1 = game.getP1();
+            Player player2 = game.getP2();
+            if (player1.getScore() > player2.getScore()) {
+                System.out.println("Winner: " + player1.getUser());
+            } else if (player2.getScore() > player1.getScore()) {
+                System.out.println("Winner: " + player2.getUser());
+            } else {
+                System.out.println("Draw!");
+            }
+        }
+    }
+
+    public void showWhoIsNext() {
+        System.out.println(game.whoIsTurn().getUser());
     }
 
     public static void showErrors(int errorID) {

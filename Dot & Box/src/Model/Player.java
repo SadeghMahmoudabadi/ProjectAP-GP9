@@ -3,24 +3,24 @@ package Model;
 public class Player {
     private String user;
     private int score;
-    private int wins;
+    //private int wins;
 
     {
         score = 0;
     }
 
-    public Player(String user, int wins) {
+    public Player(String user/*, int wins*/) {
         this.user = user;
-        this.wins = wins;
+        //this.wins = wins;
     }
 
     public String getUser() {
         return user;
     }
 
-    public int getWins() {
+    /*public int getWins() {
         return wins;
-    }
+    }*/
 
     public int getScore() {
         return score;
