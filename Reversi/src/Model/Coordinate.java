@@ -8,7 +8,6 @@ public class Coordinate {
     private int yPosition ;
     private static HashMap<Integer, Coordinate> coordinates = new HashMap<>();
 
-
     //construtor
     public Coordinate(int xPosition, int yPosition) {
         this.xPosition = xPosition;

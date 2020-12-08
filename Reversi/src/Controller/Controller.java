@@ -1,7 +1,6 @@
 package Controller ;
 import java.security.AllPermission;
 import java.util.*;
-
 import Model.Coordinate;
 import Model.Game;
 import View.*;

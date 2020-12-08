@@ -20,7 +20,7 @@ public class Controller {
     }
 
     public static void run(String command) {
-        if (command.equalsIgnoreCase("start dot and boxes game")) {
+        if (command.equalsIgnoreCase("start dots and boxes game")) {
             Game.startTheGame();
         } else if (command.startsWith("draw line between")) {
             int x1, y1, x2, y2;
