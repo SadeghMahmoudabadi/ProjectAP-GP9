@@ -6,12 +6,8 @@ import Model.*;
 import java.util.*;
 
 public class View {
-    private static Scanner scanner;
+    private static Scanner scanner = new Scanner(System.in);
     private Game game;
-
-    {
-        scanner = new Scanner(System.in);
-    }
 
     public View(Game game) {
         this.game = game;
@@ -19,7 +15,7 @@ public class View {
 
     public static void getCommand() {
         String command;
-        while (true/*Line.getAvailableLines().size() != 0*/) {
+        while (true/*Line.getAvailableLines().size() != 0*/) {     /*****************/
             command = scanner.nextLine();
             Controller.run(command);
         }
@@ -27,6 +23,35 @@ public class View {
 
     public void showAvailableDots() {
 
+    }
+
+    public void showAvailableLines() {
+        for (Line availableLine : Line.getAvailableLines()) {
+            System.out.println(availableLine);
+        }
+    }
+
+    public void showTable() {
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 9; j++) {
+                System.out.print("\u26AB");
+                if (Line.isConnected(Dot.getDotByPosition(i, j), Dot.getDotByPosition(i, j+1)) && j < 8) {
+                    System.out.print("----");
+                } else {
+                    System.out.print("    ");
+                }
+            }
+            System.out.println();
+            for (int j = 1; j < 9; j++) {
+                if (Line.isConnected(Dot.getDotByPosition(i,j), Dot.getDotByPosition(i+1, j)) && i < 8) {
+                    System.out.print("\u2009|");
+                } else {
+                    System.out.print(" \u2009");
+                }
+                System.out.print("    ");
+            }
+            System.out.println();
+        }
     }
 
     public void showScore() {

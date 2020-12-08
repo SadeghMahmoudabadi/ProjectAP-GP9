@@ -75,7 +75,7 @@ public class Game {
     }
 
     public Player whoIsTurn() {
-        if (turn == 1) {
+        if (turn == 0) {
             return p1;
         } else
             return p2;
@@ -83,15 +83,15 @@ public class Game {
 
     public void checkTable(Line line) {
         int count = Box.howManyBoxesMade(line);
-        if (count == 0) {
-            changeTurn();
-        } else if (count == 1) {
+        if (count == 1) {
             Player player = whoIsTurn();
             player.incrementScore();
+            setLineDrawn(false);
         } else if (count == 2) {
             Player player = whoIsTurn();
             player.incrementScore();
             player.incrementScore();
+            setLineDrawn(false);
         }
     }
 }

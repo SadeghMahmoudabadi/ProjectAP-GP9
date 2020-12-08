@@ -25,36 +25,35 @@ public class Controller {
         } else if (command.startsWith("draw line between")) {
             int xStart, yStart, xFinish, yFinish;
             String[] input = command.split("\\s");
-            String sDot = input[3];
-            String fDot = input[5];
-            String[] sDot1 = sDot.split(".");// sdot1 =[(] [x1] [,] [y1] [)]
-            String[] fDot1 = fDot.split(".");
-            String xStart1 = sDot1[1];//x1 = 5
-            xStart = Integer.parseInt(xStart1);
-            String yStart1 = sDot1[3];
-            yStart = Integer.parseInt(yStart1);
-            String xFinish1 = fDot1[1];
-            xFinish = Integer.parseInt(xFinish1);
-            String yFinish1 = fDot1[3];
-            yFinish = Integer.parseInt(yFinish1);
-
-
-            //  Line.drawLine(xStart, yStart, xFinish, yFinish);
+            String startDotCmd = input[3];
+            String finishDotCmd = input[5];
+            String[] startDotRegex = startDotCmd.split("");
+            String[] finishDotRegex = finishDotCmd.split("");
+            String xStarChar = startDotRegex[1];
+            xStart = Integer.parseInt(xStarChar);
+            String yStartChar = startDotRegex[3];
+            yStart = Integer.parseInt(yStartChar);
+            String xFinishChar = finishDotRegex[1];
+            xFinish = Integer.parseInt(xFinishChar);
+            String yFinishChar = finishDotRegex[3];
+            yFinish = Integer.parseInt(yFinishChar);
+            Dot startDot = Dot.getDotByPosition(xStart, yStart);
+            Dot finishDot = Dot.getDotByPosition(xFinish, yStart);
+            Line line = Line.drawLine(xStart, yStart, xFinish, yFinish);
             game.setLineDrawn(true);
+            game.checkTable(line);
         } else if (command.equalsIgnoreCase("end of my turn")) {
             if (game.isLineDrawn()) {
-
+                game.changeTurn();
                 game.setLineDrawn(false);
             } else {
                 View.showErrors(1);
             }
 
         } else if (command.equalsIgnoreCase("show available lines")) {
-            for (Line availableLine : Line.getAvailableLines()) {
-                System.out.println(availableLine);
-            }
+            view.showAvailableLines();
         } else if (command.equalsIgnoreCase("show table")) {
-
+            view.showTable();
         } else if (command.equalsIgnoreCase("who is next?")) {
 
         } else if (command.equalsIgnoreCase("show result")) {

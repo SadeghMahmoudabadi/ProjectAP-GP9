@@ -155,4 +155,13 @@ public class Dot {
             }
         }
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Dot dot = (Dot) obj;
+        return xPosition == dot.xPosition &&
+                yPosition == dot.yPosition;
+    }
 }

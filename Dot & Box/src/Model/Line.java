@@ -12,6 +12,7 @@ public class Line {
     private int xFinish;
     private int yFinish;
     private static ArrayList<Line> lines = new ArrayList<>();
+    private static ArrayList<Line> drawnLines = new ArrayList<>();
     private static ArrayList<Line> availableLines = new ArrayList<>();
 
     public Line(Dot startDot, Dot finishDot) {
@@ -61,8 +62,8 @@ public class Line {
         }
     }
 
-    public static void addLine(Line line) {
-        lines.add(line);
+    public static void addDrawnLine(Line line) {
+        drawnLines.add(line);
     }
 
     public static void setAvailableLines() {
@@ -73,6 +74,7 @@ public class Line {
                     Line line = new Line(dot, sideDot);
                     if (!isLineAvailable(line)) {
                         availableLines.add(line);
+                        lines.add(line);
                     }
                 }
             }
@@ -82,6 +84,7 @@ public class Line {
     public static void removeAvailabe(Line line) {
         if (isLineAvailable(line)) {
             availableLines.remove(line);
+            addDrawnLine(line);
         }
     }
 
@@ -102,22 +105,35 @@ public class Line {
         return false;
     }
 
-    public static void drawLine(int xStart, int yStart, int xFinish, int yFinish) {
-        Dot dot1 = Dot.getDotByPosition(xStart, yStart);
-        Dot dot2 = Dot.getDotByPosition(xFinish, yFinish);
-        Line line = getLineByDots(dot1, dot2);
-        lines.add(line);
+    public static Line drawLine(int x1, int y1, int x2, int y2) {
+        int xStart, xFinish, yStart, yFinish;
+        if (x1 == x2) {
+            xStart = x1;
+            xFinish = xStart;
+            yStart = Math.min(y1, y2);
+            yFinish = Math.max(y1, y2);
+        } else {
+            yStart = y1;
+            yFinish = yStart;
+            xStart = Math.min(x1, x2);
+            xFinish = Math.max(x1, x2);
+        }
+        Dot startDot = Dot.getDotByPosition(xStart, yStart);
+        Dot finishDot = Dot.getDotByPosition(xFinish, yFinish);
+        Line line = getLineByDots(startDot, finishDot);
+        drawnLines.add(line);
         removeAvailabe(line);
+        return line;
     }
 
     public static Line getLineByDots(Dot dot1, Dot dot2) {
         for (Line line : lines) {
-            if (line.getxStart() == dot1.getXPosition() && line.getyStart() == dot1.getYPosition()) {
-                if (line.getxFinish() == dot2.getXPosition() && line.getyFinish() == dot2.getYPosition()) {
+            if (line.getStartDot().equals(dot1)) {
+                if (line.getFinishDot().equals(dot2)) {
                     return line;
                 }
-            } else if (line.getxStart() == dot2.getXPosition() && line.getyStart() == dot2.getYPosition()) {
-                if (line.getxStart() == dot1.getXPosition() && line.getyStart() == dot1.getYPosition()) {
+            } else if (line.getFinishDot().equals(dot2)) {
+                if (line.getStartDot().equals(dot1)) {
                     return line;
                 }
             }
@@ -130,13 +146,13 @@ public class Line {
     }
 
     public static boolean isConnected(Dot dot1, Dot dot2) {
-        for (Line line : lines) {
-            if (line.getStartDot().equals(dot1)) {
-                if (line.getFinishDot().equals(dot2)) {
+        for (Line drawnLine : drawnLines) {
+            if (drawnLine.getStartDot().equals(dot1)) {
+                if (drawnLine.getFinishDot().equals(dot2)) {
                     return true;
                 }
-            } else if (line.getStartDot().equals(dot2)) {
-                if (line.getFinishDot().equals(dot1)) {
+            } else if (drawnLine.getStartDot().equals(dot2)) {
+                if (drawnLine.getFinishDot().equals(dot1)) {
                     return true;
                 }
             }
