@@ -37,7 +37,7 @@ public class Coordinate {
     }
 
     //new
-    public int getxPositionPosition() {
+    public int getxPosition() {
         return xPosition;
     }
 
