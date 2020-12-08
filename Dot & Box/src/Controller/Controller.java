@@ -24,6 +24,20 @@ public class Controller {
             Game.startTheGame();
         } else if (command.startsWith("draw line between")) {
             int xStart, yStart, xFinish, yFinish;
+            String[] input = command.split("\\s");
+            String sDot = input[3];
+            String fDot = input[5];
+            String[] sDot1 = sDot.split(".");// sdot1 =[(] [x1] [,] [y1] [)]
+            String[] fDot1 = fDot.split(".");
+            String xStart1 = sDot1[1];//x1 = 5
+            xStart = Integer.parseInt(xStart1);
+            String yStart1 = sDot1[3];
+            yStart = Integer.parseInt(yStart1);
+            String xFinish1 = fDot1[1];
+            xFinish = Integer.parseInt(xFinish1);
+            String yFinish1 = fDot1[3];
+            yFinish = Integer.parseInt(yFinish1);
+
 
             //  Line.drawLine(xStart, yStart, xFinish, yFinish);
             game.setLineDrawn(true);
