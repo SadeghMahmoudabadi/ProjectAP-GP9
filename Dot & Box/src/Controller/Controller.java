@@ -1,4 +1,5 @@
 package Controller;
+
 import Model.Dot;
 import Model.Game;
 import Model.Line;
@@ -66,7 +67,6 @@ public class Controller {
             } else {
                 View.showErrors(1);
             }
-
         } else if (command.equalsIgnoreCase("show available lines")) {
             view.showAvailableLines();
         } else if (command.equalsIgnoreCase("show table")) {

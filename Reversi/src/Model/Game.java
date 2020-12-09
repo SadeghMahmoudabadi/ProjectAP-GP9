@@ -84,7 +84,7 @@ public class Game {
                 }
                 if ((i == 4 && j == 5) || (i == 5 && j == 4)) {
                     System.out.print("\u26AB    ");
-                }else
+                } else
                     System.out.print("\u22C5     ");
 
             }
@@ -111,4 +111,11 @@ public class Game {
 
     }
 
+    public static int[] getCountScore() {
+        return countScore;
+    }
+
+    public static void setCountScore(int[] countScore) {
+        Game.countScore = countScore;
+    }
 }

@@ -1,11 +1,13 @@
 package Model;
+
 import java.util.*;
+
 public class Coordinate {
 
     //1 -> white 0->black
     private int color;
-    private int xPosition ;
-    private int yPosition ;
+    private int xPosition;
+    private int yPosition;
     private static HashMap<Integer, Coordinate> coordinates = new HashMap<>();
 
     //constructor
@@ -45,13 +47,13 @@ public class Coordinate {
     }
 
     // from UML
-    public static void addCoordinate(int x , int y, Coordinate c){
-        int xy = x*10 + y ;
-        coordinates.put(xy,c);
+    public static void addCoordinate(int x, int y, Coordinate c) {
+        int xy = x * 10 + y;
+        coordinates.put(xy, c);
     }
 
     public static Coordinate getCoordinateByPosition(int x, int y) {
-        int position = x*10 + y;
+        int position = x * 10 + y;
         Coordinate coordinate = coordinates.get(position);
         return coordinate;
     }
