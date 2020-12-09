@@ -19,6 +19,7 @@ public class View {
             command = scanner.nextLine();
             Controller.run(command);
         }
+
     }
 
     public void showResult() {

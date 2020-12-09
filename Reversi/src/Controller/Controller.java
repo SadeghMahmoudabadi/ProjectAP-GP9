@@ -27,6 +27,7 @@ public class Controller {
             x = Integer.parseInt(xStarChar);
             String yStartChar = coordinateRegex[3];
             y = Integer.parseInt(yStartChar);
+            game.placeDisk( Coordinate.getCoordinateByPosition(x,y).getColor(), x ,y);
 
         } else if (command.equalsIgnoreCase("end of my turn")) {
 
