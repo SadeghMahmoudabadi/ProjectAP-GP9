@@ -34,4 +34,14 @@ public class View {
         }
 
     }
+
+    public void showTable() {
+        System.out.println("white: " + Game.countScore[1] + " || black: " + Game.countScore[0] );
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 9; j++) {
+                System.out.format("%s", Coordinate.getCoordinateByPosition(i, j).toString());
+            }
+            System.out.println("\n");
+        }
+    }
 }
