@@ -1,6 +1,4 @@
 package Controller;
-
-
 import Model.Dot;
 import Model.Game;
 import Model.Line;

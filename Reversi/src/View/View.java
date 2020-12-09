@@ -11,6 +11,12 @@ public class View {
     }
 
     public static void getCommand() {
+        String command;
+        while (true/*Line.getAvailableLines().size() != 0*/) {     /*****************/
+            command = scanner.nextLine();
+            Controller.run(command);
+        }
+
 
         }
     }

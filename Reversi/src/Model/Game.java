@@ -1,14 +1,19 @@
 package Model;
+
 import java.util.*;
- public class Game {
-     private static int[] countScore = new int[2];
-     private Player p1;
+
+public class Game {
+
+    private Player p1;
     private Player p2;
     private int turn;
-    private int color ;
+    private int color;
     private Grid grid;
     private Scanner scanner;
     Random generator = new Random();
+
+    //new
+    private static int[] countScore = new int[2];
 
     //new
     public Game() {
@@ -72,15 +77,16 @@ import java.util.*;
     public static void startTheGame() {
         for (int i = 1; i < 9; i++) {
             for (int j = 1; j < 9; j++) {
-                System.out.print("\u26AB    ");
                 Coordinate c = new Coordinate(i, j);
                 c.addCoordinate(i, j, c);
-                if((i == 4 && j ==4) || (i==5 && j==5) ){
-                    c.setColor(1);
+                if ((i == 4 && j == 4) || (i == 5 && j == 5)) {
+                    System.out.print("\u26AA    ");
                 }
-                if((i == 4 && j ==5) || (i==5 && j==4) ){
-                    c.setColor(0);
-                }
+                if ((i == 4 && j == 5) || (i == 5 && j == 4)) {
+                    System.out.print("\u26AB    ");
+                }else
+                    System.out.print("\u22C5     ");
+
             }
             System.out.println();
             System.out.println();
@@ -90,18 +96,19 @@ import java.util.*;
         countScore[1] = 2;
 
     }
-    // method for color setting needed
-     public void setTurn(){
-         int win1 = p1.getWins();
-         int win2 = p2.getWins();
-         if (win1 > win2) {
-             turn = 0;
-         } else if (win1 < win2) {
-             turn = 1;
-         } else {
-             turn = generator.nextInt(2);
-         }
 
-     }
+    // method for color setting needed
+    public void setTurn() {
+        int win1 = p1.getWins();
+        int win2 = p2.getWins();
+        if (win1 > win2) {
+            turn = 0;
+        } else if (win1 < win2) {
+            turn = 1;
+        } else {
+            turn = generator.nextInt(2);
+        }
+
+    }
 
 }

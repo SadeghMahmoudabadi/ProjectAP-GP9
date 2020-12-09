@@ -1,7 +1,10 @@
 package View;
+
 import Controller.Controller;
 import Model.*;
+
 import java.util.*;
+
 public class View {
     private static Scanner scanner = new Scanner(System.in);
     private Game game;
@@ -28,7 +31,7 @@ public class View {
         for (int i = 1; i < 9; i++) {
             for (int j = 1; j < 9; j++) {
                 System.out.print("\u26AB");
-                if (Line.isConnected(Dot.getDotByPosition(i, j), Dot.getDotByPosition(i, j+1)) && j < 8) {
+                if (Line.isConnected(Dot.getDotByPosition(i, j), Dot.getDotByPosition(i, j + 1)) && j < 8) {
                     System.out.print("----");
                 } else {
                     System.out.print("    ");
@@ -36,7 +39,7 @@ public class View {
             }
             System.out.println();
             for (int j = 1; j < 9; j++) {
-                if (Line.isConnected(Dot.getDotByPosition(i,j), Dot.getDotByPosition(i+1, j)) && i < 8) {
+                if (Line.isConnected(Dot.getDotByPosition(i, j), Dot.getDotByPosition(i + 1, j)) && i < 8) {
                     System.out.print("\u2009|");
                 } else {
                     System.out.print(" \u2009");
