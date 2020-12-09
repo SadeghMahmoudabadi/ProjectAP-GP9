@@ -11,8 +11,8 @@ import static Model.Game.countScore;
 public class View {
     private static Scanner scanner = new Scanner(System.in);
     private Game game;
-    Player player1 = game.getP1();
-    Player player2 = game.getP2();
+    Player player1 ;
+    Player player2 ;
 
     public View(Game game) {
         this.game = game;
@@ -28,6 +28,8 @@ public class View {
     }
 
     public void showResult() {
+        player1 = game.getP1();
+        player2 = game.getP2();
         if (player1.getScore() > player2.getScore()) {
             System.out.println("Winner: " + player1.getUser());
         } else if (player2.getScore() > player1.getScore()) {
@@ -49,6 +51,8 @@ public class View {
     }
 
     public void showScore() {
+        player1 = game.getP1();
+        player2 = game.getP2();
         player1.setScore(countScore[0]) ;
         player2.setScore(countScore[1]);
         System.out.println("player1: " + Game.countScore[0] + " || player2: " + Game.countScore[1] );
