@@ -8,20 +8,10 @@ public class Coordinate {
     private int yPosition ;
     private static HashMap<Integer, Coordinate> coordinates = new HashMap<>();
 
-    //construtor
+    //constructor
     public Coordinate(int xPosition, int yPosition) {
         this.xPosition = xPosition;
         this.yPosition = yPosition;
-    }
-
-    //new
-    public HashMap<Integer, Coordinate> getCoordinates() {
-        return coordinates;
-    }
-
-    //new
-    public void setCoordinates(HashMap<Integer, Coordinate> coordinates) {
-        Coordinate.coordinates = coordinates;
     }
 
     //added from nut class
@@ -58,6 +48,12 @@ public class Coordinate {
     public static void addCoordinate(int x , int y, Coordinate c){
         int xy = x*10 + y ;
         coordinates.put(xy,c);
+    }
+
+    public static Coordinate getCoordinateByPosition(int x, int y) {
+        int position = x*10 + y;
+        Coordinate coordinate = coordinates.get(position);
+        return coordinate;
     }
 
     //added from nut class
