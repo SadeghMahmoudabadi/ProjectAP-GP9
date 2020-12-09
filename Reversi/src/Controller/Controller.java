@@ -37,7 +37,7 @@ public class Controller {
         } else if (command.equalsIgnoreCase("who is next?")) {
 
         } else if (command.equalsIgnoreCase("show result")) {
-
+            view.showResult();
         } else if (command.equalsIgnoreCase("show score")) {
 
         } else if (command.equalsIgnoreCase("show disks")) {
