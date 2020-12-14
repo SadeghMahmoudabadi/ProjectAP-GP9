@@ -7,7 +7,7 @@ import java.util.*;
 
 public class View {
     private static Scanner scanner = new Scanner(System.in);
-    private Game game;
+    private static Game game;
 
     public View(Game game) {
         this.game = game;
@@ -21,14 +21,18 @@ public class View {
         }
     }
 
-    public void showAvailableLines() {
+    public static void showAvailableLines() {
         for (Line availableLine : Line.getAvailableLines()) {
             System.out.println(availableLine);
         }
     }
 
-    public void showTable() {
+    public static void showTable() {
+        showScore();
+        System.out.println("    1  \u2009  2  \u2009\u2009  3  \u2009\u2009  4  \u2009\u2009 5  \u2009\u2009 6  \u2009\u2009  7  \u2009\u2009  8");
+        System.out.println();
         for (int i = 1; i < 9; i++) {
+            System.out.printf(" %d  ", i);
             for (int j = 1; j < 9; j++) {
                 System.out.print("\u26AB");
                 if (Line.isConnected(Dot.getDotByPosition(i, j), Dot.getDotByPosition(i, j + 1)) && j < 8) {
@@ -38,6 +42,7 @@ public class View {
                 }
             }
             System.out.println();
+            System.out.print("    ");
             for (int j = 1; j < 9; j++) {
                 if (Line.isConnected(Dot.getDotByPosition(i, j), Dot.getDotByPosition(i + 1, j)) && i < 8) {
                     System.out.print("\u2009|");
@@ -48,16 +53,17 @@ public class View {
             }
             System.out.println();
         }
+        showWhoIsNext();
     }
 
-    public void showScore() {
+    public static void showScore() {
         Player player1 = game.getP1();
         Player player2 = game.getP2();
         System.out.println(player1.getUser() + ": " + player1.getScore());
         System.out.println(player2.getUser() + ": " + player2.getScore());
     }
 
-    public void showResult() {
+    public static void showResult() {
         if (game.isGameEnd()) {
             showScore();
             Player player1 = game.getP1();
@@ -72,7 +78,7 @@ public class View {
         }
     }
 
-    public void showWhoIsNext() {
+    public static void showWhoIsNext() {
         System.out.println(game.whoIsTurn().getUser());
     }
 

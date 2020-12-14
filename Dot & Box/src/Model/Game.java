@@ -1,5 +1,7 @@
 package Model;
 
+import View.View;
+
 import java.util.*;
 public class Game {
     private Player p1;
@@ -42,7 +44,10 @@ public class Game {
     }
 
     public static void startTheGame() {
+        System.out.println("    1  \u2009  2  \u2009\u2009  3  \u2009\u2009  4  \u2009\u2009 5  \u2009\u2009 6  \u2009\u2009  7  \u2009\u2009  8");
+        System.out.println();
         for (int i = 1; i < 9; i++) {
+            System.out.printf(" %d  ", i);
             for (int j = 1; j < 9; j++) {
                 System.out.print("\u26AB    ");
                 Dot dot = new Dot(i, j);
@@ -82,8 +87,11 @@ public class Game {
     public void changeTurn() {
         if (turn == 0) {
             turn = 1;
-        } else
+            View.showWhoIsNext();
+        } else {
             turn = 0;
+            View.showWhoIsNext();
+        }
     }
 
     public Player whoIsTurn() {

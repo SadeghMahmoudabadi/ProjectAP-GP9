@@ -58,6 +58,7 @@ public class Controller {
                     Line line = Line.getLineByDots(startDot, finishDot);
                     game.setLineDrawn(true);
                     game.checkTable(line);
+                    view.showTable();
                 }
             }
         } else if (command.equalsIgnoreCase("end of my turn")) {
