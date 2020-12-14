@@ -5,9 +5,14 @@ import Model.*;
 
 import java.util.*;
 
+import static Model.Game.countScore;
+
+
 public class View {
     private static Scanner scanner = new Scanner(System.in);
     private Game game;
+    Player player1 ;
+    Player player2 ;
 
     public View(Game game) {
         this.game = game;
@@ -23,8 +28,8 @@ public class View {
     }
 
     public void showResult() {
-        Player player1 = game.getP1();
-        Player player2 = game.getP2();
+        player1 = game.getP1();
+        player2 = game.getP2();
         if (player1.getScore() > player2.getScore()) {
             System.out.println("Winner: " + player1.getUser());
         } else if (player2.getScore() > player1.getScore()) {
@@ -35,7 +40,7 @@ public class View {
 
     }
 
-    public void showTable() {
+    public void showGrid() {
         System.out.println("white: " + Game.countScore[1] + " || black: " + Game.countScore[0] );
         for (int i = 1; i < 9; i++) {
             for (int j = 1; j < 9; j++) {
@@ -44,4 +49,17 @@ public class View {
             System.out.println("\n");
         }
     }
-}
+
+    public void showScore() {
+        player1 = game.getP1();
+        player2 = game.getP2();
+        player1.setScore(countScore[0]) ;
+        player2.setScore(countScore[1]);
+        System.out.println("player1: " + Game.countScore[0] + " || player2: " + Game.countScore[1] );
+
+
+    }
+
+
+    }
+

@@ -34,13 +34,13 @@ public class Controller {
         } else if (command.equalsIgnoreCase("show available coordinates")) {
 
         } else if (command.equalsIgnoreCase("show grid")) {
-
+            view.showGrid();
         } else if (command.equalsIgnoreCase("who is next?")) {
 
         } else if (command.equalsIgnoreCase("show result")) {
             view.showResult();
         } else if (command.equalsIgnoreCase("show score")) {
-
+            view.showScore();
         } else if (command.equalsIgnoreCase("show disks")) {
 
         }
