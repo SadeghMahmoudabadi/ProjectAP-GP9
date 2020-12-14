@@ -91,10 +91,10 @@ public class User {
     }
 
     public static void login(User user) {
-
+        loggedUsers.add(user);
     }
 
     public static void logout(User user) {
-
+        loggedUsers.remove(user);
     }
 }

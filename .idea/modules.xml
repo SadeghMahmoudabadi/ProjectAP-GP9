@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Dot &amp; Box/Dot &amp; Box.iml" filepath="$PROJECT_DIR$/Dot &amp; Box/Dot &amp; Box.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Plato/Plato.iml" filepath="$PROJECT_DIR$/Plato/Plato.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/ProjectAP-GP9.iml" filepath="$PROJECT_DIR$/.idea/ProjectAP-GP9.iml" />
       <module fileurl="file://$PROJECT_DIR$/Reversi/Reversi.iml" filepath="$PROJECT_DIR$/Reversi/Reversi.iml" />
     </modules>
