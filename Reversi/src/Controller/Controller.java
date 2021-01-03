@@ -1,49 +1,43 @@
 package Controller;
 
-import java.security.AllPermission;
-import java.util.*;
-
-import Model.Coordinate;
-import Model.Game;
-import View.*;
+import Model.*;
+import View.View;
 
 public class Controller {
-    private static Game game = new Game();
-    private static View view = new View(game);
-
-
-    public Controller() {
-    }
 
     public static void run(String command) {
         if (command.equalsIgnoreCase("start Reversi game")) {
-            Game.startTheGame();
-        } else if (command.startsWith("Place disk on")) {
+            Game game = new Game(View.getPlayers(), View.getGrid());
+            View.players[0] = new Player(0, View.grid);
+            View.players[1] = new Player(1, View.grid);
+            View.setIsGameStarted(true);
+            View.showGrid();
+        } else if (command.startsWith("place disk on ")) {
             int x, y;
-            String[] input = command.split("\\s");
-            String strdinate = input[3];
-            String[] coordinateRegex = strdinate.split("");
-            String xStarChar = coordinateRegex[1];
-            x = Integer.parseInt(xStarChar);
-            String yStartChar = coordinateRegex[3];
-            y = Integer.parseInt(yStartChar);
-            game.placeDisk( Coordinate.getCoordinateByPosition(x,y).getColor(), x ,y);
-
-        } else if (command.equalsIgnoreCase("end of my turn")) {
-
-        } else if (command.equalsIgnoreCase("show available coordinates")) {
-
-        } else if (command.equalsIgnoreCase("show grid")) {
-            view.showGrid();
+            String position = command.split(" ")[3];
+            if (position.length() > 5) {
+                View.showErrors(2);
+            } else {
+                x = Integer.parseInt(position.split("")[1]);
+                y = Integer.parseInt(position.split("")[3]);
+                Game.whoIsTurn().placeDisk(String.format("%d %d", x, y));
+            }
+        } /*else if (command.equalsIgnoreCase("end of my turn")) {
+            Game.changeTurn();
+        } /*else if (command.equalsIgnoreCase("show available coordinates")) {
+            View.showAvailableCoordinates();
+        }*/ else if (command.equalsIgnoreCase("show grid")) {
+            View.showGrid();
         } else if (command.equalsIgnoreCase("who is next?")) {
-
+            View.showWhoIsNext();
         } else if (command.equalsIgnoreCase("show result")) {
-            view.showResult();
+            if (Game.isGameOver()) {
+                View.showResult();
+            }
         } else if (command.equalsIgnoreCase("show score")) {
-            view.showScore();
+            View.showScore();
         } else if (command.equalsIgnoreCase("show disks")) {
-
+            View.showDisks();
         }
-
     }
 }

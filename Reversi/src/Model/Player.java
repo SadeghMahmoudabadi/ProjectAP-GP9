@@ -1,36 +1,65 @@
 package Model;
 
+import View.View;
+
 public class Player {
-    private String user;
-    private int score;
-    private int wins;
+    protected int color;
+    protected Grid grid;
+    private String username;
 
-    {
-        score = 0;
+    public Player(int color, Grid grid) {
+        this.color = color;
+        this.grid = grid;
     }
 
-    public Player(String user, int wins) {
-        this.user = user;
-        this.wins = wins;
+    public int getColor() {
+        return color;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public int getWins() {
-        return wins;
+    public void placeDisk(String input) {
+        int x = Integer.parseInt(String.valueOf(input.charAt(0)));
+        int y = Integer.parseInt(String.valueOf(input.charAt(2)));
+        try {
+            boolean bool = grid.placeDisk(color, x, y);
+            if (bool) {
+                View.showGrid();
+                Game.changeTurn();
+            } else {
+                View.showErrors(3);
+            }
+            //if invalid input given
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            View.showErrors(2);
+        }
     }
 
-    public int getScore() {
-        return score;
+    public boolean hasTurn() {
+        Disk[][] map = grid.getCoordinates();
+        boolean flag = false;
+        for (int i = 1; i < 9; i++) {
+            for (int j = 1; j < 9; j++) {
+                if (map[i][j].getColor() == -1 && hasDiskAround(i, j))
+                    if (grid.isValid(color, i, j, false)) {
+                        map[i][j].setValidLocate(true);
+                        flag = true;
+                    }
+            }
+        }
+        return flag;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
-
-    public void incrementScore() {
-        this.score++;
+    protected boolean hasDiskAround(int x, int y) {
+        Disk[][] map = grid.getCoordinates();
+        for (int i = -1; i < 2; i++) {
+            for (int j = -1; j < 2; j++) {
+                if (map[x + i][y + j].getColor() != -1 && map[x + i][y + j].getColor() != color)
+                    return true;
+            }
+        }
+        return false;
     }
 }

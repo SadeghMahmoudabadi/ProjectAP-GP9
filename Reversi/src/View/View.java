@@ -1,65 +1,115 @@
 package View;
 
 import Controller.Controller;
-import Model.*;
+import Model.Game;
+import Model.Grid;
+import Model.Player;
 
-import java.util.*;
-
-import static Model.Game.countScore;
-
+import java.util.Scanner;
 
 public class View {
+    public static Grid grid = new Grid();
+    public static Player[] players = new Player[2];
+    static boolean isGameStarted = false;
     private static Scanner scanner = new Scanner(System.in);
-    private Game game;
-    Player player1 ;
-    Player player2 ;
-
-    public View(Game game) {
-        this.game = game;
-    }
 
     public static void getCommand() {
-        String command;
-        while (true/*Line.getAvailableLines().size() != 0*/) {     /*****************/
-            command = scanner.nextLine();
-            Controller.run(command);
+        int i = 0;
+        while (true) {
+            if (!isGameStarted) {
+                Controller.run(scanner.nextLine());
+            } else {
+                int color = Game.whoIsTurn().getColor();
+                if (color == 0 && Game.whoIsTurn().hasTurn()) {
+                    System.out.println("white turn!");
+                } else if (color == 1 && Game.whoIsTurn().hasTurn()) {
+                    System.out.println("black turn!");
+                } else if ((players[0].hasTurn()) || (players[1].hasTurn())) {
+                    Game.changeTurn();
+                    //View.showErrors(1);
+                } else {
+                    Game.setIsGameOver(true);
+                }
+                if (players[i % 2].hasTurn()) {
+                    Controller.run(scanner.nextLine());
+                } else if (players[(i + 1) % 2].hasTurn()) {
+                    i = (i + 1) % 2;
+                    Controller.run(scanner.nextLine());
+                } else {
+                    showScore();
+                    showResult();
+                    break;
+                }
+                i = (i + 1) % 2;
+            }
         }
-
     }
 
-    public void showResult() {
-        player1 = game.getP1();
-        player2 = game.getP2();
-        if (player1.getScore() > player2.getScore()) {
-            System.out.println("Winner: " + player1.getUser());
-        } else if (player2.getScore() > player1.getScore()) {
-            System.out.println("Winner: " + player2.getUser());
-        } else {
-            System.out.println("Draw!");
-        }
-
+    public static void setIsGameStarted(boolean isGameStarted) {
+        View.isGameStarted = isGameStarted;
     }
 
-    public void showGrid() {
-        System.out.println("white: " + Game.countScore[1] + " || black: " + Game.countScore[0] );
+    public static Player[] getPlayers() {
+        return players;
+    }
+
+    public static Grid getGrid() {
+        return grid;
+    }
+
+    /*public static void showAvailableCoordinates() {
+
+    }*/
+
+    public static void showGrid() {
+        showScore();
+        System.out.println("      1  \u2009  2  \u2009\u2009  3  \u2009\u2009  4  \u2009\u2009  5  \u2009\u2009  6  \u2009\u2009  7  \u2009\u2009  8");
+        System.out.println();
         for (int i = 1; i < 9; i++) {
+            System.out.printf(" %d  ", i);
             for (int j = 1; j < 9; j++) {
-                System.out.format("%s", Coordinate.getCoordinateByPosition(i, j).toString());
+                if (grid.coordinates[i][j].isLastDisk()) {
+                    System.out.printf(" >%s< ", grid.coordinates[i][j].toString());
+                } else {
+                    System.out.printf("  %s  ", grid.coordinates[i][j].toString());
+                }
             }
             System.out.println("\n");
         }
+        grid.resetGrid();
     }
 
-    public void showScore() {
-        player1 = game.getP1();
-        player2 = game.getP2();
-        player1.setScore(countScore[0]) ;
-        player2.setScore(countScore[1]);
-        System.out.println("player1: " + Game.countScore[0] + " || player2: " + Game.countScore[1] );
-
-
+    public static void showDisks() {
+        showGrid();
     }
 
-
+    public static void showWhoIsNext() {
+        System.out.println(Game.whoIsTurn().getUsername());
     }
+
+    public static void showResult() {
+        int[] diskCount = grid.diskCount;
+        if (diskCount[0] > diskCount[1]) {
+            System.out.println("White wins!");
+        } else if (diskCount[1] > diskCount[0]) {
+            System.out.println("Black wins!");
+        } else {
+            System.out.println("Draw!!!");
+        }
+    }
+
+    public static void showScore() {
+        System.out.println("white: " + grid.diskCount[0] + " || black: " + grid.diskCount[1]);
+    }
+
+    public static void showErrors(int errorID) {
+        if (errorID == 1) {
+            System.out.println("in your turn you should place the disk");
+        } else if (errorID == 2) {
+            System.out.println("Coordinates must be inside the table");
+        } else {
+            System.out.println("You cannot place the disk on this Coordinates");
+        }
+    }
+}
 
