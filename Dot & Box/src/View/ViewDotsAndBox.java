@@ -1,15 +1,19 @@
 package View;
 
-import Controller.Controller;
-import Model.*;
 
-import java.util.*;
+import Model.Dot;
+import Model.Game;
+import Model.Line;
+import Model.Player;
+import Controller.*;
 
-public class View {
+import java.util.Scanner;
+
+public class ViewDotsAndBox {
     private static Scanner scanner = new Scanner(System.in);
     private static Game game;
 
-    public View(Game game) {
+    public ViewDotsAndBox(Game game) {
         this.game = game;
     }
 

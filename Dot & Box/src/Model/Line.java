@@ -1,8 +1,8 @@
 package Model;
 
-import View.View;
+import View.ViewDotsAndBox;
 
-import java.util.*;
+import java.util.ArrayList;
 
 @SuppressWarnings("ALL")
 public class Line {
@@ -129,11 +129,11 @@ public class Line {
                 removeAvailabe(line);
                 return true;
             } else {
-                View.showErrors(3);
+                ViewDotsAndBox.showErrors(3);
                 return false;
             }
         } else {
-            View.showErrors(3);
+            ViewDotsAndBox.showErrors(3);
             return false;
         }
     }

@@ -1,6 +1,7 @@
 package Model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 @SuppressWarnings("ALL")
 public class Dot {

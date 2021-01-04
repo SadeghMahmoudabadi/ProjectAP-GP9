@@ -3,16 +3,12 @@ package Controller;
 import Model.Dot;
 import Model.Game;
 import Model.Line;
-import Model.Player;
-import View.View;
-
-import java.security.AllPermission;
-import java.util.*;
+import View.ViewDotsAndBox;
 
 
 public class Controller {
     private static Game game = new Game();
-    private static View view = new View(game);
+    private static ViewDotsAndBox viewDotsAndBox = new ViewDotsAndBox(game);
 
 
     public Controller() {
@@ -37,7 +33,7 @@ public class Controller {
             String yFinishChar = finishDotRegex[3];
             y2 = Integer.parseInt(yFinishChar);
             if (x1 > 8 || x1 < 1 || y1 > 8 || y1 < 1 || x2 > 8 || x2 < 1 || y2 > 8 || y2 < 1) {
-                View.showErrors(2);
+                ViewDotsAndBox.showErrors(2);
             } else {
                 boolean isLineDrawn = Line.drawLine(x1, y1, x2, y2);
                 if (isLineDrawn) {
@@ -58,26 +54,23 @@ public class Controller {
                     Line line = Line.getLineByDots(startDot, finishDot);
                     game.setLineDrawn(true);
                     game.checkTable(line);
-                    view.showTable();
+                    if (game.isLineDrawn()) {
+                        game.changeTurn();
+                        game.setLineDrawn(false);
+                    }
+                    viewDotsAndBox.showTable();
                 }
             }
-        } else if (command.equalsIgnoreCase("end of my turn")) {
-            if (game.isLineDrawn()) {
-                game.changeTurn();
-                game.setLineDrawn(false);
-            } else {
-                View.showErrors(1);
-            }
         } else if (command.equalsIgnoreCase("show available lines")) {
-            view.showAvailableLines();
+            viewDotsAndBox.showAvailableLines();
         } else if (command.equalsIgnoreCase("show table")) {
-            view.showTable();
+            viewDotsAndBox.showTable();
         } else if (command.equalsIgnoreCase("who is next?")) {
-            view.showWhoIsNext();
+            viewDotsAndBox.showWhoIsNext();
         } else if (command.equalsIgnoreCase("show result")) {
-            view.showResult();
+            viewDotsAndBox.showResult();
         } else if (command.equalsIgnoreCase("show score")) {
-            view.showScore();
+            viewDotsAndBox.showScore();
         }
 
     }
