@@ -1,17 +1,31 @@
 package View;
 
 import Controller.Controller;
+import Graphic.GraphicController;
 import Model.Game;
 import Model.Grid;
-import Model.Player;
 
 import java.util.Scanner;
 
 public class View {
+
     public static Grid grid = new Grid();
-    public static Player[] players = new Player[2];
     static boolean isGameStarted = false;
     private static Scanner scanner = new Scanner(System.in);
+
+    public static Grid getGrid() {
+        return grid;
+    }
+
+    public static void showErrors(int errorID) {
+        if (errorID == 1) {
+            System.out.println("in your turn you should place the disk");
+        } else if (errorID == 2) {
+            System.out.println("Coordinates must be inside the table");
+        } else {
+            System.out.println("You cannot place the disk on this Coordinates");
+        }
+    }
 
     public static void getCommand() {
         int i = 0;
@@ -24,15 +38,15 @@ public class View {
                     System.out.println("white turn!");
                 } else if (color == 1 && Game.whoIsTurn().hasTurn()) {
                     System.out.println("black turn!");
-                } else if ((players[0].hasTurn()) || (players[1].hasTurn())) {
+                } else if ((GraphicController.players[0].hasTurn()) || (GraphicController.players[1].hasTurn())) {
                     Game.changeTurn();
                     //View.showErrors(1);
                 } else {
                     Game.setIsGameOver(true);
                 }
-                if (players[i % 2].hasTurn()) {
+                if (GraphicController.players[i % 2].hasTurn()) {
                     Controller.run(scanner.nextLine());
-                } else if (players[(i + 1) % 2].hasTurn()) {
+                } else if (GraphicController.players[(i + 1) % 2].hasTurn()) {
                     i = (i + 1) % 2;
                     Controller.run(scanner.nextLine());
                 } else {
@@ -49,13 +63,6 @@ public class View {
         View.isGameStarted = isGameStarted;
     }
 
-    public static Player[] getPlayers() {
-        return players;
-    }
-
-    public static Grid getGrid() {
-        return grid;
-    }
 
     /*public static void showAvailableCoordinates() {
 
@@ -102,14 +109,6 @@ public class View {
         System.out.println("white: " + grid.diskCount[0] + " || black: " + grid.diskCount[1]);
     }
 
-    public static void showErrors(int errorID) {
-        if (errorID == 1) {
-            System.out.println("in your turn you should place the disk");
-        } else if (errorID == 2) {
-            System.out.println("Coordinates must be inside the table");
-        } else {
-            System.out.println("You cannot place the disk on this Coordinates");
-        }
-    }
+
 }
 

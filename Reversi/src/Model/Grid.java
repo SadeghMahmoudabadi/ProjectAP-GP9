@@ -1,5 +1,7 @@
 package Model;
 
+import Graphic.GraphicController;
+
 public class Grid {
     public Disk[][] coordinates;
     public int[] diskCount;
@@ -67,6 +69,12 @@ public class Grid {
         int primeColor = PrimeColor(color);
         do {
             coordinates[x][y].setColor(color);
+            if (color == 0) {
+                GraphicController.coordinates[x - 1][y - 1].setText("⚪");
+            } else
+                GraphicController.coordinates[x - 1][y - 1].setText("⚫");
+
+
             x += signX;
             y += signY;
             diskCount[color]++;
