@@ -1,9 +1,7 @@
-package View;
-
-import View.View;
+import View.ViewDotsAndBox;
 
 public class Main {
     public static void main(String[] args) {
-        View.getCommand();
+        ViewDotsAndBox.getCommand();
     }
 }
