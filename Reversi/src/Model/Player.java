@@ -1,11 +1,13 @@
 package Model;
 
-import View.View;
+import View.ShowErrors;
+import View.ViewReversi;
 
 public class Player {
     protected int color;
     protected Grid grid;
     private String username;
+
 
     public Player(int color, Grid grid) {
         this.color = color;
@@ -20,20 +22,23 @@ public class Player {
         return username;
     }
 
-    public void placeDisk(String input) {
+    public boolean placeDisk(String input) {
         int x = Integer.parseInt(String.valueOf(input.charAt(0)));
         int y = Integer.parseInt(String.valueOf(input.charAt(2)));
         try {
             boolean bool = grid.placeDisk(color, x, y);
             if (bool) {
-                View.showGrid();
+                ViewReversi.showGrid();
                 Game.changeTurn();
+                return true;
             } else {
-                View.showErrors(3);
+                ShowErrors.INVALID_COORDINATES.showMessage();
+                ViewReversi.showErrors(3);
+                return false;
             }
-            //if invalid input given
         } catch (ArrayIndexOutOfBoundsException ex) {
-            View.showErrors(2);
+            ViewReversi.showErrors(2);
+            return false;
         }
     }
 

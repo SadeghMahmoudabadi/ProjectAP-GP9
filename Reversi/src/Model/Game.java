@@ -1,7 +1,5 @@
 package Model;
 
-import View.View;
-
 public class Game {
     Grid grid;
     static Player[] players;
@@ -11,7 +9,7 @@ public class Game {
 
     public Game(Player[] players, Grid grid) {
         this.grid = new Grid();
-        this.players = players;
+        Game.players = players;
     }
 
     /*public static boolean canIEndTurn() {
@@ -31,12 +29,7 @@ public class Game {
     }
 
     public static void changeTurn() {
-        /*if (canIEndTurn()) {*/
-        turn = (turn + 1) % 2;
-            /*setEndTurn(false);
-        } else {
-            View.showErrors(1);
-        }*/
+            turn = (turn + 1) % 2;
     }
 
     public static Player whoIsTurn() {
