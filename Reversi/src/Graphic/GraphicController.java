@@ -5,12 +5,14 @@ import Model.Player;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class GraphicController {
     public static Button[][] coordinates;
     public static Player[] players = new Player[2];
+    public GridPane gameGrid;
 
     public static void showGameBoard() {
         GridPane gameGridPane = new GridPane();

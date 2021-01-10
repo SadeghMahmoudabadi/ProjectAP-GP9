@@ -33,7 +33,7 @@ public class Player {
                 Game.changeTurn();
                 return true;
             } else {
-                ShowErrors.INVALID_COORDINATES.showMessage();
+                ShowErrors .INVALID_COORDINATES.showMessage();
                 View.showErrors(3);
                 return false;
             }
