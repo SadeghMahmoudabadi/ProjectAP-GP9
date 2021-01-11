@@ -37,6 +37,7 @@ public class GraphicController implements Initializable {
         // Boolean isStartDot = true;
 for(int i = 0; i < 7; i++){
     for(int j =0 ; j<8 ; j++){
+        String position = String.format("%d%d%d%d" , j , i , j , i +1);
         Line line1 = new Line();
         line1.setStartX(198 + i*93);
         line1.setStartY(178 + j*92.5);
@@ -44,8 +45,6 @@ for(int i = 0; i < 7; i++){
         line1.setEndY(178 + j*92.5);
         line1.setStrokeWidth(10);
         line1.setStroke(Color.RED);
-        String position = String.format("%d%d%d%d" , i , j , i , j);
-        redLines.put(position , line1);
         line1.setVisible(false);
         gameBoard.getChildren().add(line1);
         Line line2 = new Line();
@@ -55,6 +54,7 @@ for(int i = 0; i < 7; i++){
         line2.setEndY(178 + j*92.5);
         line2.setStrokeWidth(10);
         line2.setStroke(Color.BLUE);
+        blueLines.put(position , line2);
         line2.setVisible(false);
         gameBoard.getChildren().add(line2);
     }
@@ -63,14 +63,13 @@ for(int i = 0; i < 7; i++){
         for(int i = 0; i < 8; i++){
             for(int j =0 ; j<7 ; j++){
                 Line line1 = new Line();
+                String position = String.format("%d%d%d%d" , j , i , j+1 , i);
                 line1.setStartX(190 + i*92.5);
                 line1.setStartY(185 + j*93);
                 line1.setEndX(190 + i*92.5);
-                line1.setEndY(365 + j*93);
+                line1.setEndY(261 + j*93);
                 line1.setStrokeWidth(10);
                 line1.setStroke(Color.RED);
-                String position = String.format("%d%d%d%d" , i , j , i , j);
-                redLines.put(position , line1);
                 line1.setVisible(false);
                 gameBoard.getChildren().add(line1);
 
@@ -78,16 +77,16 @@ for(int i = 0; i < 7; i++){
                 line2.setStartX(190 + i*92.5);
                 line2.setStartY(185 + j*93);
                 line2.setEndX(190 + i*92.5);
-                line2.setEndY(365 + j*93);
+                line2.setEndY(261 + j*93);
                 line2.setStrokeWidth(10);
                 line2.setStroke(Color.BLUE);
+                blueLines.put(position , line2);
                 line2.setVisible(false);
                 gameBoard.getChildren().add(line2);
-
             }
 
         }
-        redLines.get("3444").setVisible(true);
+        redLines.get("2535").setVisible(true);
 
 
         for (int i = 0; i < 8; i++) {
