@@ -78,7 +78,7 @@ public class Game {
         } else if (win1 < win2) {
             turn = 1;
         } else {*/
-            turn = generator.nextInt(2);
+        turn = generator.nextInt(2);
         //}
     }
 

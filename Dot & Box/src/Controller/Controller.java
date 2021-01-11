@@ -14,9 +14,10 @@ public class Controller {
     public Controller() {
     }
 
-    public static void run(String command) {
+    public static boolean run(String command) {
         if (command.equalsIgnoreCase("start dots and boxes game")) {
             Game.startTheGame();
+            return true;
         } else if (command.startsWith("draw line between")) {
             int x1, y1, x2, y2;
             String[] input = command.split("\\s");
@@ -34,6 +35,7 @@ public class Controller {
             y2 = Integer.parseInt(yFinishChar);
             if (x1 > 8 || x1 < 1 || y1 > 8 || y1 < 1 || x2 > 8 || x2 < 1 || y2 > 8 || y2 < 1) {
                 ViewDotsAndBox.showErrors(2);
+                return false;
             } else {
                 boolean isLineDrawn = Line.drawLine(x1, y1, x2, y2);
                 if (isLineDrawn) {
@@ -59,19 +61,23 @@ public class Controller {
                         game.setLineDrawn(false);
                     }
                     viewDotsAndBox.showTable();
+                    return true;
                 }
             }
-        } else if (command.equalsIgnoreCase("show available lines")) {
-            viewDotsAndBox.showAvailableLines();
-        } else if (command.equalsIgnoreCase("show table")) {
-            viewDotsAndBox.showTable();
-        } else if (command.equalsIgnoreCase("who is next?")) {
-            viewDotsAndBox.showWhoIsNext();
-        } else if (command.equalsIgnoreCase("show result")) {
-            viewDotsAndBox.showResult();
-        } else if (command.equalsIgnoreCase("show score")) {
-            viewDotsAndBox.showScore();
+            return false;
         }
-
+        return false;
+//        else if (command.equalsIgnoreCase("show available lines")) {
+//            viewDotsAndBox.showAvailableLines();
+//        } else if (command.equalsIgnoreCase("show table")) {
+//            viewDotsAndBox.showTable();
+//        else if (command.equalsIgnoreCase("who is next?")) {
+//            viewDotsAndBox.showWhoIsNext();
+//        }
+//        } else if (command.equalsIgnoreCase("show result")) {
+//            viewDotsAndBox.showResult();
+//        } else if (command.equalsIgnoreCase("show score")) {
+//            viewDotsAndBox.showScore();
+//        }
     }
 }

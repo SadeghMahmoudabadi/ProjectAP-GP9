@@ -29,7 +29,7 @@ public class GraphicController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         button = new Button[8][8];
-        Boolean isStartDot = true;
+        // Boolean isStartDot = true;
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 button[i][j] = new Button();
@@ -45,8 +45,9 @@ public class GraphicController implements Initializable {
                 gameBoard.getChildren().add(button[i][j]);
                 button[i][j].setLayoutX(182 + i * 92.7);
                 button[i][j].setLayoutY(170 + j * 92.7);
+                int finalI = i;
+                int finalJ = j;
                 button[i][j].setOnMouseClicked(event -> {
-
                 });
             }
         }
