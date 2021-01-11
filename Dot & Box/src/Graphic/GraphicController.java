@@ -11,11 +11,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
 import javax.print.DocFlavor;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class GraphicController implements Initializable {
@@ -25,11 +28,68 @@ public class GraphicController implements Initializable {
     public GridPane gameGrid;
     @FXML
     public Pane gameBoard;
+    public static HashMap<String,Line> redLines = new HashMap<>();
+    public static HashMap<String,Line> blueLines = new HashMap<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         button = new Button[8][8];
         // Boolean isStartDot = true;
+for(int i = 0; i < 7; i++){
+    for(int j =0 ; j<8 ; j++){
+        Line line1 = new Line();
+        line1.setStartX(198 + i*93);
+        line1.setStartY(178 + j*92.5);
+        line1.setEndX(274 + i*93);
+        line1.setEndY(178 + j*92.5);
+        line1.setStrokeWidth(10);
+        line1.setStroke(Color.RED);
+        String position = String.format("%d%d%d%d" , i , j , i , j);
+        redLines.put(position , line1);
+        line1.setVisible(false);
+        gameBoard.getChildren().add(line1);
+        Line line2 = new Line();
+        line2.setStartX(198 + i*93);
+        line2.setStartY(178 + j*92.5);
+        line2.setEndX(274 + i*93);
+        line2.setEndY(178 + j*92.5);
+        line2.setStrokeWidth(10);
+        line2.setStroke(Color.BLUE);
+        line2.setVisible(false);
+        gameBoard.getChildren().add(line2);
+    }
+
+}
+        for(int i = 0; i < 8; i++){
+            for(int j =0 ; j<7 ; j++){
+                Line line1 = new Line();
+                line1.setStartX(190 + i*92.5);
+                line1.setStartY(185 + j*93);
+                line1.setEndX(190 + i*92.5);
+                line1.setEndY(365 + j*93);
+                line1.setStrokeWidth(10);
+                line1.setStroke(Color.RED);
+                String position = String.format("%d%d%d%d" , i , j , i , j);
+                redLines.put(position , line1);
+                line1.setVisible(false);
+                gameBoard.getChildren().add(line1);
+
+                Line line2 = new Line();
+                line2.setStartX(190 + i*92.5);
+                line2.setStartY(185 + j*93);
+                line2.setEndX(190 + i*92.5);
+                line2.setEndY(365 + j*93);
+                line2.setStrokeWidth(10);
+                line2.setStroke(Color.BLUE);
+                line2.setVisible(false);
+                gameBoard.getChildren().add(line2);
+
+            }
+
+        }
+        redLines.get("3444").setVisible(true);
+
+
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 button[i][j] = new Button();

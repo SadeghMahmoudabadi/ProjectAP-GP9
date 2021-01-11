@@ -13,8 +13,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        GraphicController.players[0] = new Player(0, View.grid);
-        GraphicController.players[1] = new Player(1, View.grid);
+        GraphicController.players[0] = new Player(0, ViewReversi.grid);
+        GraphicController.players[1] = new Player(1, ViewReversi.grid);
         GraphicController.showGameBoard();
     }
 }

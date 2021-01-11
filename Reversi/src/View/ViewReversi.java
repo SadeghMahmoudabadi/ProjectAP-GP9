@@ -7,7 +7,7 @@ import Model.Grid;
 
 import java.util.Scanner;
 
-public class View {
+public class ViewReversi {
 
     public static Grid grid = new Grid();
     static boolean isGameStarted = false;
@@ -60,7 +60,7 @@ public class View {
     }
 
     public static void setIsGameStarted(boolean isGameStarted) {
-        View.isGameStarted = isGameStarted;
+        ViewReversi.isGameStarted = isGameStarted;
     }
 
 

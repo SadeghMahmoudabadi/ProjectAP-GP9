@@ -8,15 +8,15 @@ public class Controller {
 
     public static boolean run(String command) {
         if (command.equalsIgnoreCase("start Reversi game")) {
-            Game game = new Game(GraphicController.players, View.getGrid());
-            View.setIsGameStarted(true);
-            View.showGrid();
+            Game game = new Game(GraphicController.players, ViewReversi.getGrid());
+            ViewReversi.setIsGameStarted(true);
+            ViewReversi.showGrid();
             return true;
         } else if (command.startsWith("place disk on ")) {
             int x, y;
             String position = command.split(" ")[3];
             if (position.length() > 5) {
-                View.showErrors(2);
+                ViewReversi.showErrors(2);
                 return false;
             } else {
                 x = Integer.parseInt(position.split("")[1]);
@@ -28,17 +28,17 @@ public class Controller {
             //   } else if (command.equalsIgnoreCase("show available coordinates")) {
             //   View.showAvailableCoordinates();
         } else if (command.equalsIgnoreCase("show grid")) {
-            View.showGrid();
+            ViewReversi.showGrid();
         } else if (command.equalsIgnoreCase("who is next?")) {
-            View.showWhoIsNext();
+            ViewReversi.showWhoIsNext();
         } else if (command.equalsIgnoreCase("show result")) {
             if (Game.isGameOver()) {
-                View.showResult();
+                ViewReversi.showResult();
             }
         } else if (command.equalsIgnoreCase("show score")) {
-            View.showScore();
+            ViewReversi.showScore();
         } else if (command.equalsIgnoreCase("show disks")) {
-            View.showDisks();
+            ViewReversi.showDisks();
         }
         return false;
     }

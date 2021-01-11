@@ -29,16 +29,16 @@ public class Player {
         try {
             boolean bool = grid.placeDisk(color, x, y);
             if (bool) {
-                View.showGrid();
+                ViewReversi.showGrid();
                 Game.changeTurn();
                 return true;
             } else {
                 ShowErrors .INVALID_COORDINATES.showMessage();
-                View.showErrors(3);
+                ViewReversi.showErrors(3);
                 return false;
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
-            View.showErrors(2);
+            ViewReversi.showErrors(2);
             return false;
         }
     }
