@@ -24,6 +24,7 @@ public class GraphicController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Media
         button = new Button[8][8];
         // Boolean isStartDot = true;
         for (int i = 0; i < 7; i++) {
