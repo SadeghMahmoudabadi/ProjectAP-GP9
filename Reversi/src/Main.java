@@ -1,7 +1,6 @@
-package View;
-
 import Graphic.*;
 import Model.Player;
+import View.ViewReversi;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
