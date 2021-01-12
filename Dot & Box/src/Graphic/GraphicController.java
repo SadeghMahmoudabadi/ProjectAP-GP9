@@ -1,22 +1,14 @@
 package Graphic;
 
-import com.sun.org.omg.CORBA.Initializer;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.stage.Stage;
 
-import javax.print.DocFlavor;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -28,65 +20,44 @@ public class GraphicController implements Initializable {
     public GridPane gameGrid;
     @FXML
     public Pane gameBoard;
-    public static HashMap<String,Line> redLines = new HashMap<>();
-    public static HashMap<String,Line> blueLines = new HashMap<>();
+    public static HashMap<String, Line> lines = new HashMap<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         button = new Button[8][8];
         // Boolean isStartDot = true;
-for(int i = 0; i < 7; i++){
-    for(int j =0 ; j<8 ; j++){
-        String position = String.format("%d%d%d%d" , j , i , j , i +1);
-        Line line1 = new Line();
-        line1.setStartX(198 + i*93);
-        line1.setStartY(178 + j*92.5);
-        line1.setEndX(274 + i*93);
-        line1.setEndY(178 + j*92.5);
-        line1.setStrokeWidth(10);
-        line1.setStroke(Color.RED);
-        line1.setVisible(false);
-        gameBoard.getChildren().add(line1);
-        Line line2 = new Line();
-        line2.setStartX(198 + i*93);
-        line2.setStartY(178 + j*92.5);
-        line2.setEndX(274 + i*93);
-        line2.setEndY(178 + j*92.5);
-        line2.setStrokeWidth(10);
-        line2.setStroke(Color.BLUE);
-        blueLines.put(position , line2);
-        line2.setVisible(false);
-        gameBoard.getChildren().add(line2);
-    }
-
-}
-        for(int i = 0; i < 8; i++){
-            for(int j =0 ; j<7 ; j++){
-                Line line1 = new Line();
-                String position = String.format("%d%d%d%d" , j , i , j+1 , i);
-                line1.setStartX(190 + i*92.5);
-                line1.setStartY(185 + j*93);
-                line1.setEndX(190 + i*92.5);
-                line1.setEndY(261 + j*93);
-                line1.setStrokeWidth(10);
-                line1.setStroke(Color.RED);
-                line1.setVisible(false);
-                gameBoard.getChildren().add(line1);
-
-                Line line2 = new Line();
-                line2.setStartX(190 + i*92.5);
-                line2.setStartY(185 + j*93);
-                line2.setEndX(190 + i*92.5);
-                line2.setEndY(261 + j*93);
-                line2.setStrokeWidth(10);
-                line2.setStroke(Color.BLUE);
-                blueLines.put(position , line2);
-                line2.setVisible(false);
-                gameBoard.getChildren().add(line2);
+        for (int i = 0; i < 7; i++) {
+            for (int j = 0; j < 8; j++) {
+                String position = String.format("%d%d%d%d", j + 1, i + 1, j + 1, i + 2);
+                Line line = new Line();
+                line.setStartX(198 + i * 93);
+                line.setStartY(178 + j * 92.5);
+                line.setEndX(274 + i * 93);
+                line.setEndY(178 + j * 92.5);
+                line.setStrokeWidth(10);
+                line.setStroke(Color.TRANSPARENT);
+                lines.put(position, line);
+                gameBoard.getChildren().add(line);
             }
 
         }
-        redLines.get("2535").setVisible(true);
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 7; j++) {
+                Line line = new Line();
+                String position = String.format("%d%d%d%d", j + 1, i + 1, j + 2, i + 1);
+                line.setStartX(190 + i * 92.5);
+                line.setStartY(185 + j * 93);
+                line.setEndX(190 + i * 92.5);
+                line.setEndY(261 + j * 93);
+                line.setStrokeWidth(10);
+                line.setStroke(Color.TRANSPARENT);
+                lines.put(position, line);
+                gameBoard.getChildren().add(line);
+            }
+
+        }
+        lines.get("2535").setStroke(Color.BLUE);
+        lines.get("2526").setStroke(Color.RED);
 
 
         for (int i = 0; i < 8; i++) {

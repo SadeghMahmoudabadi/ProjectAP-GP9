@@ -1,6 +1,7 @@
 package Model;
 
 import Graphic.GraphicController;
+import javafx.scene.paint.Color;
 
 public class Grid {
     public Disk[][] coordinates;
@@ -32,6 +33,15 @@ public class Grid {
                 }
             }
             coordinates[x][y].setLastDisk(true);
+            for (int i = 1; i < 9; i++) {
+                for (int j = 1; j < 9; j++) {
+                    if (coordinates[i][j].isLastDisk()) {
+                        GraphicController.coordinates[i - 1][j - 1].setStyle("-fx-background-color: #2e7227 ; -fx-border-color: #38B6F8");
+                    } else {
+                        GraphicController.coordinates[i - 1][j - 1].setStyle("-fx-background-color: #2e7227 ; -fx-border-color: Black");
+                    }
+                }
+            }
             return true;
         } else {
             return false;
@@ -70,11 +80,12 @@ public class Grid {
         do {
             coordinates[x][y].setColor(color);
             if (color == 0) {
-                GraphicController.coordinates[x - 1][y - 1].setText("⚪");
-            } else
                 GraphicController.coordinates[x - 1][y - 1].setText("⚫");
-
-
+                GraphicController.coordinates[x - 1][y - 1].setTextFill(Color.WHITE);
+            } else {
+                GraphicController.coordinates[x - 1][y - 1].setText("⚫");
+                GraphicController.coordinates[x - 1][y - 1].setTextFill(Color.BLACK);
+            }
             x += signX;
             y += signY;
             diskCount[color]++;

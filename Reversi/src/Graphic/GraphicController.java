@@ -37,8 +37,6 @@ public class GraphicController {
                     String input = String.format("place disk on (%d,%d)", finalI + 1, finalJ + 1);
                     if (Controller.run(input)) {
 
-                        //change color
-
                     }
 
                 });
