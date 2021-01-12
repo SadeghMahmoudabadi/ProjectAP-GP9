@@ -1,31 +1,73 @@
 package Graphic;
 
+import Controller.Controller;
+import Model.Game;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class GraphicController implements Initializable {
-
+    Game game = new Game();
     public static Button[][] button;
     @FXML
     public GridPane gameGrid;
     @FXML
     public Pane gameBoard;
     public static HashMap<String, Line> lines = new HashMap<>();
+    public Button forfeit;
+    public Button music;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //Media
+
         button = new Button[8][8];
+        Controller.run("start dots and boxes game");
+        // String path = ("Dot & Box/src/Graphic/Music.mp3");
+//        Media media = new Media(new File(path).toURI().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        music.setOnMouseClicked(event -> {
+//            playSong = !playSong;
+//            mediaPlayer.setVolume(0.5);
+//            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+//            if (playSong) {
+//                music.setStyle(
+//                        "-fx-background-radius: 100px; " +
+//                                "-fx-border-radius: 100px; " +
+//                                "-fx-background-color: #000000; " +
+//                                "-fx-border-color: #000000;");
+//                mediaPlayer.play();
+//            } else {
+//                music.setStyle(
+//                        "-fx-background-radius: 100px; " +
+//                                "-fx-border-radius: 100px; " +
+//                                "-fx-background-color: #419121; " +
+//                                "-fx-border-color: #000000;");
+//                mediaPlayer.pause();
+//            }
+//        });
+        forfeit.setOnMouseClicked(event -> {
+            game.endGame();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Forfeit");
+            alert.setHeaderText("You have forfeited badbakht-e- zalil");
+            alert.setOnCloseRequest(event1 -> {
+                Stage stage = (Stage) forfeit.getScene().getWindow();
+                stage.close();
+            });
+            alert.show();
+        });
         // Boolean isStartDot = true;
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 8; j++) {

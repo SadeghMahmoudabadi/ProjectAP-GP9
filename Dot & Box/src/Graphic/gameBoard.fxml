@@ -44,12 +44,12 @@
             <Image url="@T.png" />
          </image>
       </ImageView>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="897.0" mnemonicParsing="false" opacity="0.38" prefHeight="53.0" prefWidth="158.0" style="-fx-min-width: 150; -fx-min-height: 50; -fx-max-height: 50; -fx-max-width: 150;" text="MUSIC" textFill="#c30000">
+      <Button  fx:id="music" alignment="CENTER" contentDisplay="CENTER" layoutX="190.0" layoutY="897.0" mnemonicParsing="false" opacity="0.38" prefHeight="53.0" prefWidth="158.0" style="-fx-min-width: 150; -fx-min-height: 50; -fx-max-height: 50; -fx-max-width: 150;" text="MUSIC" textFill="#c30000">
          <font>
             <Font name="Castellar" size="18.0" />
          </font>
       </Button>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="682.0" layoutY="896.0" mnemonicParsing="false" opacity="0.45" prefHeight="53.0" prefWidth="158.0" style="-fx-border-radius: 100px;" text="FORFIET" textFill="RED">
+      <Button  fx:id="forfeit" alignment="CENTER" contentDisplay="CENTER" layoutX="682.0" layoutY="896.0" mnemonicParsing="false" opacity="0.45" prefHeight="53.0" prefWidth="158.0" style="-fx-border-radius: 100px; -fx-background-radius: 100px; -fx-border-color: #000000; -fx-background-color: #419121" text="FORFEIT" textFill="RED">
          <font>
             <Font name="Castellar" size="18.0" />
          </font>
