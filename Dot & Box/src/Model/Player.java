@@ -1,5 +1,7 @@
 package Model;
 
+import javafx.scene.paint.Color;
+
 public class Player {
     private String user;
     private int score;
@@ -12,6 +14,10 @@ public class Player {
     public Player(String user/*, int wins*/) {
         this.user = user;
         //this.wins = wins;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public String getUser() {

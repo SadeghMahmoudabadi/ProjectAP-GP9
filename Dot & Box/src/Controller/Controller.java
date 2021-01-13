@@ -10,6 +10,9 @@ public class Controller {
     private static Game game = new Game();
     private static ViewDotsAndBox viewDotsAndBox = new ViewDotsAndBox(game);
 
+    public static Game getGame() {
+        return game;
+    }
 
     public Controller() {
     }
@@ -56,11 +59,6 @@ public class Controller {
                     Line line = Line.getLineByDots(startDot, finishDot);
                     game.setLineDrawn(true);
                     game.checkTable(line);
-                    if (game.isLineDrawn()) {
-                        game.changeTurn();
-                        game.setLineDrawn(false);
-                    }
-                    viewDotsAndBox.showTable();
                     return true;
                 }
             }

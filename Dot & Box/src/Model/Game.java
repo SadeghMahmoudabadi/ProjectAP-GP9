@@ -1,13 +1,13 @@
 package Model;
 
+import Controller.Controller;
 import View.ViewDotsAndBox;
 
 import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private Player p1;
-    private Player p2;
+    private Player[] players;
     private int turn;
     private Scanner scanner;
     private boolean isLineDrawn;        //check if line is drawn
@@ -15,8 +15,9 @@ public class Game {
     Random generator = new Random();
 
     {
-        p1 = new Player("Player1");
-        p2 = new Player("Player2");
+        players = new Player[2];
+        players[0] = new Player("Player1");
+        players[1] = new Player("Player2");
         isLineDrawn = false;
         isGameEnd = false;
     }
@@ -25,12 +26,12 @@ public class Game {
 
     }
 
-    public Player getP1() {
-        return p1;
+    public Player getPlayer1() {
+        return players[0];
     }
 
-    public Player getP2() {
-        return p2;
+    public Player getPlayer2() {
+        return players[1];
     }
 
     public boolean isLineDrawn() {
@@ -46,28 +47,23 @@ public class Game {
     }
 
     public static void startTheGame() {
-        System.out.println("    1  \u2009  2  \u2009\u2009  3  \u2009\u2009  4  \u2009\u2009 5  \u2009\u2009 6  \u2009\u2009  7  \u2009\u2009  8");
-        System.out.println();
         for (int i = 1; i < 9; i++) {
-            System.out.printf(" %d  ", i);
             for (int j = 1; j < 9; j++) {
-                System.out.print("\u26AB    ");
                 Dot dot = new Dot(i, j);
                 Dot.addDot(dot);
             }
-            System.out.println();
-            System.out.println();
         }
         Dot.setAllSideDots();
         Line.setAvailableLines();
+        ViewDotsAndBox.showTable();
     }
 
-    public void setP1(Player p1) {
-        this.p1 = p1;
+    public void setPlayer1(Player player1) {
+        this.players[0] = player1;
     }
 
-    public void setP2(Player p2) {
-        this.p2 = p2;
+    public void setPlayer2(Player player2) {
+        this.players[1] = player2;
     }
 
     public void setTurn() {
@@ -87,20 +83,24 @@ public class Game {
     }
 
     public void changeTurn() {
-        if (turn == 0) {
-            turn = 1;
-            ViewDotsAndBox.showWhoIsNext();
-        } else {
-            turn = 0;
-            ViewDotsAndBox.showWhoIsNext();
+        if (Controller.getGame().isLineDrawn()) {
+            if (turn == 0) {
+                turn = 1;
+//            ViewDotsAndBox.showWhoIsNext();
+            } else {
+                turn = 0;
+//            ViewDotsAndBox.showWhoIsNext();
+            }
+            Controller.getGame().setLineDrawn(false);
         }
     }
 
     public Player whoIsTurn() {
-        if (turn == 0) {
-            return p1;
-        } else
-            return p2;
+        return players[turn];
+    }
+
+    public int getTurn() {
+        return turn;
     }
 
     public void checkTable(Line line) {
@@ -118,5 +118,10 @@ public class Game {
         if (Line.getAvailableLines().size() == 0) {
             endGame();
         }
+    }
+
+    public void forfeit() {
+        players[turn].setScore(-16);
+        players[1 - turn].setScore(32);
     }
 }

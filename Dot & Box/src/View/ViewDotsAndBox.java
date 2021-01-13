@@ -60,8 +60,8 @@ public class ViewDotsAndBox {
     }
 
     public static void showScore() {
-        Player player1 = game.getP1();
-        Player player2 = game.getP2();
+        Player player1 = game.getPlayer1();
+        Player player2 = game.getPlayer2();
         System.out.println(player1.getUser() + ": " + player1.getScore());
         System.out.println(player2.getUser() + ": " + player2.getScore());
     }
@@ -69,8 +69,8 @@ public class ViewDotsAndBox {
     public static void showResult() {
         if (game.isGameEnd()) {
             showScore();
-            Player player1 = game.getP1();
-            Player player2 = game.getP2();
+            Player player1 = game.getPlayer1();
+            Player player2 = game.getPlayer2();
             if (player1.getScore() > player2.getScore()) {
                 System.out.println("Winner: " + player1.getUser());
             } else if (player2.getScore() > player1.getScore()) {

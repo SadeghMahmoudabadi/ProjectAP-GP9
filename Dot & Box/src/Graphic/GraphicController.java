@@ -2,24 +2,32 @@ package Graphic;
 
 import Controller.Controller;
 import Model.Game;
+import View.ViewDotsAndBox;
+import com.sun.javafx.binding.StringFormatter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GraphicController implements Initializable {
-    Game game = new Game();
+    Game game = Controller.getGame();
     public static Button[][] button;
     @FXML
     public GridPane gameGrid;
@@ -28,15 +36,30 @@ public class GraphicController implements Initializable {
     public static HashMap<String, Line> lines = new HashMap<>();
     public Button forfeit;
     public Button music;
+    public static String drawLine;
+    public static Boolean isStartDot = true;
+    public static String linePosition;
+    public static int firstDot;
+    public static int secondDot;
+    public static int xStart;
+    public static int yStart;
+    public static int xEnd;
+    public static int yEnd;
+    public static boolean playSong = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         button = new Button[8][8];
         Controller.run("start dots and boxes game");
-        // String path = ("Dot & Box/src/Graphic/Music.mp3");
+//        String path = ("Dot & Box/src/Graphic/Music.mp3");
 //        Media media = new Media(new File(path).toURI().toString());
 //        MediaPlayer mediaPlayer = new MediaPlayer(media);
+//        music.setStyle(
+//                "-fx-background-radius: 100px; " +
+//                        "-fx-border-radius: 100px; " +
+//                        "-fx-background-color: #419121; " +
+//                        "-fx-border-color: #000000;");
 //        music.setOnMouseClicked(event -> {
 //            playSong = !playSong;
 //            mediaPlayer.setVolume(0.5);
@@ -58,17 +81,20 @@ public class GraphicController implements Initializable {
 //            }
 //        });
         forfeit.setOnMouseClicked(event -> {
-            game.endGame();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+            alert.getDialogPane().getButtonTypes().add(cancel);
             alert.setTitle("Forfeit");
-            alert.setHeaderText("You have forfeited badbakht-e- zalil");
-            alert.setOnCloseRequest(event1 -> {
+            alert.setHeaderText("You have forfeited badbakht-e-zalil");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK) {
+                game.forfeit();
                 Stage stage = (Stage) forfeit.getScene().getWindow();
                 stage.close();
-            });
-            alert.show();
+                ViewDotsAndBox.showTable();
+            }
         });
-        // Boolean isStartDot = true;
+
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 8; j++) {
                 String position = String.format("%d%d%d%d", j + 1, i + 1, j + 1, i + 2);
@@ -99,15 +125,11 @@ public class GraphicController implements Initializable {
             }
 
         }
-        lines.get("2535").setStroke(Color.BLUE);
-        lines.get("2526").setStroke(Color.RED);
-
 
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 button[i][j] = new Button();
-                button[i][j].setStyle("" +
-                        "-fx-background-radius: 15; " +
+                button[i][j].setStyle("-fx-background-radius: 15; " +
                         "-fx-min-width: 15; " +
                         "-fx-min-height: 15; " +
                         "-fx-max-width: 15; " +
@@ -116,11 +138,73 @@ public class GraphicController implements Initializable {
 
                 button[i][j].setAlignment(Pos.TOP_LEFT);
                 gameBoard.getChildren().add(button[i][j]);
-                button[i][j].setLayoutX(182 + i * 92.7);
-                button[i][j].setLayoutY(170 + j * 92.7);
+                button[i][j].setLayoutX(182 + j * 92.7);
+                button[i][j].setLayoutY(170 + i * 92.7);
                 int finalI = i;
                 int finalJ = j;
                 button[i][j].setOnMouseClicked(event -> {
+                    boolean bool = true;
+                    if (isStartDot) {
+                        for (int x = 0; x < 8; x++) {
+                            for (int y = 0; y < 8; y++) {
+                                button[x][y].setStyle("-fx-background-radius: 15; " +
+                                        "-fx-min-width: 15; " +
+                                        "-fx-min-height: 15; " +
+                                        "-fx-max-width: 15; " +
+                                        "-fx-max-height: 15;" +
+                                        "-fx-background-color: #000000;");
+                            }
+                        }
+                        xStart = finalI + 1;
+                        yStart = finalJ + 1;
+                        button[finalI][finalJ].setStyle("-fx-background-radius: 15; " +
+                                "-fx-min-width: 15; " +
+                                "-fx-min-height: 15; " +
+                                "-fx-max-width: 15; " +
+                                "-fx-max-height: 15;" +
+                                "-fx-background-color: Yellow;");
+                        isStartDot = false;
+                    } else {
+                        xEnd = finalI + 1;
+                        yEnd = finalJ + 1;
+                        button[finalI][finalJ].setStyle("-fx-background-radius: 15; " +
+                                "-fx-min-width: 15; " +
+                                "-fx-min-height: 15; " +
+                                "-fx-max-width: 15; " +
+                                "-fx-max-height: 15;" +
+                                "-fx-background-color: Yellow;");
+                        if (xStart == xEnd) {
+                            if (yStart > yEnd) {
+                                int temp = yStart;
+                                yStart = yEnd;
+                                yEnd = temp;
+                            }
+                        } else if (yStart == yEnd) {
+                            if (xStart > xEnd) {
+                                int temp = xStart;
+                                xStart = xEnd;
+                                xEnd = temp;
+                            }
+                        } else {
+                            //Error
+                            System.out.println("you can’t draw a line between these two");
+                            bool = false;
+                        }
+                        if (bool) {
+                            drawLine = String.format("draw line between (%d,%d) and (%d,%d)", xStart, yStart, xEnd, yEnd);
+                            linePosition = String.format("%d%d%d%d", xStart, yStart, xEnd, yEnd);
+                            if (Controller.run(drawLine)) {
+                                if (game.getTurn() == 0) {
+                                    lines.get(linePosition).setStroke(Color.RED);
+                                } else {
+                                    lines.get(linePosition).setStroke(Color.BLUE);
+                                }
+                                game.changeTurn();
+                                ViewDotsAndBox.showTable();
+                            }
+                        }
+                        isStartDot = true;
+                    }
                 });
             }
         }
