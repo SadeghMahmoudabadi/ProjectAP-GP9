@@ -5,25 +5,28 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #364A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: #364A56;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ScrollPane layoutY="100.0" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #364A56;">
+      <ScrollPane layoutY="107.0" prefHeight="597.0" prefWidth="500.0" style="-fx-background-color: #364A56;">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="408.0" style="-fx-background-color: #364A56;" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="594.0" prefWidth="501.0" style="-fx-background-color: #452E5F;">
+               <children>
+                  <VBox layoutX="-1.0" layoutY="19.0" prefHeight="557.0" prefWidth="483.0" />
+               </children></AnchorPane>
         </content>
       </ScrollPane>
-      <ImageView fitHeight="137.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="134.0" fitWidth="500.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@events.jpg" />
          </image>
       </ImageView>
-      <Text fill="#fffdfd" layoutX="90.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENTS">
+      <Text fill="#fffdfd" layoutX="99.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENTS">
          <font>
-            <Font name="Ebrima Bold" size="48.0" />
+            <Font name="Times New Roman Bold Italic" size="55.0" />
          </font>
       </Text>
    </children>
