@@ -32,7 +32,7 @@
          </font>
       </Label>
       <Label alignment="CENTER" layoutX="14.0" layoutY="180.0" prefHeight="21.0" prefWidth="82.0" style="-fx-background-color: #AB5306;" text="1st PRIZE" textFill="#e0ff66" />
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="180.0" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #32576E; -fx-background-radius: #45D41E; -fx-border-radius: 50px; -fx-border-color: #45D41E; -fx-background-radius: 50px;" text="EDIT" textFill="#ccff00" />
       <Text boundsType="LOGICAL_VERTICAL_CENTER" depthTest="ENABLE" fill="WHITE" layoutX="302.0" layoutY="95.0" strokeWidth="0.0" text="  DOTS &amp; BOXES" textOrigin="BOTTOM" wrappingWidth="127.1875" />
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="252.0" layoutY="180.0" mnemonicParsing="false" prefWidth="100.0" style="-fx-background-color: #32576E; -fx-background-radius: #45D41E; -fx-border-radius: 50px; -fx-border-color: #45D41E; -fx-background-radius: 50px;" text="EDIT" textFill="#ccff00" />
    </children>
 </Pane>
