@@ -1,7 +1,7 @@
 package View;
 
 import Controller.Controller;
-import Graphic.GraphicController;
+import GraphicReversi.GraphicController;
 import Model.Game;
 import Model.Grid;
 

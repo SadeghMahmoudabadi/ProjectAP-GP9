@@ -1,7 +1,11 @@
-import Graphic.*;
+package GraphicReversi;
+
 import Model.Player;
 import View.ViewReversi;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -11,9 +15,12 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage stage) throws Exception {
         GraphicController.players[0] = new Player(0, ViewReversi.grid);
         GraphicController.players[1] = new Player(1, ViewReversi.grid);
-        GraphicController.showGameBoard();
+        Parent root = FXMLLoader.load(getClass().getResource("Grid.fxml"));
+        Scene scene = new Scene(root, 1000, 1000);
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -1,6 +1,6 @@
 package Model;
 
-import Graphic.GraphicController;
+import GraphicReversi.GraphicController;
 import javafx.scene.paint.Color;
 
 public class Grid {
@@ -80,10 +80,10 @@ public class Grid {
         do {
             coordinates[x][y].setColor(color);
             if (color == 0) {
-                GraphicController.coordinates[x - 1][y - 1].setText("⚫");
+                GraphicController.coordinates[x - 1][y - 1].setText(String.valueOf('\u2B24'));
                 GraphicController.coordinates[x - 1][y - 1].setTextFill(Color.WHITE);
             } else {
-                GraphicController.coordinates[x - 1][y - 1].setText("⚫");
+                GraphicController.coordinates[x - 1][y - 1].setText(String.valueOf('\u2B24'));
                 GraphicController.coordinates[x - 1][y - 1].setTextFill(Color.BLACK);
             }
             x += signX;
