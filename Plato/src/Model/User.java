@@ -1,100 +1,159 @@
 package Model;
 
-import java.util.ArrayList;
-import View.Errors;
-
 public class User {
-    private String name;
+    private String firstname;
     private String lastName;
     private String username;
-    private String userID;
     private String password;
     private String email;
     private String phoneNumber;
-    private static ArrayList<User> loggedUsers = new ArrayList<>();
-    private static ArrayList<User> users = new ArrayList<>();
+    private int userID;
 
-    /*public User() {
+    public User() {
 
-    }*/
-
-    public void setName(String name) {
-        this.name = name;
     }
 
-    public void setLastName(String lastName) {
+    public User(String firstname, String lastName, String username, String password, String email, String phoneNumber, int userID) {
+        this.firstname = firstname;
         this.lastName = lastName;
-    }
-
-    public void setUsername(String username) {
         this.username = username;
-    }
-
-    public void setID(String userID) {
+        this.password = password;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
         this.userID = userID;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public String getFirstname() {
+        return firstname;
     }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    //    public void setFirstname(String firstname) {
+//        this.firstname = firstname;
+//    }
+//
+//    public void setLastName(String lastName) {
+//        this.lastName = lastName;
+//    }
+//
+//    public void setUser(String username) {
+//        this.username = username;
+//    }
+//
+//    public void setID(int userID) {
+//        this.userID = userID;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
+//
+//    public void setEmail(String email) {
+//        this.email = email;
+//    }
+//
+//    public void setPhoneNumber(String phoneNumber) {
+//        this.phoneNumber = phoneNumber;
+//    }
 
     public boolean changePassword(String currentPassword, String newPassword) {
-        if (currentPassword.equals(this.password)) {
-            setPassword(newPassword);
+        if (this.password.equals(currentPassword)) {
+            this.password = newPassword;
+            Database.updateFiles();
             return true;
         } else {
-            Errors.showErrors(1);
+            //Error
             return false;
         }
     }
 
-    public void editField(String field, String newValue) {
-        if (field.equalsIgnoreCase("name")) {
-            if (newValue.matches("[a-zA-z]+")) {
-                setName(newValue);
+    public boolean editField(String field, String newValue) {
+        if (field.equals("firstname")) {
+            if (newValue.matches("[a-zA-Z]+")) {
+                this.firstname = newValue;
+                Database.updateFiles();
+                return true;
             } else {
-                Errors.showErrors(2);
+                //Error
+                return false;
             }
-        } else if (field.equalsIgnoreCase("lastName")) {
-            if (newValue.matches("[a-zA-z]+")) {
-                setLastName(newValue);
+        } else if (field.equals("lastname")) {
+            if (newValue.matches("[a-zA-Z]+")) {
+                this.lastName = newValue;
+                Database.updateFiles();
+                return true;
             } else {
-                Errors.showErrors(2);
+                //Error
+                return false;
             }
-        } else if (field.equalsIgnoreCase("username")) {
-            if (newValue.matches("[a-zA-z0-9]+")) {
-                setUsername(newValue);
+        } else if (field.equals("username")) {
+            if (newValue.matches("[a-zA-Z0-9]+")) {
+                if (!Tools.isUsernameExist(newValue)) {
+                    this.username = newValue;
+                    Database.updateFiles();
+                    return true;
+                } else {
+                    //Error
+                    return false;
+                }
             } else {
-                Errors.showErrors(4);
+                //Error
+                return false;
             }
-        } else if (field.equalsIgnoreCase("email")) {
-            if (newValue.matches("[a-zA-z0-9]+[@][a-z]+[.][a-z]")) {
-                setEmail(newValue);
+        } else if (field.equals("email")) {
+            if (newValue.matches("[a-zA-Z0-9.]+[@][a-z]+[.][a-z]+")) {
+                if (!Tools.isEmailExist(newValue)) {
+                    this.email = newValue;
+                    Database.updateFiles();
+                    return true;
+                } else {
+                    //Error
+                    return false;
+                }
             } else {
-                Errors.showErrors(5);
+                //Error
+                return false;
             }
-        } else if (field.equalsIgnoreCase("phoneNumber")) {
+        } else if (field.equals("phoneNumber")) {
             if (newValue.matches("[0-9]+")) {
-                setPhoneNumber(newValue);
+                if (!Tools.isPhoneNumberExist(newValue)) {
+                    this.phoneNumber = newValue;
+                    Database.updateFiles();
+                    return true;
+                } else {
+                    //Error
+                    return false;
+                }
             } else {
-                Errors.showErrors(3);
+                //Error
+                return false;
             }
+        } else {
+            //Error
+            return false;
         }
     }
 
-    public static void login(User user) {
-        loggedUsers.add(user);
+    public String getUsername() {
+        return username;
     }
 
-    public static void logout(User user) {
-        loggedUsers.remove(user);
+    public String getPassword() {
+        return password;
     }
 }
