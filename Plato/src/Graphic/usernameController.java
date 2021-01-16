@@ -13,7 +13,7 @@ public class usernameController {
     public void okUsernameText(ActionEvent actionEvent) {
         String[] input = {"edit", "username", usernameText.getText()};
         if (Controller.userMenu(Player.getCurrentPlayer().getUserID(), input)) {
-            GraphicPlatoTabs.staticUsernameLabel.setText(usernameText.getText());
+            GraphicPlatoPlayer.staticUsernameLabel.setText(usernameText.getText());
             Stage usernameStage = (Stage) usernameText.getScene().getWindow();
             usernameStage.close();
             Database.updateFiles();

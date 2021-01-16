@@ -23,7 +23,7 @@ public class bioController implements Initializable {
 
     @FXML
     public void okBioText(ActionEvent actionEvent) {
-        GraphicPlatoTabs.staticBioLabel.setText(bioText.getText());
+        GraphicPlatoPlayer.staticBioLabel.setText(bioText.getText());
         Player.getCurrentPlayer().setBio(bioText.getText());
         Stage bioStage = (Stage) bioText.getScene().getWindow();
         bioStage.close();

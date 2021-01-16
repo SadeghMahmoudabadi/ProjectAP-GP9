@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class GraphicPlatoTabs implements Initializable {
+public class GraphicPlatoPlayer implements Initializable {
     public TabPane platoTabs;
     public Label username;
     public Label coinsNum;

@@ -3,6 +3,7 @@ package Graphic;
 import Controller.Controller;
 import Model.Errors;
 import Model.Player;
+import Model.Tools;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -133,13 +134,24 @@ public class GraphicLogister {
         String password = loginPass.getText();
         String[] input = {"login", username, password};
         if (Controller.logisterMenu(input)) {
-            Parent root = FXMLLoader.load(getClass().getResource("platoForPlayer.fxml"));
-            Stage stage = (Stage) login.getScene().getWindow();
-            StackPane parentContainer = (StackPane) login.getScene().getRoot();
-            parentContainer.getChildren().add(root);
-            parentContainer.getChildren().remove(gridRoot);
-            stage.setWidth(520);
-            stage.setHeight(743);
+            if (Tools.isAdmin(username)) {
+                Parent root = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
+                Stage stage = (Stage) login.getScene().getWindow();
+                StackPane parentContainer = (StackPane) login.getScene().getRoot();
+                parentContainer.getChildren().add(root);
+                parentContainer.getChildren().remove(gridRoot);
+                stage.setWidth(520);
+                stage.setHeight(743);
+
+            } else {
+                Parent root = FXMLLoader.load(getClass().getResource("platoForPlayer.fxml"));
+                Stage stage = (Stage) login.getScene().getWindow();
+                StackPane parentContainer = (StackPane) login.getScene().getRoot();
+                parentContainer.getChildren().add(root);
+                parentContainer.getChildren().remove(gridRoot);
+                stage.setWidth(520);
+                stage.setHeight(743);
+            }
         } else {
             System.out.println("very donkey");
             Errors.USER_OR_PASS_DOES_NOT_EXIST.showMessage();
