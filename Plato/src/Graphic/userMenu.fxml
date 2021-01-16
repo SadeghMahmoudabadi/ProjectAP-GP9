@@ -160,7 +160,7 @@
          <font>
             <Font name="DejaVu Serif" size="12.0" />
          </font></JFXButton>
-      <JFXButton alignment="CENTER" layoutX="133.0" layoutY="742.0" onAction="#playDots" prefHeight="39.0" prefWidth="85.0" text="Play" textFill="#00a2e8">
+      <JFXButton alignment="CENTER" layoutX="133.0" layoutY="742.0" onAction="#playDotsGame" prefHeight="39.0" prefWidth="85.0" text="Play" textFill="#00a2e8">
          <ripplerFill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.8155339805825242" startY="1.0">
                <stops>
@@ -173,7 +173,7 @@
             <Font name="DejaVu Serif" size="12.0" />
          </font>
       </JFXButton>
-      <JFXButton alignment="CENTER" layoutX="133.0" layoutY="846.0" onAction="#playReversi" prefHeight="39.0" prefWidth="85.0" text="Play" textFill="#00a2e8">
+      <JFXButton alignment="CENTER" layoutX="133.0" layoutY="846.0" onAction="#playReversiGame" prefHeight="39.0" prefWidth="85.0" text="Play" textFill="#00a2e8">
          <ripplerFill>
             <LinearGradient endX="1.0" endY="1.0" startX="0.8155339805825242" startY="1.0">
                <stops>
