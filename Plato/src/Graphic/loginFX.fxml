@@ -23,7 +23,7 @@
           <rowConstraints>
               <RowConstraints />
           </rowConstraints>
-          <Pane fx:id="loginPass" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="747.0" style="-fx-background-color: #030734;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+          <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="616.0" prefWidth="747.0" style="-fx-background-color: #030734;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
               <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="200.0" layoutY="260.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../Photos/user.png" />
               </ImageView>
@@ -36,7 +36,7 @@
                   </font>
               </Button>
               <ImageView fitHeight="127.0" fitWidth="462.0" layoutX="143.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../../../../../Desktop/Untitled-2.png" />
+                  <Image url="@../Photos/plato.png" />
               </ImageView>
               <JFXTextField fx:id="loginUser" focusColor="#405aa8" layoutX="247.0" layoutY="263.0" prefHeight="33.0" prefWidth="206.0" promptText="Username">
                   <unFocusColor>
@@ -48,12 +48,12 @@
                       </LinearGradient>
                   </unFocusColor>
               </JFXTextField>
-              <JFXButton fx:id="createAcc" layoutX="271.0" layoutY="468.0" onMouseClicked="#createAcc" prefHeight="0.0" prefWidth="159.0" ripplerFill="#6666cc" text="Creat New Account" textFill="#6666cc">
+              <JFXButton fx:id="createAcc" layoutX="271.0" layoutY="468.0" onMouseClicked="#createAcc" prefHeight="0.0" prefWidth="159.0" ripplerFill="#6666cc" text="Create New Account" textFill="#6666cc">
                   <font>
                       <Font name="DejaVu Serif" size="12.0" />
                   </font>
               </JFXButton>
-            <JFXTextField fx:id="loginUser1" focusColor="#405aa8" layoutX="247.0" layoutY="320.0" prefHeight="33.0" prefWidth="206.0" promptText="Password">
+            <JFXTextField fx:id="loginPass" focusColor="#405aa8" layoutX="247.0" layoutY="320.0" prefHeight="33.0" prefWidth="206.0" promptText="Password">
                <unFocusColor>
                   <LinearGradient startY="1.0">
                      <stops>

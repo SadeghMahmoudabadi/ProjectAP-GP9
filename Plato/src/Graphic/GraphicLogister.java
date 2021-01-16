@@ -35,7 +35,7 @@ public class GraphicLogister {
     @FXML
     public JFXTextField loginUser;
     @FXML
-    public JFXPasswordField loginPass;
+    public JFXTextField loginPass;
     @FXML
     public JFXTextField registerUser;
     @FXML
