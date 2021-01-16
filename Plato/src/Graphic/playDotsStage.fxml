@@ -6,7 +6,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="385.0" style="-fx-background-color: #030734;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic.playDotsStageController">
    <children>
-      <Label alignment="CENTER" layoutX="24.0" layoutY="42.0" prefHeight="107.0" prefWidth="342.0" style="-fx-background-color: #030734; -fx-background-radius: 20px; -fx-border-radius: 200px;" text="Who do you want to play with?" textFill="#6666ccde">
+      <Label alignment="CENTER" layoutX="15.0" layoutY="42.0" prefHeight="107.0" prefWidth="361.0" style="-fx-background-color: #030734; -fx-background-radius: 20px; -fx-border-radius: 200px;" text="Who do you want to play with?" textFill="#6666ccde">
          <font>
             <Font name="DejaVu Serif" size="22.0" />
          </font>
