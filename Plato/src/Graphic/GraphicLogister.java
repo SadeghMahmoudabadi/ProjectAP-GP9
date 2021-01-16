@@ -2,7 +2,6 @@ package Graphic;
 
 import Controller.Controller;
 import Model.Errors;
-import Model.Player;
 import Model.Tools;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -11,15 +10,15 @@ import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -36,7 +35,7 @@ public class GraphicLogister {
     @FXML
     public JFXTextField loginUser;
     @FXML
-    public JFXTextField loginPass;
+    public JFXPasswordField loginPass;
     @FXML
     public JFXTextField registerUser;
     @FXML
@@ -57,6 +56,10 @@ public class GraphicLogister {
     public StackPane parentContainer;
     @FXML
     public GridPane gridRoot;
+    public Label adminUsername;
+    public TabPane platoTabs;
+    public Button addEvent;
+    public Button editEvent;
 
     public static void greetClient() {
         System.out.println("Welcome to this application; choose one from below menu:");
@@ -135,7 +138,7 @@ public class GraphicLogister {
         String[] input = {"login", username, password};
         if (Controller.logisterMenu(input)) {
             if (Tools.isAdmin(username)) {
-                Parent root = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("AdminPlatoTab.fxml"));
                 Stage stage = (Stage) login.getScene().getWindow();
                 StackPane parentContainer = (StackPane) login.getScene().getRoot();
                 parentContainer.getChildren().add(root);

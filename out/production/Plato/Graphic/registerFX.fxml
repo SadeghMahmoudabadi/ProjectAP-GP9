@@ -44,7 +44,7 @@
         <ImageView fitHeight="127.0" fitWidth="462.0" layoutX="139.0" layoutY="60.0" pickOnBounds="true" preserveRatio="true">
             <Image url="@../Photos/playTogether.png" />
         </ImageView>
-        <JFXTextField fx:id="registerUser" focusColor="#405aa8" layoutX="97.0" layoutY="249.0" prefHeight="33.0" prefWidth="206.0" promptText="Username">
+        <JFXTextField fx:id="registerUser" focusColor="#405aa8" layoutX="97.0" layoutY="249.0" prefHeight="33.0" prefWidth="206.0" promptText="Username" style="-fx-text-inner-color: #ffff;">
             <unFocusColor>
                 <LinearGradient startY="1.0">
                     <stops>
@@ -57,7 +57,7 @@
             <Font name="DejaVu Serif" size="12.0" />
          </font>
         </JFXTextField>
-        <JFXTextField fx:id="registerPass" focusColor="#405aa8" layoutX="403.0" layoutY="249.0" prefHeight="33.0" prefWidth="206.0" promptText="Password">
+        <JFXTextField fx:id="registerPass" focusColor="#405aa8" layoutX="403.0" layoutY="249.0" prefHeight="33.0" prefWidth="206.0" promptText="Password" style="-fx-text-inner-color: #ffff;">
             <unFocusColor>
                 <LinearGradient startY="1.0">
                     <stops>
@@ -70,7 +70,7 @@
             <Font name="DejaVu Serif" size="12.0" />
          </font>
         </JFXTextField>
-        <JFXTextField fx:id="registerFirstname" focusColor="#405aa8" layoutX="97.0" layoutY="314.0" prefHeight="33.0" prefWidth="206.0" promptText="First name">
+        <JFXTextField fx:id="registerFirstname" focusColor="#405aa8" layoutX="97.0" layoutY="314.0" prefHeight="33.0" prefWidth="206.0" promptText="First name" style="-fx-text-inner-color: #ffff;">
             <unFocusColor>
                 <LinearGradient startY="1.0">
                     <stops>
@@ -83,7 +83,7 @@
             <Font name="DejaVu Serif" size="12.0" />
          </font>
         </JFXTextField>
-        <JFXTextField fx:id="registerLastname" focusColor="#405aa8" layoutX="403.0" layoutY="315.0" prefHeight="33.0" prefWidth="206.0" promptText="Last name">
+        <JFXTextField fx:id="registerLastname" focusColor="#405aa8" layoutX="403.0" layoutY="315.0" prefHeight="33.0" prefWidth="206.0" promptText="Last name" style="-fx-text-inner-color: #ffff;">
             <unFocusColor>
                 <LinearGradient startY="1.0">
                     <stops>
@@ -96,7 +96,7 @@
             <Font name="DejaVu Serif" size="12.0" />
          </font>
         </JFXTextField>
-        <JFXTextField fx:id="registerEmail" focusColor="#405aa8" layoutX="97.0" layoutY="374.0" prefHeight="33.0" prefWidth="306.0" promptText="Email">
+        <JFXTextField fx:id="registerEmail" focusColor="#405aa8" layoutX="97.0" layoutY="374.0" prefHeight="33.0" prefWidth="306.0" promptText="Email" style="-fx-text-inner-color: #ffff;">
             <unFocusColor>
                 <LinearGradient startY="1.0">
                     <stops>
@@ -109,7 +109,7 @@
             <Font name="DejaVu Serif" size="12.0" />
          </font>
         </JFXTextField>
-        <JFXTextField fx:id="registerPhoneNumber" focusColor="#405aa8" layoutX="97.0" layoutY="437.0" prefHeight="33.0" prefWidth="306.0" promptText="Phone number">
+        <JFXTextField fx:id="registerPhoneNumber" focusColor="#405aa8" layoutX="97.0" layoutY="437.0" prefHeight="33.0" prefWidth="306.0" promptText="Phone number" style="-fx-text-inner-color: #ffff;">
             <unFocusColor>
                 <LinearGradient startY="1.0">
                     <stops>
@@ -139,6 +139,6 @@
         <GridPane.margin>
             <Insets left="23.0" top="23.0" />
         </GridPane.margin>
-        <Image url="@../../../../../Desktop/photo_2021-01-16_21-38-25.jpg" />
+        <Image url="@../Photos/back.jpg" />
     </ImageView>
 </GridPane>

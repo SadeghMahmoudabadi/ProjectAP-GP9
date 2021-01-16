@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import com.sun.javafx.css.converters.PaintConverter?>
 <?import javafx.scene.control.Button?>
@@ -39,12 +40,12 @@
               <ImageView fitHeight="127.0" fitWidth="462.0" layoutX="143.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../Photos/playTogether.png" />
               </ImageView>
-              <JFXTextField fx:id="loginUser" focusColor="#405aa8" layoutX="247.0" layoutY="263.0" prefHeight="33.0" prefWidth="206.0" promptText="Username">
+              <JFXTextField fx:id="loginUser" focusColor="#405aa8" layoutX="247.0" layoutY="263.0" prefHeight="33.0" prefWidth="206.0" promptText="Username" style="-fx-text-inner-color: #ffff;">
                   <unFocusColor>
-                      <LinearGradient startY="1.0">
+                      <LinearGradient endX="1.0" endY="1.0" startY="1.0">
                           <stops>
                               <Stop color="BLACK" />
-                              <Stop color="#3d6fe3" offset="1.0" />
+                              <Stop color="#405aa8" offset="1.0" />
                           </stops>
                       </LinearGradient>
                   </unFocusColor>
@@ -54,16 +55,16 @@
                       <Font name="MV Boli" size="13.0" />
                   </font>
               </JFXButton>
-            <JFXTextField fx:id="loginPass" focusColor="#405aa8" layoutX="247.0" layoutY="320.0" prefHeight="33.0" prefWidth="206.0" promptText="Password">
+            <JFXPasswordField fx:id="loginPass" focusColor="#405aa8" layoutX="247.0" layoutY="325.0" prefHeight="31.0" prefWidth="206.0" promptText="password" style="-fx-text-inner-color: #ffff;">
                <unFocusColor>
-                  <LinearGradient startY="1.0">
+                  <LinearGradient endX="1.0" endY="1.0">
                      <stops>
                         <Stop color="BLACK" />
-                        <Stop color="#3d6fe3" offset="1.0" />
+                        <Stop color="#405aa8" offset="1.0" />
                      </stops>
                   </LinearGradient>
                </unFocusColor>
-            </JFXTextField>
+            </JFXPasswordField>
           </Pane>
 
       </GridPane>

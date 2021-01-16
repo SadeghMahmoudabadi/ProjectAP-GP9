@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import com.sun.javafx.css.converters.PaintConverter?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -32,37 +34,37 @@
               </ImageView>
               <Button fx:id="login" layoutX="271.0" layoutY="404.0" mnemonicParsing="false" onMouseClicked="#login" prefHeight="40.0" prefWidth="159.0" style="-fx-background-color: #6666cc; -fx-border-radius: 20px; -fx-background-radius: 20px; -fx-border-color: #ffff;" text="LOGIN" textAlignment="JUSTIFY" textFill="#030734">
                   <font>
-                      <Font name="DejaVu Serif" size="18.0" />
+                      <Font name="MV Boli" size="18.0" />
                   </font>
               </Button>
               <ImageView fitHeight="127.0" fitWidth="462.0" layoutX="143.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
-                  <Image url="@../Photos/plato.png" />
+                  <Image url="@../Photos/playTogether.png" />
               </ImageView>
-              <JFXTextField fx:id="loginUser" focusColor="#405aa8" layoutX="247.0" layoutY="263.0" prefHeight="33.0" prefWidth="206.0" promptText="Username">
+              <JFXTextField fx:id="loginUser" focusColor="#405aa8" layoutX="247.0" layoutY="263.0" prefHeight="33.0" prefWidth="206.0" promptText="Username" style="-fx-text-inner-color: #ffff;">
                   <unFocusColor>
-                      <LinearGradient startY="1.0">
+                      <LinearGradient endX="1.0" endY="1.0" startY="1.0">
                           <stops>
                               <Stop color="BLACK" />
-                              <Stop color="#3d6fe3" offset="1.0" />
+                              <Stop color="#405aa8" offset="1.0" />
                           </stops>
                       </LinearGradient>
                   </unFocusColor>
               </JFXTextField>
               <JFXButton fx:id="createAcc" layoutX="271.0" layoutY="468.0" onMouseClicked="#createAcc" prefHeight="0.0" prefWidth="159.0" ripplerFill="#6666cc" text="Create New Account" textFill="#6666cc">
                   <font>
-                      <Font name="DejaVu Serif" size="12.0" />
+                      <Font name="MV Boli" size="13.0" />
                   </font>
               </JFXButton>
-            <JFXTextField fx:id="loginPass" focusColor="#405aa8" layoutX="247.0" layoutY="320.0" prefHeight="33.0" prefWidth="206.0" promptText="Password">
+            <JFXPasswordField fx:id="loginPass" focusColor="#405aa8" layoutX="247.0" layoutY="325.0" prefHeight="31.0" prefWidth="206.0" promptText="password" style="-fx-text-inner-color: #ffff;">
                <unFocusColor>
-                  <LinearGradient startY="1.0">
+                  <LinearGradient endX="1.0" endY="1.0">
                      <stops>
                         <Stop color="BLACK" />
-                        <Stop color="#3d6fe3" offset="1.0" />
+                        <Stop color="#405aa8" offset="1.0" />
                      </stops>
                   </LinearGradient>
                </unFocusColor>
-            </JFXTextField>
+            </JFXPasswordField>
           </Pane>
 
       </GridPane>
