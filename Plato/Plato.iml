@@ -10,7 +10,7 @@
     <orderEntry type="library" name="jdk1.8" level="project" />
     <orderEntry type="module" module-name="Dot &amp; Box" />
     <orderEntry type="module" module-name="Reversi" />
-    <orderEntry type="library" name="jfoenix-8.0.10" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" name="jfoenix-8.0.10" level="project" />
   </component>
 </module>
