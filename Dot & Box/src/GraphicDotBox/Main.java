@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("gameBoard.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("dotsAndBoxesFX.fxml"));
         // Stage stage = new Stage();
         Scene scene = new Scene(root, 1000, 1000);
         stage.setScene(scene);

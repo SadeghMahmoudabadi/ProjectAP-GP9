@@ -1,11 +1,11 @@
 package ControllerDotBox;
 
+import Graphic.playDotsStageController;
 import Model.Player;
 import ModelDotBox.Dot;
 import ModelDotBox.Game;
 import ModelDotBox.Line;
 import ModelDotBox.PlayerDotBox;
-import ViewDotBox.ViewDotsAndBox;
 
 public class ControllerDotAndBox {
     private static ModelDotBox.Game game = new ModelDotBox.Game();
@@ -80,8 +80,8 @@ public class ControllerDotAndBox {
     }
 
     public static void setPlayers(Player player1, Player player2) {
-        PlayerDotBox playerDotBox1 = new PlayerDotBox(player1.getUsername(), player1.getWins());
-        PlayerDotBox playerDotBox2 = new PlayerDotBox(player2.getUsername(), player2.getWins());
+        PlayerDotBox playerDotBox1 = new PlayerDotBox(player1.getUsername(), player1.getWins(), player1);
+        PlayerDotBox playerDotBox2 = new PlayerDotBox(player2.getUsername(), player2.getWins(), player2);
         game.setPlayer1(playerDotBox1);
         game.setPlayer2(playerDotBox2);
     }

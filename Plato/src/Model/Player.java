@@ -162,6 +162,15 @@ public class Player extends User {
         return null;
     }
 
+    public static Player findPlayer(String username) {
+        for (Player player : players) {
+            if (player.getUsername().equalsIgnoreCase(username)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
     public static boolean register(String firstname, String lastname, String username, String password, String email, String phoneNumber) {
         if (Tools.checkFormat("name", firstname)) {
             if (Tools.checkFormat("name", lastname)) {
@@ -205,7 +214,6 @@ public class Player extends User {
             if (player.getUsername().equalsIgnoreCase(username)) {
                 if (player.getPassword().equals(password)) {
                     login(player.getUserID());
-                    setCurrentPlayer(player);
                     return true;
                 } else {
                     //Error
@@ -264,32 +272,39 @@ public class Player extends User {
         this.findGameLog(gameName).incrementGamePlayedCount();
     }
 
-    public void incrementWins(String gameName) {
-        this.findGameLog(gameName).incrementWins();
-    }
-
     public void incrementDotAndBoxPlayedNum() {
         this.dotAndBoxPlayedNum++;
+        Database.updateFiles();
+    }
+
+    private void incrementWins() {
+        this.wins++;
     }
 
     public void incrementDotAndBoxLevel() {
         this.dotAndBoxLevel++;
+        Database.updateFiles();
     }
 
     public void incrementDotAndBoxWins() {
         this.dotAndBoxWins++;
+        this.incrementWins();
+        Database.updateFiles();
     }
 
     public void incrementReversiPlayedNum() {
         this.dotAndBoxPlayedNum++;
+        Database.updateFiles();
     }
 
     public void incrementReversiLevel() {
         this.dotAndBoxLevel++;
+        Database.updateFiles();
     }
 
     public void incrementReversiWins() {
         this.dotAndBoxWins++;
+        Database.updateFiles();
     }
 
     public void addScore(String gameName, int score) {
@@ -400,16 +415,16 @@ public class Player extends User {
         return componentPlayer;
     }
 
+    public static void setComponentPlayer(Player componentPlayer) {
+        Player.componentPlayer = componentPlayer;
+    }
+
     public void setBio(String bio) {
         this.bio = bio;
     }
 
     public static void setCurrentPlayer(Player currentPlayer) {
         Player.currentPlayer = currentPlayer;
-    }
-
-    public static void setComponentPlayer(Player componentPlayer) {
-        Player.componentPlayer = componentPlayer;
     }
 
     public GameLog findGameLog(String gameName) {
