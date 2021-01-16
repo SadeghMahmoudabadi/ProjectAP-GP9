@@ -1,6 +1,6 @@
 package ControllerDotBox;
 
-import Model.*;
+import Model.Player;
 import ModelDotBox.Dot;
 import ModelDotBox.Game;
 import ModelDotBox.Line;

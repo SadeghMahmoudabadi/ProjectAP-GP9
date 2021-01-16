@@ -1,6 +1,5 @@
 package Model;
 
-import ModelReversi.PlayerReversi;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -37,7 +36,7 @@ public class Database {
         }
         try {
             String arrayDataID = new Gson().toJson(Tools.getIDs());
-            FileWriter fileWriterPlayer = new FileWriter("IDsData.txt");
+            FileWriter fileWriterPlayer = new FileWriter("IDs.txt");
             fileWriterPlayer.write(arrayDataID);
             fileWriterPlayer.close();
         } catch (Exception e) {
@@ -99,7 +98,7 @@ public class Database {
         }
         FileReader fileReaderID = null;
         try {
-            fileReaderID = new FileReader("IDsData.txt");
+            fileReaderID = new FileReader("IDs.txt");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

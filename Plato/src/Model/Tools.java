@@ -1,7 +1,5 @@
 package Model;
 
-import ModelReversi.PlayerReversi;
-
 import java.util.ArrayList;
 
 public class Tools {

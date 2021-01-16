@@ -2,6 +2,7 @@ package Graphic;
 
 import Controller.Controller;
 import Model.Errors;
+import Model.Player;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -147,7 +148,7 @@ public class GraphicLogister {
 
     @FXML
     public void registerBack(MouseEvent mouseEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../../../../../Desktop/project (2)/project/PlatoGraphic/src/Graphic/loginFX.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
         Scene scene = registerBack.getScene();
         root.translateYProperty().set(-scene.getHeight());
         StackPane parentContainer = (StackPane) registerBack.getScene().getRoot();

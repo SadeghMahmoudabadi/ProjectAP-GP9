@@ -205,6 +205,7 @@ public class Player extends User {
             if (player.getUsername().equalsIgnoreCase(username)) {
                 if (player.getPassword().equals(password)) {
                     login(player.getUserID());
+                    setCurrentPlayer(player);
                     return true;
                 } else {
                     //Error
