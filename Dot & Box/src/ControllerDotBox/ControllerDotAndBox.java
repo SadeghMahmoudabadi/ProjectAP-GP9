@@ -1,16 +1,16 @@
 package ControllerDotBox;
 
+import Model.*;
 import ModelDotBox.Dot;
 import ModelDotBox.Game;
 import ModelDotBox.Line;
+import ModelDotBox.PlayerDotBox;
 import ViewDotBox.ViewDotsAndBox;
 
-
 public class ControllerDotAndBox {
-    private static Game game = new Game();
-    private static ViewDotsAndBox viewDotsAndBox = new ViewDotsAndBox(game);
+    private static ModelDotBox.Game game = new ModelDotBox.Game();
 
-    public static Game getGame() {
+    public static ModelDotBox.Game getGame() {
         return game;
     }
 
@@ -37,7 +37,7 @@ public class ControllerDotAndBox {
             String yFinishChar = finishDotRegex[3];
             y2 = Integer.parseInt(yFinishChar);
             if (x1 > 8 || x1 < 1 || y1 > 8 || y1 < 1 || x2 > 8 || x2 < 1 || y2 > 8 || y2 < 1) {
-                ViewDotsAndBox.showErrors(2);
+                ViewDotBox.ViewDotsAndBox.showErrors(2);
                 return false;
             } else {
                 boolean isLineDrawn = Line.drawLine(x1, y1, x2, y2);
@@ -77,5 +77,12 @@ public class ControllerDotAndBox {
 //        } else if (command.equalsIgnoreCase("show score")) {
 //            viewDotsAndBox.showScore();
 //        }
+    }
+
+    public static void setPlayers(Player player1, Player player2) {
+        PlayerDotBox playerDotBox1 = new PlayerDotBox(player1.getUsername(), player1.getWins());
+        PlayerDotBox playerDotBox2 = new PlayerDotBox(player2.getUsername(), player2.getWins());
+        game.setPlayer1(playerDotBox1);
+        game.setPlayer2(playerDotBox2);
     }
 }

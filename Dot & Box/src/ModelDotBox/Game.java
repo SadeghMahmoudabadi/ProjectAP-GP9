@@ -16,8 +16,6 @@ public class Game {
 
     {
         playerDotBoxes = new PlayerDotBox[2];
-        playerDotBoxes[0] = new PlayerDotBox("Player1");
-        playerDotBoxes[1] = new PlayerDotBox("Player2");
         isLineDrawn = false;
         isGameEnd = false;
     }

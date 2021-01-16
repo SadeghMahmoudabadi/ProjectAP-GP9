@@ -1,6 +1,6 @@
 package Controller;
 
-import ControllerDotAndBox.ControllerDotAndBox;
+import ControllerDotBox.ControllerDotAndBox;
 import Model.*;
 import ModelReversi.PlayerReversi;
 import javafx.fxml.FXMLLoader;

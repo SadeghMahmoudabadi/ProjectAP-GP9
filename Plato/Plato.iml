@@ -8,5 +8,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jdk1.8" level="project" />
+    <orderEntry type="module" module-name="Dot &amp; Box" />
+    <orderEntry type="module" module-name="Reversi" />
   </component>
 </module>

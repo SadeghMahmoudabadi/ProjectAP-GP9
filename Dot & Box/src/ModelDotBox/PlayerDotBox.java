@@ -5,15 +5,15 @@ import javafx.scene.paint.Color;
 public class PlayerDotBox {
     private String user;
     private int score;
-    //private int wins;
+    private int wins;
 
     {
         score = 0;
     }
 
-    public PlayerDotBox(String user/*, int wins*/) {
+    public PlayerDotBox(String user, int wins) {
         this.user = user;
-        //this.wins = wins;
+        this.wins = wins;
     }
 
     public void setScore(int score) {
@@ -24,9 +24,9 @@ public class PlayerDotBox {
         return user;
     }
 
-    /*public int getWins() {
+    public int getWins() {
         return wins;
-    }*/
+    }
 
     public int getScore() {
         return score;
