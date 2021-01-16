@@ -50,12 +50,12 @@ public class GraphicPlatoTabs implements Initializable {
         coinsNum.setText(Integer.toString(Player.getCurrentPlayer().getCoin()));
         winsNum.setText(Integer.toString(Player.getCurrentPlayer().getWins()));
         friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
-        dotAndBoxLevel.setText(("Level: " + Integer.toString(Player.getCurrentPlayer().getDotAndBoxLevel())));
-        dotAndBoxWins.setText(("Wins: " + Integer.toString(Player.getCurrentPlayer().getDotAndBoxWins())));
-        dotAndBoxPlayedNum.setText(("Played: " + Integer.toString(Player.getCurrentPlayer().getDotAndBoxPlayedNum())));
-        reversiLevel.setText(("Level: " + Integer.toString(Player.getCurrentPlayer().getReversiLevel())));
-        reversiWins.setText(("Wins: " + Integer.toString(Player.getCurrentPlayer().getReversiWins())));
-        reversiPlayedNum.setText(("Played: " + Integer.toString(Player.getCurrentPlayer().getReversiPlayedNum())));
+        dotAndBoxLevel.setText(("Level: " + Player.getCurrentPlayer().getDotAndBoxLevel()));
+        dotAndBoxWins.setText(("Wins: " + Player.getCurrentPlayer().getDotAndBoxWins()));
+        dotAndBoxPlayedNum.setText(("Played: " + Player.getCurrentPlayer().getDotAndBoxPlayedNum()));
+        reversiLevel.setText(("Level: " + Player.getCurrentPlayer().getReversiLevel()));
+        reversiWins.setText(("Wins: " + Player.getCurrentPlayer().getReversiWins()));
+        reversiPlayedNum.setText(("Played: " + Player.getCurrentPlayer().getReversiPlayedNum()));
         bioLabel.setText(Player.getCurrentPlayer().getBio());
     }
 

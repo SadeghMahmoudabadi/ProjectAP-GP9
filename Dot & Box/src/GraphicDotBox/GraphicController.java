@@ -4,24 +4,27 @@ import ControllerDotBox.ControllerDotAndBox;
 import ModelDotBox.Game;
 import ViewDotBox.ViewDotsAndBox;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonType;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GraphicController implements Initializable {
+    public Label player1Name;
+    public Label player2Name;
     Game game = ControllerDotAndBox.getGame();
     public static Button[][] button;
     @FXML
@@ -44,9 +47,10 @@ public class GraphicController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         button = new Button[8][8];
         ControllerDotAndBox.run("start dots and boxes game");
+        player1Name.setText(game.getPlayer1().getUser());
+        player2Name.setText(game.getPlayer2().getUser());
 //        String path = ("Dot & Box/src/Graphic/Music.mp3");
 //        Media media = new Media(new File(path).toURI().toString());
 //        MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -203,6 +207,14 @@ public class GraphicController implements Initializable {
                 });
             }
         }
+    }
+
+    public static void startGame() throws IOException {
+        Parent root = FXMLLoader.load(GraphicController.class.getResource("dotsAndBoxesFX.fxml"));
+        Scene scene = new Scene(root, 1000, 1000);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }

@@ -1,6 +1,9 @@
 package ModelDotBox;
 
 import ControllerDotBox.ControllerDotAndBox;
+import Graphic.playDotsStageController;
+import GraphicDotBox.GraphicController;
+import Model.Player;
 import ViewDotBox.ViewDotsAndBox;
 
 import java.util.Random;
@@ -40,11 +43,8 @@ public class Game {
         return isGameEnd;
     }
 
-    public void endGame() {
-        this.isGameEnd = true;
-    }
-
     public static void startTheGame() {
+        ControllerDotAndBox.setPlayers(Player.getCurrentPlayer(), Player.getComponentPlayer());
         for (int i = 1; i < 9; i++) {
             for (int j = 1; j < 9; j++) {
                 Dot dot = new Dot(i, j);
@@ -114,12 +114,38 @@ public class Game {
             setLineDrawn(false);
         }
         if (Line.getAvailableLines().size() == 0) {
-            endGame();
+            endGame("end");
         }
     }
 
     public void forfeit() {
         playerDotBoxes[turn].setScore(-16);
         playerDotBoxes[1 - turn].setScore(32);
+        endGame("forfeit");
+    }
+
+    public void endGame(String in) {
+        System.out.println("Game over!");
+        playerDotBoxes[0].getMainPlayer().incrementDotAndBoxPlayedNum();
+        playerDotBoxes[1].getMainPlayer().incrementDotAndBoxPlayedNum();
+        if (in.equalsIgnoreCase("end")) {
+            if (playerDotBoxes[0].getScore() > playerDotBoxes[1].getScore()) {
+                System.out.println("Winner: " + playerDotBoxes[0].getUser());
+                playerDotBoxes[0].getMainPlayer().incrementDotAndBoxWins();
+            } else if (playerDotBoxes[1].getScore() > playerDotBoxes[0].getScore()) {
+                System.out.println("Winner: " + playerDotBoxes[1].getUser());
+                playerDotBoxes[1].getMainPlayer().incrementDotAndBoxWins();
+            } else {
+                System.out.println("Draw!");
+            }
+        } else if (in.equalsIgnoreCase("forfeit")) {
+            if (playerDotBoxes[0].getScore() > playerDotBoxes[1].getScore()) {
+                System.out.println("Winner: " + playerDotBoxes[0].getUser());
+                playerDotBoxes[0].getMainPlayer().incrementDotAndBoxWins();
+            } else if (playerDotBoxes[1].getScore() > playerDotBoxes[0].getScore()) {
+                System.out.println("Winner: " + playerDotBoxes[1].getUser());
+                playerDotBoxes[1].getMainPlayer().incrementDotAndBoxWins();
+            }
+        }
     }
 }

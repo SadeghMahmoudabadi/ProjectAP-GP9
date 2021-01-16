@@ -1,20 +1,19 @@
 package ViewDotBox;
 
 import ControllerDotBox.ControllerDotAndBox;
+import GraphicDotBox.GraphicController;
 import ModelDotBox.Dot;
 import ModelDotBox.Game;
 import ModelDotBox.Line;
 import ModelDotBox.PlayerDotBox;
-import Controller.*;
 
 import java.util.Scanner;
 
 public class ViewDotsAndBox {
     private static Scanner scanner = new Scanner(System.in);
-    private static Game game;
 
-    public ViewDotsAndBox(Game game) {
-        this.game = game;
+    public ViewDotsAndBox() {
+
     }
 
     public static void getCommand() {
@@ -61,17 +60,17 @@ public class ViewDotsAndBox {
     }
 
     public static void showScore() {
-        PlayerDotBox playerDotBox1 = game.getPlayer1();
-        PlayerDotBox playerDotBox2 = game.getPlayer2();
+        PlayerDotBox playerDotBox1 = ControllerDotAndBox.getGame().getPlayer1();
+        PlayerDotBox playerDotBox2 = ControllerDotAndBox.getGame().getPlayer2();
         System.out.println(playerDotBox1.getUser() + ": " + playerDotBox1.getScore());
         System.out.println(playerDotBox2.getUser() + ": " + playerDotBox2.getScore());
     }
 
     public static void showResult() {
-        if (game.isGameEnd()) {
+        if (ControllerDotAndBox.getGame().isGameEnd()) {
             showScore();
-            PlayerDotBox playerDotBox1 = game.getPlayer1();
-            PlayerDotBox playerDotBox2 = game.getPlayer2();
+            PlayerDotBox playerDotBox1 = ControllerDotAndBox.getGame().getPlayer1();
+            PlayerDotBox playerDotBox2 = ControllerDotAndBox.getGame().getPlayer2();
             if (playerDotBox1.getScore() > playerDotBox2.getScore()) {
                 System.out.println("Winner: " + playerDotBox1.getUser());
             } else if (playerDotBox2.getScore() > playerDotBox1.getScore()) {
@@ -83,7 +82,7 @@ public class ViewDotsAndBox {
     }
 
     public static void showWhoIsNext() {
-        System.out.println(game.whoIsTurn().getUser());
+        System.out.println(ControllerDotAndBox.getGame().whoIsTurn().getUser());
     }
 
     public static void showErrors(int errorID) {
