@@ -1,23 +1,20 @@
 package GraphicReversi;
 
-import Controller.Controller;
-import Model.Player;
+import ControllerReversi.ControllerReversi;
+import ModelReversi.PlayerReversi;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GraphicController implements Initializable {
     public static Button[][] coordinates;
-    public static Player[] players = new Player[2];
+    public static PlayerReversi[] playerReversis = new PlayerReversi[2];
     public Pane gamePane;
 
     @Override
@@ -26,7 +23,7 @@ public class GraphicController implements Initializable {
         //  gameGridPane.setGridLinesVisible(true);
         coordinates = new Button[8][8];
         Font font = Font.font(30);
-        Controller.run("start reversi game");
+        ControllerReversi.run("start reversi game");
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 coordinates[i][j] = new Button();
@@ -39,7 +36,7 @@ public class GraphicController implements Initializable {
                 int finalI = i;
                 coordinates[i][j].setOnMouseClicked(event -> {
                     String input = String.format("place disk on (%d,%d)", finalI + 1, finalJ + 1);
-                    if (Controller.run(input)) {
+                    if (ControllerReversi.run(input)) {
 
                     }
 
