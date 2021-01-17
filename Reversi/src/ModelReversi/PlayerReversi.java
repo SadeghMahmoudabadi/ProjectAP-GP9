@@ -1,5 +1,6 @@
 package ModelReversi;
 
+import Model.Player;
 import ViewReversi.ShowErrors;
 import ViewReversi.ViewReversi;
 
@@ -7,11 +8,14 @@ public class PlayerReversi {
     protected int color;
     protected Grid grid;
     private String username;
+    private Player mainPlayer;
 
 
-    public PlayerReversi(int color, Grid grid) {
+    public PlayerReversi(String username, int color, Grid grid, Player mainPlayer) {
+        this.username = username;
         this.color = color;
         this.grid = grid;
+        this.mainPlayer = mainPlayer;
     }
 
     public int getColor() {
@@ -66,5 +70,9 @@ public class PlayerReversi {
             }
         }
         return false;
+    }
+
+    public Player getMainPlayer() {
+        return mainPlayer;
     }
 }

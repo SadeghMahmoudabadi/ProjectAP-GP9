@@ -38,15 +38,15 @@ public class ViewReversi {
                     System.out.println("white turn!");
                 } else if (color == 1 && Game.whoIsTurn().hasTurn()) {
                     System.out.println("black turn!");
-                } else if ((GraphicController.playerReversis[0].hasTurn()) || (GraphicController.playerReversis[1].hasTurn())) {
+                } else if ((GraphicController.playerReversies[0].hasTurn()) || (GraphicController.playerReversies[1].hasTurn())) {
                     Game.changeTurn();
                     //View.showErrors(1);
                 } else {
                     Game.setIsGameOver(true);
                 }
-                if (GraphicController.playerReversis[i % 2].hasTurn()) {
+                if (GraphicController.playerReversies[i % 2].hasTurn()) {
                     ControllerReversi.run(scanner.nextLine());
-                } else if (GraphicController.playerReversis[(i + 1) % 2].hasTurn()) {
+                } else if (GraphicController.playerReversies[(i + 1) % 2].hasTurn()) {
                     i = (i + 1) % 2;
                     ControllerReversi.run(scanner.nextLine());
                 } else {

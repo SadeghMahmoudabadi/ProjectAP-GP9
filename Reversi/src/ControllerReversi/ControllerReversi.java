@@ -8,7 +8,7 @@ public class ControllerReversi {
 
     public static boolean run(String command) {
         if (command.equalsIgnoreCase("start Reversi game")) {
-            Game game = new Game(GraphicController.playerReversis, ViewReversi.getGrid());
+            Game game = new Game(GraphicController.playerReversies, ViewReversi.getGrid());
             ViewReversi.setIsGameStarted(true);
             ViewReversi.showGrid();
             return true;
@@ -24,6 +24,7 @@ public class ControllerReversi {
                 return Game.whoIsTurn().placeDisk(String.format("%d %d", x, y));
             }
         } else if (command.equalsIgnoreCase("end of my turn")) {
+
             Game.changeTurn();
             //   } else if (command.equalsIgnoreCase("show available coordinates")) {
             //   View.showAvailableCoordinates();
@@ -32,13 +33,16 @@ public class ControllerReversi {
         } else if (command.equalsIgnoreCase("who is next?")) {
             ViewReversi.showWhoIsNext();
         } else if (command.equalsIgnoreCase("show result")) {
-            if (Game.isGameOver()) {
+            if (Game.isGameOver) {
                 ViewReversi.showResult();
             }
         } else if (command.equalsIgnoreCase("show score")) {
             ViewReversi.showScore();
         } else if (command.equalsIgnoreCase("show disks")) {
             ViewReversi.showDisks();
+        } else if (command.equalsIgnoreCase("forfeit")) {
+            ViewReversi.getGrid().diskCount[Game.whoIsTurn().getColor()] = -16;
+            ViewReversi.getGrid().diskCount[1 - Game.whoIsTurn().getColor()] = 32;
         }
         return false;
     }

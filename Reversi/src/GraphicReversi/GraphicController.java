@@ -1,21 +1,38 @@
 package GraphicReversi;
 
+import Model.Player;
 import ControllerReversi.ControllerReversi;
 import ModelReversi.PlayerReversi;
+import ViewReversi.ViewReversi;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GraphicController implements Initializable {
     public static Button[][] coordinates;
-    public static PlayerReversi[] playerReversis = new PlayerReversi[2];
+    public static PlayerReversi[] playerReversies = new PlayerReversi[2];
     public Pane gamePane;
+
+    public static void startGame() throws IOException {
+        GraphicController.playerReversies[0] = new PlayerReversi(Player.getCurrentPlayer().getUsername(), 0, ViewReversi.grid, Player.getCurrentPlayer());
+        GraphicController.playerReversies[1] = new PlayerReversi(Player.getComponentPlayer().getUsername(), 1, ViewReversi.grid, Player.getComponentPlayer());
+        Parent root = FXMLLoader.load(GraphicController.class.getResource("reversiFX.fxml"));
+        Scene scene = new Scene(root, 1000, 1000);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
