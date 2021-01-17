@@ -40,6 +40,7 @@ public class GraphicPlatoAdmin implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        adminUsername.setText(Admin.getCurrentAdmin().getUsername());
         Stage stage = new Stage();
         TableView<PlayersData> table = new TableView<PlayersData>();
         ObservableList<PlayersData> data = FXCollections.observableArrayList();
