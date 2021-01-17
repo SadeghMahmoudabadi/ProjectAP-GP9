@@ -1,6 +1,9 @@
 package Graphic;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -21,6 +24,14 @@ public class CreatesEvent {
     public TextField coinsEvents;
     public Button createEvents;
     public ImageView backCreates;
+    ObservableList<String> gameChoiceBar = FXCollections.observableArrayList("Dots & Boxes ", "Reversi");
+
+    @FXML
+    public void initialize() {
+        gameChoiceBox.setValue("Dots & Boxes");
+        gameChoiceBox.setItems(gameChoiceBar);
+
+    }
 
     public void backEvents(MouseEvent mouseEvent) throws IOException {
         Stage stage = (Stage) backCreates.getScene().getWindow();
@@ -31,6 +42,7 @@ public class CreatesEvent {
         root.setScene(scene);
         root.show();
     }
+
 
     public void createEvent(ActionEvent actionEvent) {
 
