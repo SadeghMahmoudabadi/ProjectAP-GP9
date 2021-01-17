@@ -17,7 +17,6 @@ public class Player extends User {
     private int reversiLevel;
     private int reversiWins;
     private ArrayList<String> favoriteGames;
-    private ArrayList<GameLog> gameLogs;
     private ArrayList<Player> friends;
     private ArrayList<Integer> friendRequests;
     private ArrayList<Event> events;
@@ -42,7 +41,6 @@ public class Player extends User {
         reversiLevel = 0;
         reversiWins = 0;
         favoriteGames = new ArrayList<>();
-        gameLogs = new ArrayList<>();
         friends = new ArrayList<>();
         friendRequests = new ArrayList<>();
         events = new ArrayList<>();
@@ -184,11 +182,18 @@ public class Player extends User {
                 if (Tools.checkFormat("username", username)) {
                     if (Tools.checkFormat("password", password)) {
                         if (Tools.checkFormat("email", email)) {
+                            if (Tools.isEmailExist(email)) {
+                                Errors.EMAIL_EXIST.showMessage();
+                                return false;
+                            }
                             if (Tools.checkFormat("phoneNumber", phoneNumber)) {
+                                if (Tools.isPhoneNumberExist(phoneNumber)) {
+                                    Errors.PHONE_NUMBER_EXIST.showMessage();
+                                    return false;
+                                }
                                 int ID = Tools.Random();
                                 Player player = new Player(firstname, lastname, username, password, email, phoneNumber, ID);
                                 addPlayer(player);
-                                System.out.println("Congrats! You are a player :)");
                                 return true;
                             } else {
                                 Errors.PHONE_NUMBER_INCORRECT_FORMAT.showMessage();
@@ -270,13 +275,8 @@ public class Player extends User {
 
     public static void deleteAccount(Player player) {
         players.remove(player);
-        playersID.remove(player.getUserID());
+        playersID.remove(Integer.valueOf(player.getUserID()));
         Database.updateFiles();
-    }
-
-    public void incrementGamePlayedCount(String gameName) {
-
-        this.findGameLog(gameName).incrementGamePlayedCount();
     }
 
     public void incrementDotAndBoxPlayedNum() {
@@ -311,15 +311,8 @@ public class Player extends User {
 
     public void incrementReversiWins() {
         this.dotAndBoxWins++;
+        this.incrementWins();
         Database.updateFiles();
-    }
-
-    public void addScore(String gameName, int score) {
-        try {
-            this.findGameLog(gameName).addScore(score);
-        } catch (NullPointerException e) {
-            //Error     این بازی وجود ندارد
-        }
     }
 
     public ArrayList<String> getSuggestedGames() {
@@ -386,10 +379,6 @@ public class Player extends User {
         return favoriteGames;
     }
 
-    public ArrayList<GameLog> getGameLogs() {
-        return gameLogs;
-    }
-
     public ArrayList<Player> getFriends() {
         return friends;
     }
@@ -432,15 +421,6 @@ public class Player extends User {
 
     public static void setCurrentPlayer(Player currentPlayer) {
         Player.currentPlayer = currentPlayer;
-    }
-
-    public GameLog findGameLog(String gameName) {
-        for (GameLog gameLog : this.gameLogs) {
-            if (gameLog.getGameName().equalsIgnoreCase(gameName)) {
-                return gameLog;
-            }
-        }
-        return null;
     }
 
     public void setLastGamePlayed(String lastGamePlayed) {

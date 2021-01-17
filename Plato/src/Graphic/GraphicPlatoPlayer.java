@@ -48,6 +48,7 @@ public class GraphicPlatoPlayer implements Initializable {
     public JFXButton playReversiGame;
     public AnchorPane friendsPage;
     public TextField searchBox;
+    public JFXButton deleteAcc;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -186,4 +187,15 @@ public class GraphicPlatoPlayer implements Initializable {
         stage.close();
     }
 
+    public void deleteAccount(MouseEvent mouseEvent) throws IOException {
+        String[] input = {"delete", "account"};
+        if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
+            Stage accStage = (Stage) deleteAcc.getScene().getWindow();
+            accStage.close();
+            Stage loginStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
+            loginStage.setScene(new Scene(root, 747, 616));
+            loginStage.show();
+        }
+    }
 }

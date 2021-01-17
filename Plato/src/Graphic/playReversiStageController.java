@@ -1,6 +1,7 @@
 package Graphic;
 
 import GraphicReversi.GraphicController;
+import Model.Errors;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +26,7 @@ public class playReversiStageController {
             Player.setComponentPlayer(player2);
             GraphicController.startGame();
         } else {
-            //Error
+            Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
         }
     }
 

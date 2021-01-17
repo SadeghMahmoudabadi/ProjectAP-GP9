@@ -135,6 +135,8 @@ public class Controller {
                 && input[1].equalsIgnoreCase("favorite")) {
             String gameName = input[2];
             return currentPlayer.removeFavoriteGame(gameName);
+        } else if (input.length == 2 && input[0].equalsIgnoreCase("delete") && input[1].equalsIgnoreCase("account")) {
+            return Player.deletePlayer(currentPlayer.getUsername(), currentPlayer.getPassword());
         } else if (input.length == 4 && input[0].equalsIgnoreCase("play") && input[2].equalsIgnoreCase("with")) {
             String gameName = input[1];
             String username = input[4];

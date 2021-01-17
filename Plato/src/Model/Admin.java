@@ -61,7 +61,6 @@ public class Admin extends User {
                                 int ID = Tools.Random();
                                 Admin admin = new Admin(firstname, lastname, username, password, email, phoneNumber, ID);
                                 addAdmin(admin);
-                                System.out.println("Congrats! You are an admin :)");
                                 return true;
                             } else {
                                 Errors.PHONE_NUMBER_INCORRECT_FORMAT.showMessage();

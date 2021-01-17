@@ -1,7 +1,6 @@
 package Graphic;
 
 import Controller.Controller;
-import Model.Errors;
 import Model.Tools;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
@@ -138,26 +137,22 @@ public class GraphicLogister {
         String[] input = {"login", username, password};
         if (Controller.logisterMenu(input)) {
             if (Tools.isAdmin(username)) {
-                Parent root = FXMLLoader.load(getClass().getResource("AdminPlatoTab.fxml"));
-                Stage stage = (Stage) login.getScene().getWindow();
-                StackPane parentContainer = (StackPane) login.getScene().getRoot();
-                parentContainer.getChildren().add(root);
-                parentContainer.getChildren().remove(gridRoot);
-                parentContainer.setPrefSize(395, 625);
-                stage.setWidth(395);
-                stage.setHeight(625);
+                Parent root = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
+                Stage loginStage = (Stage) login.getScene().getWindow();
+                loginStage.close();
+                Scene scene = new Scene(root, 377, 578);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
             } else {
                 Parent root = FXMLLoader.load(getClass().getResource("platoForPlayer.fxml"));
-                Stage stage = (Stage) login.getScene().getWindow();
-                StackPane parentContainer = (StackPane) login.getScene().getRoot();
-                parentContainer.getChildren().add(root);
-                parentContainer.getChildren().remove(gridRoot);
-                stage.setWidth(525);
-                stage.setHeight(787);
+                Stage loginStage = (Stage) login.getScene().getWindow();
+                loginStage.close();
+                Scene scene = new Scene(root, 508, 743);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.show();
             }
-        } else {
-            System.out.println("very donkey");
-            Errors.USER_OR_PASS_DOES_NOT_EXIST.showMessage();
         }
     }
 

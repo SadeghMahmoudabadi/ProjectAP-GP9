@@ -35,7 +35,7 @@ public class CreatesEvent {
     public void backEvents(MouseEvent mouseEvent) throws IOException {
         Stage stage = (Stage) backCreates.getScene().getWindow();
         stage.close();
-        Parent parent = FXMLLoader.load(getClass().getResource("AdminPlatoTab.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
         Scene scene = new Scene(parent, 372, 523);
         Stage root = new Stage();
         root.setScene(scene);

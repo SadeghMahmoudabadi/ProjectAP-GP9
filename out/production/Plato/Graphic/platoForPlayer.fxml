@@ -156,7 +156,7 @@
                               </ImageView>
                               <Label fx:id="winsNum" alignment="CENTER" layoutX="244.0" layoutY="580.0" prefHeight="21.0" prefWidth="25.0" text="2" textFill="WHITE" />
                               <Label fx:id="platoAge" alignment="CENTER" contentDisplay="CENTER" layoutX="406.0" layoutY="523.0" prefHeight="21.0" prefWidth="25.0" text="20" textFill="WHITE" />
-                              <JFXButton fx:id="logout" layoutX="312.0" layoutY="334.0" onMouseClicked="#logout" text="Logout" textFill="#00a2e8" />
+                              <JFXButton fx:id="logout" layoutX="317.0" layoutY="334.0" onMouseClicked="#logout" text="Logout" textFill="#00a2e8" />
                               <JFXButton fx:id="playDotsGame" alignment="CENTER" layoutX="133.0" layoutY="742.0" onAction="#playDotsGame" prefHeight="39.0" prefWidth="85.0" text="Play" textFill="#00a2e8">
                                  <ripplerFill>
                                     <LinearGradient endX="1.0" endY="1.0" startX="0.8155339805825242" startY="1.0">
@@ -177,6 +177,7 @@
                                     </LinearGradient>
                                  </ripplerFill>
                               </JFXButton>
+                              <JFXButton fx:id="deleteAcc" layoutX="74.0" layoutY="334.0" onMouseClicked="#deleteAccount" text="Delete Account" textFill="#e50000" />
                            </children>
                         </Pane>
                      </content>

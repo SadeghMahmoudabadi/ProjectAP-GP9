@@ -18,7 +18,7 @@ public class AdminEditEvents {
     public void backEditEvents(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) backEditEvents.getScene().getWindow();
         stage.close();
-        Parent parent = FXMLLoader.load(getClass().getResource("AdminPlatoTab.fxml"));
+        Parent parent = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
         Scene scene = new Scene(parent, 372, 523);
         Stage root = new Stage();
         root.setScene(scene);
