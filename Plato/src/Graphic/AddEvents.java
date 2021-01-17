@@ -24,7 +24,7 @@ public class AddEvents implements Initializable {
     }
 
     public void addEvent(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../../../../../Desktop/project (2)/project/PlatoGraphic/src/Graphic/Create Events.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Create Events.fxml"));
         Stage addEvent = new Stage();
         addEvent.setScene(new Scene(root, 600, 543));
         addEvent.show();

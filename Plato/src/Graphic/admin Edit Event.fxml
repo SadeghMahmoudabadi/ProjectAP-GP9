@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="423.0" style="-fx-background-color: #030734;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:controller="Graphic.AdminEditEvents" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="423.0" style="-fx-background-color: #030734;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Text fontSmoothingType="LCD" layoutX="65.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Edit EVENTS" textAlignment="CENTER" wrappingWidth="293.2578125">
          <font>
@@ -28,14 +32,12 @@
             <Font name="DejaVu Serif" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="gameIDtextField" alignment="CENTER" layoutX="203.0" layoutY="155.0" prefHeight="31.0" prefWidth="149.0" promptText="Enter Game's ID">
+      <TextField fx:id="gameIDTextField" alignment="CENTER" layoutX="212.0" layoutY="157.0" prefHeight="31.0" prefWidth="149.0" promptText="Enter Game's ID">
          <effect>
             <DropShadow blurType="ONE_PASS_BOX" color="RED" height="39.66" radius="25.55" width="64.54" />
          </effect>
       </TextField>
-      <Button fx:id="goID" layoutX="165.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToEvent" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #6666cc;" text="GO!" textFill="WHITE">
-         <font>
-            <Font name="DejaVu Serif" size="12.0" />
-         </font></Button>
+      <Button fx:id="goID" layoutX="165.0" layoutY="240.0" mnemonicParsing="false" onAction="#goToEvent" prefHeight="31.0" prefWidth="94.0" style="-fx-background-color: #6666cc;" text="GO!" textFill="WHITE" />
+      <Button fx:id="backEditEvents" layoutX="176.0" layoutY="351.0" mnemonicParsing="false" onAction="#backEditEvents" prefHeight="31.0" prefWidth="72.0" style="-fx-background-color: #6666cc; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="Back" textFill="WHITE" />
    </children>
 </Pane>
