@@ -2,21 +2,27 @@ package Graphic;
 
 import Controller.Controller;
 import Model.Admin;
+import Model.Player;
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class GraphicPlatoAdmin {
+public class GraphicPlatoAdmin implements Initializable {
     public Button addEvent;
     public Button editEvent;
     public TabPane platoTabs;
@@ -29,6 +35,33 @@ public class GraphicPlatoAdmin {
     public JFXButton okDeleteSuggest;
     public JFXButton showSuggest;
     public Label adminUsername;
+    public Pane playersTable;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Stage stage = new Stage();
+        TableView<PlayersData> table = new TableView<PlayersData>();
+        ObservableList<PlayersData> data = FXCollections.observableArrayList();
+        TableColumn IDColumn = new TableColumn("ID");
+        IDColumn.setCellValueFactory(new PropertyValueFactory("ID"));
+        TableColumn nameColumn = new TableColumn("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("playerName"));
+        int i  = 0;
+        for (Player player : Player.getPlayers()) {
+            data.add(i++, new PlayersData(player.getUsername(), player.getUserID()));
+        }
+        ObservableList<String> list = FXCollections.observableArrayList();
+        table.setItems(data);
+        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        table.getColumns().addAll(IDColumn, nameColumn);
+        table.setPrefWidth(377);
+        table.setMinHeight(539);
+        Scene scene = new Scene(table, 395, 625);
+        stage.setTitle("Table View Example");
+        stage.setScene(scene);
+        playersTable.getChildren().add(table);
+    }
 
     public void addEvent(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("Create Events.fxml"));
