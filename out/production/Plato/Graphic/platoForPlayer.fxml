@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -20,7 +21,7 @@
 
 <StackPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic.GraphicPlatoPlayer">
    <children>
-      <TabPane fx:id="platoTabs" prefHeight="743.0" prefWidth="502.0">
+      <TabPane fx:id="platoTabs" prefHeight="743.0" prefWidth="508.0">
          <tabs>
             <Tab text="User Menu">
                <content>
@@ -76,22 +77,22 @@
                                     <Font name="Times New Roman" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="friendsNum" layoutX="67.0" layoutY="484.0" text="FRIENDS" textFill="#d1ffed">
+                              <Label layoutX="67.0" layoutY="484.0" text="FRIENDS" textFill="#d1ffed">
                                  <font>
                                     <Font name="Times New Roman Bold Italic" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="winsNum" layoutX="237.0" layoutY="543.0" text="WINS" textAlignment="RIGHT" textFill="WHITE">
+                              <Label layoutX="237.0" layoutY="543.0" text="WINS" textAlignment="RIGHT" textFill="WHITE">
                                  <font>
                                     <Font name="Times New Roman Bold Italic" size="15.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="platoAge" layoutX="376.0" layoutY="484.0" prefWidth="85.0" text="PLATO AGE" textAlignment="RIGHT" textFill="WHITE">
+                              <Label layoutX="376.0" layoutY="484.0" prefWidth="85.0" text="PLATO AGE" textAlignment="RIGHT" textFill="WHITE">
                                  <font>
                                     <Font name="Times New Roman Bold Italic" size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="coinNum" layoutX="174.0" layoutY="647.0" prefHeight="30.0" text="MY COINS" textFill="#5e5e5e" />
+                              <Label layoutX="174.0" layoutY="647.0" prefHeight="30.0" text="MY COINS" textFill="#5e5e5e" />
                               <ImageView fitHeight="30.0" fitWidth="25.0" layoutX="263.0" layoutY="650.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Photos/coin.png" />
@@ -184,22 +185,22 @@
             </Tab>
             <Tab text="Events">
                <content>
-                  <AnchorPane prefHeight="714.0" prefWidth="536.0">
+                  <AnchorPane prefHeight="714.0" prefWidth="610.0">
                      <children>
-                        <ScrollPane layoutY="107.0" prefHeight="599.0" prefWidth="508.0" style="-fx-background-color: #364A56;">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="601.0" prefWidth="506.0" style="-fx-background-color: #452E5F;">
-                                 <children>
-                                    <VBox layoutX="-1.0" layoutY="19.0" prefHeight="561.0" prefWidth="490.0" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                        <ImageView fitHeight="127.0" fitWidth="502.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="133.0" fitWidth="508.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Photos/events.jpg" />
                            </image>
                         </ImageView>
+                        <ScrollPane layoutY="127.0" prefHeight="577.0" prefWidth="508.0" style="-fx-background-color: #364A56;">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="576.0" prefWidth="506.0" style="-fx-background-color: #452E5F;">
+                                 <children>
+                                    <VBox layoutX="-1.0" prefHeight="580.0" prefWidth="490.0" />
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </ScrollPane>
                         <Text fill="#fffdfd" layoutX="99.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENTS">
                            <font>
                               <Font name="Times New Roman Bold Italic" size="55.0" />
@@ -209,14 +210,17 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Favorite games">
-               <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
-               </content>
-            </Tab>
             <Tab text="Friends">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="friendsPage" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="searchBox" layoutX="52.0" layoutY="14.0" prefHeight="34.0" prefWidth="442.0" promptText="Search username or ID" />
+                        <ImageView fitHeight="29.0" fitWidth="36.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../Photos/magnifier.png" />
+                           </image>
+                        </ImageView>
+                     </children></AnchorPane>
                </content>
             </Tab>
             <Tab text="Plato bot message">

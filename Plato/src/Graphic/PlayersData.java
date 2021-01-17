@@ -2,10 +2,11 @@ package Graphic;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Button;
 
 public class PlayersData {
-    SimpleStringProperty playerName;
-    SimpleIntegerProperty ID;
+    private SimpleStringProperty playerName;
+    private SimpleIntegerProperty ID;
 
     PlayersData(String playerName, int ID) {
         this.playerName = new SimpleStringProperty(playerName);
@@ -24,15 +25,7 @@ public class PlayersData {
         return ID.get();
     }
 
-    public void setModified(int ID) {
+    public void setID(int ID) {
         this.ID.set(ID);
-    }
-
-    @Override
-    public String toString() {
-        return "PlayersData{" +
-                "playerName=" + playerName +
-                ", ID=" + ID +
-                '}';
     }
 }

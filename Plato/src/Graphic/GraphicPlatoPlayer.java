@@ -2,6 +2,7 @@ package Graphic;
 
 import Controller.Controller;
 import Model.Player;
+import Model.Tools;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,20 +65,26 @@ public class GraphicPlatoPlayer implements Initializable {
         reversiPlayedNum.setText(("Played: " + Player.getCurrentPlayer().getReversiPlayedNum()));
         bioLabel.setText(Player.getCurrentPlayer().getBio());
         Stage stage = new Stage();
-        TableView<PlayersData> table = new TableView<PlayersData>();
-        ObservableList<PlayersData> data = FXCollections.observableArrayList();
-        TableColumn IDColumn = new TableColumn("ID");
-        IDColumn.setCellValueFactory(new PropertyValueFactory("ID"));
-        TableColumn nameColumn = new TableColumn("Name");
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("playerName"));
+        TableView<FriendsData> table = new TableView<>();
+        ObservableList<FriendsData> data = FXCollections.observableArrayList();
+        TableColumn IDCol = new TableColumn("ID");
+        IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
+        TableColumn nameCol = new TableColumn("Name");
+        nameCol.setCellValueFactory(new PropertyValueFactory<>("friendName"));
+        TableColumn requestCol = new TableColumn("Friend Request");
+        requestCol.setCellValueFactory(new PropertyValueFactory<>("sendFriendRequest"));
         int i = 0;
         for (Player player : Player.getPlayers()) {
-            data.add(i++, new PlayersData(player.getUsername(), player.getUserID()));
+            Button sendFriendRequest = new Button("Friend Request");
+            sendFriendRequest.setOnMouseClicked(event -> {
+                Tools.sendFriendRequest(Player.getCurrentPlayer().getUserID(), player.getUserID());
+            });
+            data.add(i++, new FriendsData(player.getUsername(), player.getUserID(), sendFriendRequest));
         }
         ObservableList<String> list = FXCollections.observableArrayList();
         table.setItems(data);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        table.getColumns().addAll(IDColumn, nameColumn);
+        table.getColumns().addAll(IDCol, nameCol, requestCol);
         table.setPrefWidth(506);
         table.setMinHeight(647);
         table.setLayoutY(50);
@@ -85,24 +92,24 @@ public class GraphicPlatoPlayer implements Initializable {
         stage.setTitle("Table View Example");
         stage.setScene(scene);
         friendsPage.getChildren().add(table);
-        FilteredList<PlayersData> filteredData = new FilteredList<>(data, b -> true);
+        FilteredList<FriendsData> filteredData = new FilteredList<>(data, b -> true);
         searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
-            filteredData.setPredicate(playersData -> {
+            filteredData.setPredicate(friendsData -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
                 String lowerCaseFilter = newValue.toLowerCase();
 
-                if (playersData.getPlayerName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                if (friendsData.getFriendName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true; // Filter matches first name.
-                } else if (String.valueOf(playersData.getID()).indexOf(lowerCaseFilter) != -1) {
+                } else if (String.valueOf(friendsData.getID()).indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;
                 }
             });
         });
-        SortedList<PlayersData> sortedData = new SortedList<>(filteredData);
+        SortedList<FriendsData> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
     }
