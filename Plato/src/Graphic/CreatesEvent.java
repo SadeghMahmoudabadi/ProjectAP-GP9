@@ -30,7 +30,6 @@ public class CreatesEvent {
     public void initialize() {
         gameChoiceBox.setValue("Dots & Boxes");
         gameChoiceBox.setItems(gameChoiceBar);
-
     }
 
     public void backEvents(MouseEvent mouseEvent) throws IOException {

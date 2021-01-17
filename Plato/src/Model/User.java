@@ -77,7 +77,7 @@ public class User {
             Database.updateFiles();
             return true;
         } else {
-            //Error     پسوورد اشتباه
+            Errors.WRONG_PASSWORD.showMessage();
             return false;
         }
     }
@@ -89,7 +89,7 @@ public class User {
                 Database.updateFiles();
                 return true;
             } else {
-                //Error     فرمت اسم اشتباه
+                Errors.FIRSTNAME_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else if (field.equals("lastname")) {
@@ -98,7 +98,7 @@ public class User {
                 Database.updateFiles();
                 return true;
             } else {
-                //Error     فرمت فامیل غلط
+                Errors.LASTNAME_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else if (field.equals("username")) {
@@ -108,11 +108,11 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    //Error     یوزرنیم تکراری
+                    Errors.EXIST_USERNAME.showMessage();
                     return false;
                 }
             } else {
-                //Error     فرمت یوزرنیم غلط
+                Errors.USER_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else if (field.equals("email")) {
@@ -122,11 +122,11 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    //Error     ایمیل تکراری
+                    Errors.EMAIL_EXIST.showMessage();
                     return false;
                 }
             } else {
-                //Error     فرمت ایمیل غلط
+                Errors.EMAIL_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else if (field.equals("phoneNumber")) {
@@ -136,11 +136,11 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    //Error     شماره تلفن تکراری
+                    Errors.PHONE_NUMBER_EXIST.showMessage();
                     return false;
                 }
             } else {
-                //Error     فرمت شماره غلط
+                Errors.PHONE_NUMBER_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else {

@@ -21,7 +21,7 @@ public class Event {
     }
 
 
-    public Event(String game,Date startDate, Date endDate, int score, int eventID) {
+    public Event(String game, Date startDate, Date endDate, int score, int eventID) {
         this.game = game;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -67,7 +67,7 @@ public class Event {
             Database.updateFiles();
             return true;
         } else {
-            //Error     فیلد ایونت وجود ندارد
+            Errors.EVENT_FIELD.showMessage();
             return false;
         }
     }
@@ -80,7 +80,7 @@ public class Event {
             Database.updateFiles();
             return true;
         } else {
-            //Error     ایونت وجود ندارد
+            Errors.EVENT_ID.showMessage();
             return false;
         }
 

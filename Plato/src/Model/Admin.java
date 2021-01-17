@@ -11,7 +11,8 @@ public class Admin extends User {
     private static ArrayList<Admin> loggedAdmins = new ArrayList<>();
     private static HashMap<Integer, String> messages = new HashMap<>();
 
-    public Admin() {}
+    public Admin() {
+    }
 
     public Admin(String firstname, String lastname, String username, String password, String email, String phoneNumber, int userID) {
         super(firstname, lastname, username, password, email, phoneNumber, userID);
@@ -23,7 +24,7 @@ public class Admin extends User {
 
     public void addEvent(String gameName, Date startDate, Date endDate, int score) {
         int eventID = Tools.Random();
-        Event event = new Event(gameName,startDate, endDate, score, eventID);
+        Event event = new Event(gameName, startDate, endDate, score, eventID);
         Event.addEvent(event);
     }
 
@@ -35,7 +36,7 @@ public class Admin extends User {
             Tools.sendMessage(this.getUserID(), playerID, message);
             return true;
         } else {
-            //Error     ساجسشن تکراری
+            Errors.EXIST_SUGGESTION.showMessage();
             return false;
         }
     }
@@ -63,27 +64,27 @@ public class Admin extends User {
                                 System.out.println("Congrats! You are an admin :)");
                                 return true;
                             } else {
-                                //Error     فرمت شماره
+                                Errors.PHONE_NUMBER_INCORRECT_FORMAT.showMessage();
                                 return false;
                             }
                         } else {
-                            //Error     فرمت ایمیل
+                            Errors.EMAIL_INCORRECT_FORMAT.showMessage();
                             return false;
                         }
                     } else {
-                        //Error     فرمت پسوورد
+                        Errors.PASS_INCORRECT_FORMAT.showMessage();
                         return false;
                     }
                 } else {
-                    //Error     فرمت یوزرنیم
+                    Errors.USER_INCORRECT_FORMAT.showMessage();
                     return false;
                 }
             } else {
-                //Error     فرمت فامیل
+                Errors.LASTNAME_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else {
-            //Error     فرمت اسم
+            Errors.FIRSTNAME_INCORRECT_FORMAT.showMessage();
             return false;
         }
     }
@@ -96,12 +97,12 @@ public class Admin extends User {
                     currentAdmin = admin;
                     return true;
                 } else {
-                    //Error     پسوورد غلط
+                    Errors.WRONG_PASSWORD.showMessage();
                     return false;
                 }
             }
         }
-        //Error     ادمین با این یوزرنیم وجود ندارد
+        Errors.DOES_NOT_EXIST_ADMIN.showMessage();
         return false;
     }
 
@@ -109,7 +110,7 @@ public class Admin extends User {
         if (adminsID.contains(userID)) {
             loggedAdmins.add(findAdmin(userID));
         } else {
-            //Error     ادمین با این ایدی وجود ندارد
+            Errors.DOES_NOT_EXIST_ADMIN_USERNAME.showMessage();
         }
     }
 
@@ -137,12 +138,12 @@ public class Admin extends User {
                     deleteAccount(admin);
                     return true;
                 } else {
-                    //Error     پسوورد اشتباه
+                Errors.WRONG_PASSWORD.showMessage();
                     return false;
                 }
             }
         }
-        //Error     ادمین وجود ندارد
+        Errors.ADMIN_DELETED.showMessage();
         return false;
     }
 

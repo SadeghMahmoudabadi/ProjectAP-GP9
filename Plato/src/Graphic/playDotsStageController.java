@@ -2,6 +2,7 @@ package Graphic;
 
 import ControllerDotBox.ControllerDotAndBox;
 import GraphicDotBox.GraphicController;
+import Model.Errors;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -28,7 +29,7 @@ public class playDotsStageController {
             Player.setComponentPlayer(player2);
             GraphicController.startGame();
         } else {
-            //Error   پلیر وجود ندارد
+            Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
         }
     }
 

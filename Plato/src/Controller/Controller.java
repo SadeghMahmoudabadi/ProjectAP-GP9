@@ -38,7 +38,7 @@ public class Controller {
                         return Player.loginPlayer(username, password);
                     }
                 } else {
-                    //Error
+                    Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
                     return false;
                 }
             }
@@ -53,11 +53,11 @@ public class Controller {
                         return Player.deletePlayer(username, password);
                     }
                 } else {
-                    //Error
+                    Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
                     return false;
                 }
             } else {
-                //Error
+                Errors.USER_PASS_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else {
@@ -91,7 +91,7 @@ public class Controller {
                     return currentPlayer.editField(field, newValue);
                 }
             } else {
-                //Error
+                Errors.ID_DOES_NOT_EXIST.showMessage();
                 return false;
             }
         } else if (input.length == 1 && input[0].equalsIgnoreCase("logout")) {
@@ -139,7 +139,7 @@ public class Controller {
             String gameName = input[1];
             String username = input[4];
             if (!Tools.isUsernameExist(username) || username.equalsIgnoreCase(currentPlayer.getUsername())) {
-                //Error
+                Errors.EXIST_USERNAME.showMessage();
                 return false;
             }
             if (gameName.equalsIgnoreCase("dotsAndBoxes")) {
