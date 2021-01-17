@@ -17,6 +17,10 @@ public class Admin extends User {
         super(firstname, lastname, username, password, email, phoneNumber, userID);
     }
 
+    public static User getCurrentAdmin() {
+        return currentAdmin;
+    }
+
     public void addEvent(String gameName, Date startDate, Date endDate, int score) {
         int eventID = Tools.Random();
         Event event = new Event(gameName,startDate, endDate, score, eventID);

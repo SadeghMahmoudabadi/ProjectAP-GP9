@@ -1,5 +1,7 @@
 package Graphic;
 
+import Controller.Controller;
+import Model.Admin;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -9,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -50,7 +53,17 @@ public class GraphicPlatoAdmin {
     public void addAdmin(ActionEvent actionEvent) {
     }
 
-    public void logout(ActionEvent actionEvent) {
+    public void logout(ActionEvent actionEvent) throws IOException {
+        String[] input = {"logout"};
+        if (Controller.userMenu(Admin.getCurrentAdmin().getUserID(), input)) {
+            Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
+            Stage stage = (Stage) logoutAdmin.getScene().getWindow();
+            StackPane parentContainer = (StackPane) logoutAdmin.getScene().getRoot();
+            parentContainer.getChildren().add(root);
+            parentContainer.getChildren().remove(platoTabs);
+            stage.setWidth(747);
+            stage.setHeight(616);
+        }
     }
 
     public void sendSuggest(ActionEvent actionEvent) {

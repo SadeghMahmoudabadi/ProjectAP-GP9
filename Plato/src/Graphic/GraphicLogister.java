@@ -143,8 +143,8 @@ public class GraphicLogister {
                 StackPane parentContainer = (StackPane) login.getScene().getRoot();
                 parentContainer.getChildren().add(root);
                 parentContainer.getChildren().remove(gridRoot);
-                stage.setWidth(377);
-                stage.setHeight(578);
+                stage.setWidth(395);
+                stage.setHeight(625);
 
             } else {
                 Parent root = FXMLLoader.load(getClass().getResource("platoForPlayer.fxml"));
