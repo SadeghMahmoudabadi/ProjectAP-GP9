@@ -77,7 +77,7 @@ public class User {
             Database.updateFiles();
             return true;
         } else {
-            //Error
+            //Error     پسوورد اشتباه
             return false;
         }
     }
@@ -89,7 +89,7 @@ public class User {
                 Database.updateFiles();
                 return true;
             } else {
-                //Error
+                //Error     فرمت اسم اشتباه
                 return false;
             }
         } else if (field.equals("lastname")) {
@@ -98,7 +98,7 @@ public class User {
                 Database.updateFiles();
                 return true;
             } else {
-                //Error
+                //Error     فرمت فامیل غلط
                 return false;
             }
         } else if (field.equals("username")) {
@@ -108,11 +108,11 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    //Error
+                    //Error     یوزرنیم تکراری
                     return false;
                 }
             } else {
-                //Error
+                //Error     فرمت یوزرنیم غلط
                 return false;
             }
         } else if (field.equals("email")) {
@@ -122,11 +122,11 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    //Error
+                    //Error     ایمیل تکراری
                     return false;
                 }
             } else {
-                //Error
+                //Error     فرمت ایمیل غلط
                 return false;
             }
         } else if (field.equals("phoneNumber")) {
@@ -136,15 +136,15 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    //Error
+                    //Error     شماره تلفن تکراری
                     return false;
                 }
             } else {
-                //Error
+                //Error     فرمت شماره غلط
                 return false;
             }
         } else {
-            //Error
+            //Error     فیلد وجود ندارد
             return false;
         }
     }

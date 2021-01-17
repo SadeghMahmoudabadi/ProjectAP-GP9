@@ -83,7 +83,7 @@ public class Player extends User {
             this.friendRequests.remove(friendID);
             return true;
         } else {
-            //Error
+            //Error     این پلیر درخواست نداده
             return false;
         }
     }
@@ -93,7 +93,7 @@ public class Player extends User {
             this.friendRequests.remove(friendID);
             return true;
         } else {
-            //Error
+            //Error     این پلیر درخواست نداده
             return false;
         }
     }
@@ -105,13 +105,13 @@ public class Player extends User {
                 return true;
             }
         }
-        //Error
+        //Error     این پلیر دوست شما نیست
         return false;
     }
 
     public boolean addFavoriteGame(String gameName) {
         if (this.favoriteGames.contains(gameName)) {
-            //Error
+            //Error     این بازی قبلا فیوریت شده
             return false;
         } else {
             favoriteGames.add(gameName);
@@ -124,7 +124,7 @@ public class Player extends User {
             favoriteGames.remove(gameName);
             return true;
         } else {
-            //Error
+            //Error     این بازی در فیوریت نیست
             return false;
         }
     }
@@ -151,7 +151,7 @@ public class Player extends User {
             Database.updateFiles();
             return true;
         } else {
-            //Error
+            //Error     قبلا درخواست دوستی دادی
             return false;
         }
     }
@@ -223,12 +223,12 @@ public class Player extends User {
                     login(player.getUserID());
                     return true;
                 } else {
-                    //Error
+                    //Error     پسوورد اشتباه
                     return false;
                 }
             }
         }
-        //Error
+        //Error     این پلیر وجود نداره
         return false;
     }
 
@@ -237,7 +237,7 @@ public class Player extends User {
             loggedPlayers.add(findPlayer(userID));
             currentPlayer = findPlayer(userID);
         } else {
-            //Error
+            //Error     این پلیر وجود نداره
         }
     }
 
@@ -247,7 +247,7 @@ public class Player extends User {
             currentPlayer = null;
             return true;
         } else {
-            //Error
+            //Error     این پلیر لاگین نکرده
             return false;
         }
     }
@@ -259,12 +259,12 @@ public class Player extends User {
                     deleteAccount(player);
                     return true;
                 } else {
-                    //Error
+                    //Error     پسوورد اشتباه
                     return false;
                 }
             }
         }
-        //Error
+        //Error     این پلیر وجود ندارد
         return false;
     }
 
@@ -318,7 +318,7 @@ public class Player extends User {
         try {
             this.findGameLog(gameName).addScore(score);
         } catch (NullPointerException e) {
-            //Error
+            //Error     این بازی وجود ندارد
         }
     }
 

@@ -28,7 +28,7 @@ public class playDotsStageController {
             Player.setComponentPlayer(player2);
             GraphicController.startGame();
         } else {
-            //Error
+            //Error   پلیر وجود ندارد
         }
     }
 

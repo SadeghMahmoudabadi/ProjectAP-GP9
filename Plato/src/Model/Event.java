@@ -67,7 +67,7 @@ public class Event {
             Database.updateFiles();
             return true;
         } else {
-            //Error
+            //Error     فیلد ایونت وجود ندارد
             return false;
         }
     }
@@ -80,7 +80,7 @@ public class Event {
             Database.updateFiles();
             return true;
         } else {
-            //Error
+            //Error     ایونت وجود ندارد
             return false;
         }
 

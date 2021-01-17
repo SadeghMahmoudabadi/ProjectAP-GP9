@@ -35,7 +35,7 @@ public class Admin extends User {
             Tools.sendMessage(this.getUserID(), playerID, message);
             return true;
         } else {
-            //Error
+            //Error     ساجسشن تکراری
             return false;
         }
     }
@@ -63,27 +63,27 @@ public class Admin extends User {
                                 System.out.println("Congrats! You are an admin :)");
                                 return true;
                             } else {
-                                //Error
+                                //Error     فرمت شماره
                                 return false;
                             }
                         } else {
-                            //Error
+                            //Error     فرمت ایمیل
                             return false;
                         }
                     } else {
-                        //Error
+                        //Error     فرمت پسوورد
                         return false;
                     }
                 } else {
-                    //Error
+                    //Error     فرمت یوزرنیم
                     return false;
                 }
             } else {
-                //Error
+                //Error     فرمت فامیل
                 return false;
             }
         } else {
-            //Error
+            //Error     فرمت اسم
             return false;
         }
     }
@@ -96,12 +96,12 @@ public class Admin extends User {
                     currentAdmin = admin;
                     return true;
                 } else {
-                    //Error
+                    //Error     پسوورد غلط
                     return false;
                 }
             }
         }
-        //Error
+        //Error     ادمین با این یوزرنیم وجود ندارد
         return false;
     }
 
@@ -109,7 +109,7 @@ public class Admin extends User {
         if (adminsID.contains(userID)) {
             loggedAdmins.add(findAdmin(userID));
         } else {
-            //Error
+            //Error     ادمین با این ایدی وجود ندارد
         }
     }
 
@@ -119,7 +119,7 @@ public class Admin extends User {
             currentAdmin = null;
             return true;
         } else {
-            //Error
+            //Error     این ادمین لاگین نیست
             return false;
         }
     }
@@ -137,12 +137,12 @@ public class Admin extends User {
                     deleteAccount(admin);
                     return true;
                 } else {
-                    //Error
+                    //Error     پسوورد اشتباه
                     return false;
                 }
             }
         }
-        //Error
+        //Error     ادمین وجود ندارد
         return false;
     }
 
