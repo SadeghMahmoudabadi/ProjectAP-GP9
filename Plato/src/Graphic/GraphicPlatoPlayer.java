@@ -3,16 +3,20 @@ package Graphic;
 import Controller.Controller;
 import Model.Player;
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -41,6 +45,8 @@ public class GraphicPlatoPlayer implements Initializable {
     public static Label staticUsernameLabel;
     public JFXButton playDotsGame;
     public JFXButton playReversiGame;
+    public AnchorPane friendsPage;
+    public TextField searchBox;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -57,6 +63,48 @@ public class GraphicPlatoPlayer implements Initializable {
         reversiWins.setText(("Wins: " + Player.getCurrentPlayer().getReversiWins()));
         reversiPlayedNum.setText(("Played: " + Player.getCurrentPlayer().getReversiPlayedNum()));
         bioLabel.setText(Player.getCurrentPlayer().getBio());
+        Stage stage = new Stage();
+        TableView<PlayersData> table = new TableView<PlayersData>();
+        ObservableList<PlayersData> data = FXCollections.observableArrayList();
+        TableColumn IDColumn = new TableColumn("ID");
+        IDColumn.setCellValueFactory(new PropertyValueFactory("ID"));
+        TableColumn nameColumn = new TableColumn("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("playerName"));
+        int i = 0;
+        for (Player player : Player.getPlayers()) {
+            data.add(i++, new PlayersData(player.getUsername(), player.getUserID()));
+        }
+        ObservableList<String> list = FXCollections.observableArrayList();
+        table.setItems(data);
+        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        table.getColumns().addAll(IDColumn, nameColumn);
+        table.setPrefWidth(506);
+        table.setMinHeight(647);
+        table.setLayoutY(50);
+        Scene scene = new Scene(table, 395, 625);
+        stage.setTitle("Table View Example");
+        stage.setScene(scene);
+        friendsPage.getChildren().add(table);
+        FilteredList<PlayersData> filteredData = new FilteredList<>(data, b -> true);
+        searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(playersData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+
+                if (playersData.getPlayerName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true; // Filter matches first name.
+                } else if (String.valueOf(playersData.getID()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        SortedList<PlayersData> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sortedData);
     }
 
     public void editUsername(MouseEvent mouseEvent) throws IOException {
@@ -91,7 +139,7 @@ public class GraphicPlatoPlayer implements Initializable {
         Stage playDotsStage = new Stage();
         playDotsStage.setScene(new Scene(root, 385, 464));
         playDotsStage.show();
-        Stage stage = (Stage)playDotsGame.getScene().getWindow();
+        Stage stage = (Stage) playDotsGame.getScene().getWindow();
         stage.close();
     }
 
@@ -100,7 +148,7 @@ public class GraphicPlatoPlayer implements Initializable {
         Stage playDotsStage = new Stage();
         playDotsStage.setScene(new Scene(root, 385, 464));
         playDotsStage.show();
-        Stage stage = (Stage)playReversiGame.getScene().getWindow();
+        Stage stage = (Stage) playReversiGame.getScene().getWindow();
         stage.close();
     }
 

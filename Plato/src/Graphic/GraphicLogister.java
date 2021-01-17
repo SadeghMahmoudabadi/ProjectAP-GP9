@@ -152,8 +152,8 @@ public class GraphicLogister {
                 StackPane parentContainer = (StackPane) login.getScene().getRoot();
                 parentContainer.getChildren().add(root);
                 parentContainer.getChildren().remove(gridRoot);
-                stage.setWidth(520);
-                stage.setHeight(743);
+                stage.setWidth(525);
+                stage.setHeight(787);
             }
         } else {
             System.out.println("very donkey");
