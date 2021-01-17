@@ -125,7 +125,7 @@
                   </Tab>
                   <Tab closable="false" text="Players">
                      <content>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="378.0" style="-fx-background-color: #030734;">
+                        <Pane fx:id="playersTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="378.0" style="-fx-background-color: #030734;">
                            <children>
                               <Text fill="WHITE" layoutX="124.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="table view" wrappingWidth="202.62109375">
                                  <font>
