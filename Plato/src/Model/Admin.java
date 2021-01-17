@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Admin extends User {
-
+    private static Admin currentAdmin;
     private static ArrayList<Admin> admins = new ArrayList<>();
     private static ArrayList<Integer> adminsID = new ArrayList<>();
     private static ArrayList<Admin> loggedAdmins = new ArrayList<>();
@@ -89,6 +89,7 @@ public class Admin extends User {
             if (admin.getUsername().equalsIgnoreCase(username)) {
                 if (admin.getPassword().equals(password)) {
                     login(admin.getUserID());
+                    currentAdmin = admin;
                     return true;
                 } else {
                     //Error
@@ -111,6 +112,7 @@ public class Admin extends User {
     public static boolean logout(int userID) {
         if (adminsID.contains(userID)) {
             loggedAdmins.remove(findAdmin(userID));
+            currentAdmin = null;
             return true;
         } else {
             //Error

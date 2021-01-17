@@ -35,8 +35,6 @@ public class GraphicPlatoAdmin {
         stage.show();
         Stage event = (Stage) addEvent.getScene().getWindow();
         event.close();
-
-
     }
 
     public void editEvent(ActionEvent actionEvent) throws IOException {
