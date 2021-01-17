@@ -145,8 +145,15 @@ public class Player extends User {
         messages.put(messageID, message);
     }
 
-    public void addFriendRequest(int request) {
-        this.friendRequests.add(request);
+    public boolean addFriendRequest(int request) {
+        if (!friendRequests.contains(request)) {
+            this.friendRequests.add(request);
+            Database.updateFiles();
+            return true;
+        } else {
+            //Error
+            return false;
+        }
     }
 
     public void deleteMessage(int messageID) {

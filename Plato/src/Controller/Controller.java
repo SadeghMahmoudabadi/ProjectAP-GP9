@@ -110,8 +110,7 @@ public class Controller {
         if (input.length == 3 && input[0].equalsIgnoreCase("add")
                 && input[1].equalsIgnoreCase("friend")) {
             int friendID = Integer.parseInt(input[2]);
-            Tools.sendFriendRequest(playerID, friendID);
-            return true;
+            return Tools.sendFriendRequest(playerID, friendID);
         } else if (input.length == 2 && input[0].equalsIgnoreCase("game")   /*+*****************/
                 && input[1].equalsIgnoreCase("history")) {
             return true;

@@ -68,9 +68,9 @@ public class Tools {
         }
     }
 
-    public static void sendFriendRequest(int senderID, int receiverID) {
+    public static boolean sendFriendRequest(int senderID, int receiverID) {
         Player receiver = Player.findPlayer(receiverID);
-        receiver.addFriendRequest(senderID);
+        return receiver.addFriendRequest(senderID);
     }
 
     public static boolean isAdmin(int userID) {
