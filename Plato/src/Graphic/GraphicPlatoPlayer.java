@@ -31,6 +31,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class GraphicPlatoPlayer implements Initializable {
+    public static ImageView staticProfilePic;
     public TabPane platoTabs;
     public Label username;
     public Label coinsNum;
@@ -54,11 +55,14 @@ public class GraphicPlatoPlayer implements Initializable {
     public AnchorPane friendsPage;
     public TextField searchBox;
     public JFXButton deleteAcc;
+    public ImageView addImage;
+    public ImageView profilePic;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         staticBioLabel = bioLabel;
         staticUsernameLabel = username;
+        staticProfilePic = profilePic;
         username.setText(Player.getCurrentPlayer().getUsername());
         coinsNum.setText(Integer.toString(Player.getCurrentPlayer().getCoin()));
         winsNum.setText(Integer.toString(Player.getCurrentPlayer().getWins()));
@@ -70,6 +74,9 @@ public class GraphicPlatoPlayer implements Initializable {
         reversiWins.setText(("Wins: " + Player.getCurrentPlayer().getReversiWins()));
         reversiPlayedNum.setText(("Played: " + Player.getCurrentPlayer().getReversiPlayedNum()));
         bioLabel.setText(Player.getCurrentPlayer().getBio());
+        if (Player.getCurrentPlayer().getProfile() != null) {
+            profilePic.setImage(Player.getCurrentPlayer().getProfile());
+        }
         Stage stage = new Stage();
         TableView<FriendsData> table = new TableView<>();
         ObservableList<FriendsData> data = FXCollections.observableArrayList();
@@ -196,22 +203,22 @@ public class GraphicPlatoPlayer implements Initializable {
         FilteredList<FriendsData> filteredData = new FilteredList<>(data, b -> true);
         searchBox.textProperty().addListener((observable, oldValue, newValue) ->
 
-                {
-                    filteredData.setPredicate(friendsData -> {
-                        if (newValue == null || newValue.isEmpty()) {
-                            return true;
-                        }
-                        String lowerCaseFilter = newValue.toLowerCase();
+        {
+            filteredData.setPredicate(friendsData -> {
+                if (newValue == null || newValue.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
 
-                        if (friendsData.getFriendName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                            return true;
-                        } else if (String.valueOf(friendsData.getID()).indexOf(lowerCaseFilter) != -1) {
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    });
-                });
+                if (friendsData.getFriendName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(friendsData.getID()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
         SortedList<FriendsData> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
@@ -296,5 +303,12 @@ public class GraphicPlatoPlayer implements Initializable {
             loginStage.setScene(new Scene(root, 747, 616));
             loginStage.show();
         }
+    }
+
+    public void addImage(MouseEvent mouseEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("profilePhotos.fxml"));
+        Stage image = new Stage();
+        image.setScene(new Scene(root, 600, 564));
+        image.show();
     }
 }

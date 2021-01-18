@@ -1,10 +1,13 @@
 package Model;
 
+import javafx.scene.image.Image;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
 public class Player extends User {
+    private Image profile;
     private Date passedDays;
     private int coin;
     private int wins;
@@ -48,6 +51,15 @@ public class Player extends User {
         messages = new HashMap<>();
         gameHistories = new ArrayList<>();
         gameStatistics = new HashMap<>();
+    }
+
+    public Image getProfile() {
+        return profile;
+    }
+
+    public void setProfile(Image profile) {
+        this.profile = profile;
+        Database.updateFiles();
     }
 
     public Player() {
@@ -106,12 +118,12 @@ public class Player extends User {
     }
 
     public boolean removeFriend(int friendID) {
-            if (this.friends.contains(friendID)) {
-                this.friends.remove(Integer.valueOf(friendID));
-                findPlayer(friendID).removeFriend(this.getUserID());
-                Database.updateFiles();
-                return true;
-            }
+        if (this.friends.contains(friendID)) {
+            this.friends.remove(Integer.valueOf(friendID));
+            findPlayer(friendID).removeFriend(this.getUserID());
+            Database.updateFiles();
+            return true;
+        }
         //Error     این پلیر دوست شما نیست
         return false;
     }
