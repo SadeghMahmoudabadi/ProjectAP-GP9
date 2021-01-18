@@ -12,8 +12,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class playDotsStageController {
@@ -23,6 +26,10 @@ public class playDotsStageController {
     public ImageView backDotsStage;
 
     public void playDots(ActionEvent actionEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         String player2Name = component.getText();
         player2 = Player.findPlayer(player2Name);
         if (player2 != null) {
@@ -35,6 +42,10 @@ public class playDotsStageController {
 
 
     public void backDotsStage(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("platoForPlayer.fxml"));
         Scene scene = new Scene(root, 508, 743);
         Stage stage = new Stage();

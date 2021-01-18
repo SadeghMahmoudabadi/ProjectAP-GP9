@@ -17,9 +17,12 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 
 public class GraphicView {
@@ -131,6 +134,10 @@ public class GraphicView {
 
     @FXML
     public void registerBack(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
         Scene scene = registerBack.getScene();
         root.translateYProperty().set(-scene.getHeight());
@@ -146,13 +153,11 @@ public class GraphicView {
         timeline.play();
     }
 
-    public void loginBack(MouseEvent mouseEvent) {
-    }
-
-    public void register(MouseEvent mouseEvent) {
-    }
-
     public void createAcc(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("registerFX.fxml"));
         Scene scene = createAcc.getScene();
         root.translateYProperty().set(scene.getHeight());

@@ -15,8 +15,11 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
@@ -38,6 +41,10 @@ public class CreatesEvent {
     }
 
     public void backEvents(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Stage stage = (Stage) backCreates.getScene().getWindow();
         stage.close();
         Parent parent = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
@@ -49,6 +56,10 @@ public class CreatesEvent {
 
 
     public void createEvent(ActionEvent actionEvent) throws ParseException, IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         String gameName = (String) gameChoiceBox.getValue();
         System.out.println(gameName);
         eventCoin = coinsEvents.getText();

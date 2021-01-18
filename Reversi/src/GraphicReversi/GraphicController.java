@@ -16,10 +16,13 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -82,6 +85,10 @@ public class GraphicController implements Initializable {
     }
 
     public void forfeit(ActionEvent actionEvent) throws IOException {
+        String path = ("Plato/src/Music/Game Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Alert alert = new Alert(Alert.AlertType.WARNING);
         ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
         alert.getDialogPane().getButtonTypes().add(cancel);

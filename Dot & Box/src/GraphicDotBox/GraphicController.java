@@ -83,6 +83,10 @@ public class GraphicController implements Initializable {
 //            }
 //        });
         forfeit.setOnMouseClicked(event -> {
+            String path = ("Plato/src/Music/Game Button.mp3");
+            Media media = new Media(new File(path).toURI().toString());
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
             Alert alert = new Alert(Alert.AlertType.WARNING);
             ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
             alert.getDialogPane().getButtonTypes().add(cancel);
@@ -145,7 +149,7 @@ public class GraphicController implements Initializable {
                 int finalI = i;
                 int finalJ = j;
                 button[i][j].setOnMouseClicked(event -> {
-                    String path = ("Plato/src/Photos/Music Button.mp3");
+                    String path = ("Plato/src/Music/Dots Button.mp3");
                     Media media = new Media(new File(path).toURI().toString());
                     MediaPlayer mediaPlayer = new MediaPlayer(media);
                     mediaPlayer.play();

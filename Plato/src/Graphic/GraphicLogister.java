@@ -20,9 +20,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.File;
 import java.io.IOException;
 
 public class GraphicLogister {
@@ -132,6 +135,10 @@ public class GraphicLogister {
     }
 
     public void login(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         String username = loginUser.getText();
         String password = loginPass.getText();
         String[] input = {"login", username, password};
@@ -158,6 +165,10 @@ public class GraphicLogister {
 
     @FXML
     public void registerBack(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
         Scene scene = registerBack.getScene();
         root.translateYProperty().set(-scene.getHeight());
@@ -174,6 +185,10 @@ public class GraphicLogister {
     }
 
     public void register(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         String username = registerUser.getText();
         String password = registerPass.getText();
         String firstname = registerFirstname.getText();
@@ -187,6 +202,10 @@ public class GraphicLogister {
     }
 
     public void createAcc(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("registerFX.fxml"));
         Scene scene = createAcc.getScene();
         root.translateYProperty().set(scene.getHeight());

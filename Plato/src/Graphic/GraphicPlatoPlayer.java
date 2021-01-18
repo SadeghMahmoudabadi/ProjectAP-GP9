@@ -19,10 +19,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -89,6 +92,10 @@ public class GraphicPlatoPlayer implements Initializable {
             Button remove = new Button("Remove");
             remove.setDisable(true);
             remove.setOnMouseClicked(event -> {
+                String path = ("Plato/src/Music/Menu Button.mp3");
+                Media media = new Media(new File(path).toURI().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
                 String[] input = {"remove", Integer.toString(player.getUserID())};
                 try {
                     if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
@@ -104,6 +111,10 @@ public class GraphicPlatoPlayer implements Initializable {
                 }
             });
             sendFriendRequest.setOnMouseClicked(event -> {
+                String path = ("Plato/src/Music/Menu Button.mp3");
+                Media media = new Media(new File(path).toURI().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
                 String[] input = {"add", "friend", Integer.toString(player.getUserID())};
                 System.out.println("are are, are are");
                 try {
@@ -146,6 +157,10 @@ public class GraphicPlatoPlayer implements Initializable {
             decline.setStyle("-fx-background-color: Red");
             decline.setDisable(true);
             decline.setOnMouseClicked(event -> {
+                String path = ("Plato/src/Music/Menu Button.mp3");
+                Media media = new Media(new File(path).toURI().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
                 String[] input = {"decline", Integer.toString(player.getUserID())};
                 try {
                     if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
@@ -168,26 +183,18 @@ public class GraphicPlatoPlayer implements Initializable {
             }
         }
         table.setItems(data);
-        table.getSelectionModel().
-
-                setSelectionMode(SelectionMode.MULTIPLE);
-        table.getColumns().
-
-                addAll(IDCol, nameCol, requestCol, acceptCol, declineCol, removeCol);
+        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        table.getColumns().addAll(IDCol, nameCol, requestCol, acceptCol, declineCol, removeCol);
         table.setPrefWidth(506);
         table.setMinHeight(647);
         table.setLayoutY(50);
         Scene scene = new Scene(table, 395, 625);
         stage.setTitle("Table View Example");
         stage.setScene(scene);
-        friendsPage.getChildren().
-
-                add(table);
+        friendsPage.getChildren().add(table);
 
         FilteredList<FriendsData> filteredData = new FilteredList<>(data, b -> true);
-        searchBox.textProperty().
-
-                addListener((observable, oldValue, newValue) ->
+        searchBox.textProperty().addListener((observable, oldValue, newValue) ->
 
                 {
                     filteredData.setPredicate(friendsData -> {
@@ -206,13 +213,15 @@ public class GraphicPlatoPlayer implements Initializable {
                     });
                 });
         SortedList<FriendsData> sortedData = new SortedList<>(filteredData);
-        sortedData.comparatorProperty().
-
-                bind(table.comparatorProperty());
+        sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
     }
 
     public void editUsername(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("usernameFX.fxml"));
         Stage username = new Stage();
         username.setScene(new Scene(root, 293, 183));
@@ -220,6 +229,10 @@ public class GraphicPlatoPlayer implements Initializable {
     }
 
     public void editBio(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("bioFX.fxml"));
         Stage bio = new Stage();
         bio.setScene(new Scene(root, 293, 183));
@@ -227,6 +240,10 @@ public class GraphicPlatoPlayer implements Initializable {
     }
 
     public void logout(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         String[] input = {"logout"};
         if (Controller.userMenu(Player.getCurrentPlayer().getUserID(), input)) {
             Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
@@ -240,6 +257,10 @@ public class GraphicPlatoPlayer implements Initializable {
     }
 
     public void playDotsGame(ActionEvent actionEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("playDotsStage.fxml"));
         Stage playDotsStage = new Stage();
         playDotsStage.setScene(new Scene(root, 385, 464));
@@ -249,6 +270,10 @@ public class GraphicPlatoPlayer implements Initializable {
     }
 
     public void playReversiGame(ActionEvent actionEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         Parent root = FXMLLoader.load(getClass().getResource("playReversiStage.fxml"));
         Stage playDotsStage = new Stage();
         playDotsStage.setScene(new Scene(root, 385, 464));
@@ -258,6 +283,10 @@ public class GraphicPlatoPlayer implements Initializable {
     }
 
     public void deleteAccount(MouseEvent mouseEvent) throws IOException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
         String[] input = {"delete", "account"};
         if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
             Stage accStage = (Stage) deleteAcc.getScene().getWindow();
