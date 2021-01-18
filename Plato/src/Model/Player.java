@@ -300,17 +300,17 @@ public class Player extends User {
     }
 
     public void incrementReversiPlayedNum() {
-        this.dotAndBoxPlayedNum++;
+        this.reversiPlayedNum++;
         Database.updateFiles();
     }
 
     public void incrementReversiLevel() {
-        this.dotAndBoxLevel++;
+        this.reversiLevel++;
         Database.updateFiles();
     }
 
     public void incrementReversiWins() {
-        this.dotAndBoxWins++;
+        this.reversiWins++;
         this.incrementWins();
         Database.updateFiles();
     }
