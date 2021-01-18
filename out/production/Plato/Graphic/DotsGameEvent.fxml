@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="424.0" style="-fx-background-color: #1c3443;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="424.0" style="-fx-background-color: #1c3443;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="225.0" fitWidth="424.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -28,7 +28,7 @@
             </LinearGradient>
          </stroke>
       </Line>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="144.0" layoutY="236.0" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: #007d36;" text="1st PRIZE">
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="143.0" layoutY="261.0" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: #007d36;" text="PRIZE Per Game">
          <textFill>
             <LinearGradient endY="1.0">
                <stops>
@@ -41,40 +41,17 @@
             <Font size="21.0" />
          </font>
       </Label>
-      <Label layoutX="218.0" layoutY="304.0" text="1500" textFill="WHITE">
+      <Label fx:id="prize" layoutX="217.0" layoutY="329.0" text="+100" textFill="WHITE">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>
       </Label>
-      <ImageView fitHeight="29.0" fitWidth="87.0" layoutX="182.0" layoutY="303.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="29.0" fitWidth="87.0" layoutX="181.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Desktop/AP/coin.png" />
+            <Image url="@../Photos/coin.png" />
          </image>
       </ImageView>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="163.0" layoutY="398.0" prefHeight="27.0" prefWidth="110.0" text="2ND">
-         <font>
-            <Font name="System Italic" size="21.0" />
-         </font>
-         <textFill>
-            <LinearGradient endX="0.3203883495145631" endY="0.029126213592233052" startX="0.3398058252427184" startY="1.0">
-               <stops>
-                  <Stop color="#abd69c" />
-                  <Stop color="#4e6833" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
-      </Label>
-      <Label layoutX="218.0" layoutY="447.0" text="500" textFill="WHITE">
-         <font>
-            <Font name="System Italic" size="18.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="29.0" fitWidth="87.0" layoutX="182.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../Desktop/AP/coin.png" />
-         </image>
-      </ImageView>
-      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="19.0" layoutY="554.0" prefHeight="67.0" prefWidth="385.0" ripplerFill="#5b3e3e" style="-fx-background-color: #0F83C6; -fx-background-radius: 150px; -fx-border-color: #ffff; -fx-border-radius: 150px;" text="JOIN" textAlignment="CENTER">
+      <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="20.0" layoutY="472.0" onAction="#joinDotBoxEvent" prefHeight="67.0" prefWidth="385.0" ripplerFill="#5b3e3e" style="-fx-background-color: #0F83C6; -fx-background-radius: 150px; -fx-border-color: #ffff; -fx-border-radius: 150px;" text="JOIN" textAlignment="CENTER">
          <font>
             <Font name="Castellar" size="29.0" />
          </font>
@@ -87,7 +64,7 @@
             </LinearGradient>
          </textFill>
       </JFXButton>
-      <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="94.0" layoutY="637.0" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #384338; -fx-background-radius: 100px; -fx-border-radius: 100px; -fx-border-color: #ffff;" text="Cancel" textFill="#dadada">
+      <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="95.0" layoutY="555.0" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #384338; -fx-background-radius: 100px; -fx-border-radius: 100px; -fx-border-color: #ffff;" text="Cancel" textFill="#dadada">
          <font>
             <Font size="18.0" />
          </font>
@@ -100,12 +77,12 @@
             </LinearGradient>
          </ripplerFill>
       </JFXButton>
-      <ImageView fitHeight="27.0" fitWidth="29.0" layoutX="321.0" layoutY="574.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="27.0" fitWidth="29.0" layoutX="322.0" layoutY="492.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Desktop/AP/coin.png" />
+            <Image url="@../Photos/coin.png" />
          </image>
       </ImageView>
-      <Label layoutX="348.0" layoutY="574.0" prefHeight="27.0" prefWidth="47.0" text="150" textFill="WHITE">
+      <Label fx:id="joinCoin" layoutX="349.0" layoutY="492.0" prefHeight="27.0" prefWidth="47.0" text="150" textFill="WHITE">
          <font>
             <Font name="System Italic" size="18.0" />
          </font>

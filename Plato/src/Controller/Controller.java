@@ -176,8 +176,8 @@ public class Controller {
             String gameName = input[2];
             Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(input[3]);
             Date endDate = new SimpleDateFormat("dd/MM/yyyy").parse(input[4]);
-            int score = Integer.parseInt(input[5]);
-            currentAdmin.addEvent(gameName, startDate, endDate, score);
+            int prize = Integer.parseInt(input[5]);
+            currentAdmin.addEvent(gameName, startDate, endDate, prize);
             return true;
         } else if (input.length == 5 && input[0].equalsIgnoreCase("edit")
                 && input[1].equalsIgnoreCase("event")) {

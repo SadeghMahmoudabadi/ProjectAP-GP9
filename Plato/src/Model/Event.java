@@ -1,6 +1,5 @@
 package Model;
 
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ public class Event {
     private String game;
     private Date startDate;
     private Date endDate;
-    private int score;
+    private int prize;
     private int eventID;
     private ArrayList<Integer> joinedPlayersID;
     private static ArrayList<Event> events = new ArrayList<>();
@@ -21,11 +20,11 @@ public class Event {
     }
 
 
-    public Event(String game, Date startDate, Date endDate, int score, int eventID) {
+    public Event(String game, Date startDate, Date endDate, int prize, int eventID) {
         this.game = game;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.score = score;
+        this.prize = prize;
         this.eventID = eventID;
     }
 
@@ -63,7 +62,7 @@ public class Event {
             Database.updateFiles();
             return true;
         } else if (field.equalsIgnoreCase("score")) {
-            this.score = Integer.parseInt(newValue);
+            this.prize = Integer.parseInt(newValue);
             Database.updateFiles();
             return true;
         } else {

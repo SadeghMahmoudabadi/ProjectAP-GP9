@@ -22,9 +22,9 @@ public class Admin extends User {
         return currentAdmin;
     }
 
-    public void addEvent(String gameName, Date startDate, Date endDate, int score) {
+    public void addEvent(String gameName, Date startDate, Date endDate, int prize) {
         int eventID = Tools.Random();
-        Event event = new Event(gameName, startDate, endDate, score, eventID);
+        Event event = new Event(gameName, startDate, endDate, prize, eventID);
         Event.addEvent(event);
     }
 
