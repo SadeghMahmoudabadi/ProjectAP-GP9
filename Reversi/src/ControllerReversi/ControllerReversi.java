@@ -43,6 +43,7 @@ public class ControllerReversi {
         } else if (command.equalsIgnoreCase("forfeit")) {
             ViewReversi.getGrid().diskCount[Game.whoIsTurn().getColor()] = -16;
             ViewReversi.getGrid().diskCount[1 - Game.whoIsTurn().getColor()] = 32;
+            Game.endGame("forfeit");
         }
         return false;
     }

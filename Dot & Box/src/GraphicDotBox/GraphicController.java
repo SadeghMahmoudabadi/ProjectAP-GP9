@@ -87,7 +87,7 @@ public class GraphicController implements Initializable {
             ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
             alert.getDialogPane().getButtonTypes().add(cancel);
             alert.setTitle("Forfeit");
-            alert.setHeaderText("You have forfeited badbakht-e-zalil");
+            alert.setHeaderText("If you press ok button,you have forfeited");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 game.forfeit();

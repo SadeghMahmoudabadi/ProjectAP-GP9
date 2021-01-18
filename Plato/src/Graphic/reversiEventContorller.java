@@ -1,3 +1,5 @@
+package Graphic;
+
 import Graphic.CreatesEvent;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -7,12 +9,11 @@ import javafx.scene.control.Label;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class dotsEventController implements Initializable {
-    public Button openJoinDotBox;
+public class reversiEventContorller implements Initializable {
+    public Button joinReversiEvent;
     public Label eventPrize;
 
-    public void openJoinDotBox(ActionEvent actionEvent) {
-
+    public void openJoinReversi(ActionEvent actionEvent) {
     }
 
     @Override

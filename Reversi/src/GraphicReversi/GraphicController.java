@@ -3,12 +3,17 @@ package GraphicReversi;
 import Model.Player;
 import ControllerReversi.ControllerReversi;
 import ModelReversi.PlayerReversi;
+import ViewDotBox.ViewDotsAndBox;
 import ViewReversi.ViewReversi;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -17,12 +22,14 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class GraphicController implements Initializable {
     public static Button[][] coordinates;
     public static PlayerReversi[] playerReversies = new PlayerReversi[2];
     public Pane gamePane;
+    public Button forfeitReversi;
 
     public static void startGame() throws IOException {
         GraphicController.playerReversies[0] = new PlayerReversi(Player.getCurrentPlayer().getUsername(), 0, ViewReversi.grid, Player.getCurrentPlayer());
@@ -74,5 +81,18 @@ public class GraphicController implements Initializable {
         gamePane.getChildren().add(gameGridPane);
     }
 
+    public void forfeit(ActionEvent actionEvent) throws IOException {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        ButtonType cancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getDialogPane().getButtonTypes().add(cancel);
+        alert.setTitle("Forfeit");
+        alert.setHeaderText("If you press ok button,you have forfeited");
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            ControllerReversi.run("forfeit");
+            Stage stage = (Stage) forfeitReversi.getScene().getWindow();
+            stage.close();
+        }
+    }
 }
 

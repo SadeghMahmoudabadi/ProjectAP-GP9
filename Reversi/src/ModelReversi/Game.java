@@ -31,7 +31,7 @@ public class Game {
         }
     }
 
-    private static void endGame(String in) {
+    public static void endGame(String in) {
         isGameOver = true;
         System.out.println("Game over!");
         playerReversies[0].getMainPlayer().incrementReversiPlayedNum();
