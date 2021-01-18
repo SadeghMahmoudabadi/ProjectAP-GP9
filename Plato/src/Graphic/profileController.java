@@ -25,7 +25,7 @@ public class profileController {
 
     public void photo2(MouseEvent mouseEvent) {
         Image image = photo2.getImage();
-        Player.getCurrentPlayer().setProfile(2);
+        Player.getCurrentPlayer().setProfile(3);
         GraphicPlatoPlayer.staticProfilePic.setImage(image);
         Stage stage = (Stage) photo2.getScene().getWindow();
         stage.close();
@@ -33,7 +33,7 @@ public class profileController {
 
     public void photo3(MouseEvent mouseEvent) {
         Image image = photo3.getImage();
-        Player.getCurrentPlayer().setProfile(3);
+        Player.getCurrentPlayer().setProfile(2);
         GraphicPlatoPlayer.staticProfilePic.setImage(image);
         Stage stage = (Stage) photo3.getScene().getWindow();
         stage.close();
