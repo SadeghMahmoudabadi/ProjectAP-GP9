@@ -23,7 +23,7 @@
    <children>
       <TabPane fx:id="platoTabs" prefHeight="743.0" prefWidth="508.0">
          <tabs>
-            <Tab text="User Menu">
+            <Tab closable="false" text="User Menu">
                <content>
                   <ScrollPane prefHeight="651.0" prefWidth="502.0">
                      <content>
@@ -184,7 +184,7 @@
                   </ScrollPane>
                </content>
             </Tab>
-            <Tab text="Events">
+            <Tab closable="false" text="Events">
                <content>
                   <AnchorPane prefHeight="714.0" prefWidth="610.0">
                      <children>
@@ -211,7 +211,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Friends">
+            <Tab closable="false" text="Friends">
                <content>
                   <AnchorPane fx:id="friendsPage" prefHeight="200.0" prefWidth="200.0">
                      <children>
@@ -224,7 +224,7 @@
                      </children></AnchorPane>
                </content>
             </Tab>
-            <Tab text="Plato bot message">
+            <Tab closable="false" text="Plato bot message">
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                </content>

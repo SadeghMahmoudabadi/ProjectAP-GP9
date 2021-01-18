@@ -12,10 +12,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.HashMap;
@@ -142,6 +145,10 @@ public class GraphicController implements Initializable {
                 int finalI = i;
                 int finalJ = j;
                 button[i][j].setOnMouseClicked(event -> {
+                    String path = ("Plato/src/Photos/Music Button.mp3");
+                    Media media = new Media(new File(path).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    mediaPlayer.play();
                     boolean bool = true;
                     if (isStartDot) {
                         for (int x = 0; x < 8; x++) {
