@@ -17,7 +17,7 @@ public class Player extends User {
     private int reversiLevel;
     private int reversiWins;
     private ArrayList<String> favoriteGames;
-    private ArrayList<Player> friends;
+    private ArrayList<Integer> friends;
     private ArrayList<Integer> friendRequests;
     private ArrayList<Event> events;
     private ArrayList<String> suggestedGames;
@@ -77,8 +77,10 @@ public class Player extends User {
     public boolean acceptFriend(int friendID) {
         if (this.friendRequests.contains(friendID)) {
             Player friend = findPlayer(friendID);
-            this.friends.add(friend);
-            this.friendRequests.remove(friendID);
+            this.addFriend(friendID);
+            friend.addFriend(this.getUserID());
+            this.friendRequests.remove(Integer.valueOf(friendID));
+            Database.updateFiles();
             return true;
         } else {
             Errors.REQUEST_FRIENDS.showMessage();
@@ -86,9 +88,16 @@ public class Player extends User {
         }
     }
 
+    public void addFriend(int friendID) {
+        if (!this.friends.contains(friendID)) {
+            this.friends.add(friendID);
+        }
+    }
+
     public boolean declineFriend(int friendID) {
         if (this.friendRequests.contains(friendID)) {
-            this.friendRequests.remove(friendID);
+            this.friendRequests.remove(Integer.valueOf(friendID));
+            Database.updateFiles();
             return true;
         } else {
             //Error     این پلیر درخواست نداده
@@ -97,12 +106,11 @@ public class Player extends User {
     }
 
     public boolean removeFriend(int friendID) {
-        for (Player friend : friends) {
-            if (friend.getUserID() == friendID) {
-                this.friends.remove(friend);
+            if (this.friends.contains(friendID)) {
+                this.friends.remove(friendID);
+                Database.updateFiles();
                 return true;
             }
-        }
         //Error     این پلیر دوست شما نیست
         return false;
     }
@@ -120,6 +128,7 @@ public class Player extends User {
     public boolean removeFavoriteGame(String gameName) {
         if (this.favoriteGames.contains(gameName)) {
             favoriteGames.remove(gameName);
+            Database.updateFiles();
             return true;
         } else {
             //Error     این بازی در فیوریت نیست
@@ -379,7 +388,7 @@ public class Player extends User {
         return favoriteGames;
     }
 
-    public ArrayList<Player> getFriends() {
+    public ArrayList<Integer> getFriends() {
         return friends;
     }
 
