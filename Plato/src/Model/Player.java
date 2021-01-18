@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Player extends User {
-    private Image profile;
+    private int profile;
     private Date passedDays;
     private int coin;
     private int wins;
@@ -43,6 +43,7 @@ public class Player extends User {
         reversiPlayedNum = 0;
         reversiLevel = 0;
         reversiWins = 0;
+        profile = 0;
         favoriteGames = new ArrayList<>();
         friends = new ArrayList<>();
         friendRequests = new ArrayList<>();
@@ -53,11 +54,11 @@ public class Player extends User {
         gameStatistics = new HashMap<>();
     }
 
-    public Image getProfile() {
+    public int getProfile() {
         return profile;
     }
 
-    public void setProfile(Image profile) {
+    public void setProfile(int profile) {
         this.profile = profile;
         Database.updateFiles();
     }

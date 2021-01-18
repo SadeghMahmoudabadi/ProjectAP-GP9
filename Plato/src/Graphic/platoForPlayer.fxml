@@ -34,7 +34,7 @@
                                     <Image url="@../Photos/photo_2021-01-14_17-51-05.jpg" />
                                  </image>
                               </ImageView>
-                              <ImageView fx:id="profilePic" fitHeight="80.0" fitWidth="80.0" layoutX="220.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="profilePic" fitHeight="80.0" fitWidth="80.0" layoutX="220.0" layoutY="299.0" onMouseClicked="#addImage" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Photos/photo_2021-01-14_17-49-18.jpg" />
                                  </image>
@@ -72,7 +72,7 @@
                                     <Cursor fx:constant="OPEN_HAND" />
                                  </cursor>
                               </Circle>
-                              <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="189.0" layoutY="415.0" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #F6F6F6;" text="Username">
+                              <Label fx:id="username" alignment="CENTER" contentDisplay="CENTER" layoutX="186.0" layoutY="384.0" prefHeight="31.0" prefWidth="140.0" style="-fx-background-color: #F6F6F6;" text="Username">
                                  <font>
                                     <Font name="Times New Roman" size="15.0" />
                                  </font>
@@ -99,7 +99,7 @@
                                  </image>
                               </ImageView>
                               <Label fx:id="coinsNum" alignment="CENTER" contentDisplay="CENTER" layoutX="291.0" layoutY="647.0" prefHeight="30.0" prefWidth="47.0" text="180" />
-                              <JFXButton fx:id="editUsername" alignment="CENTER" contentDisplay="CENTER" layoutX="324.0" layoutY="415.0" onMouseClicked="#editUsername" prefHeight="30.0" prefWidth="53.0" ripplerFill="BLACK" text="Edit" textAlignment="CENTER" textFill="#3243ff" />
+                              <JFXButton fx:id="editUsername" alignment="CENTER" contentDisplay="CENTER" layoutX="324.0" layoutY="384.0" onMouseClicked="#editUsername" prefHeight="30.0" prefWidth="53.0" ripplerFill="BLACK" text="Edit" textAlignment="CENTER" textFill="#3243ff" />
                               <ImageView fitHeight="69.0" fitWidth="70.0" layoutX="54.0" layoutY="707.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Photos/dotsAndBoxes.jpg" />
@@ -134,7 +134,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="bioLabel" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="189.0" layoutY="467.0" prefHeight="51.0" prefWidth="140.0" text="Bio" wrapText="true">
+                              <Label fx:id="bioLabel" alignment="CENTER" contentDisplay="TOP" layoutX="186.0" layoutY="425.0" prefHeight="51.0" prefWidth="140.0" text="Bio" wrapText="true">
                                  <font>
                                     <Font size="17.0" />
                                  </font>
@@ -149,7 +149,7 @@
                                     </LinearGradient>
                                  </textFill>
                               </Label>
-                              <ImageView fx:id="editBioLabel" fitHeight="18.0" fitWidth="25.0" layoutX="329.0" layoutY="475.0" onMouseClicked="#editBio" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="editBioLabel" fitHeight="18.0" fitWidth="25.0" layoutX="342.0" layoutY="441.0" onMouseClicked="#editBio" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Photos/plus.jpg" />
                                  </image>
@@ -178,11 +178,6 @@
                                  </ripplerFill>
                               </JFXButton>
                               <JFXButton fx:id="deleteAcc" layoutX="74.0" layoutY="334.0" onMouseClicked="#deleteAccount" text="Delete Account" textFill="#e50000" />
-                              <ImageView fx:id="addImage" fitHeight="18.0" fitWidth="25.0" layoutX="250.0" layoutY="385.0" onMouseClicked="#addImage" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../Photos/plus.jpg" />
-                                 </image>
-                              </ImageView>
                            </children>
                         </Pane>
                      </content>

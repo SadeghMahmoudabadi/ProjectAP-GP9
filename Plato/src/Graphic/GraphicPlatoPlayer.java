@@ -15,6 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -74,8 +75,10 @@ public class GraphicPlatoPlayer implements Initializable {
         reversiWins.setText(("Wins: " + Player.getCurrentPlayer().getReversiWins()));
         reversiPlayedNum.setText(("Played: " + Player.getCurrentPlayer().getReversiPlayedNum()));
         bioLabel.setText(Player.getCurrentPlayer().getBio());
-        if (Player.getCurrentPlayer().getProfile() != null) {
-            profilePic.setImage(Player.getCurrentPlayer().getProfile());
+        if (Player.getCurrentPlayer().getProfile() != 0) {
+            String profilePath = String.format("..\\ProfilePhoto\\%d.png", Player.getCurrentPlayer().getProfile());
+            Image image = new Image(getClass().getResourceAsStream(profilePath));
+            profilePic.setImage(image);
         }
         Stage stage = new Stage();
         TableView<FriendsData> table = new TableView<>();
