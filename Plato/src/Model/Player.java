@@ -107,7 +107,8 @@ public class Player extends User {
 
     public boolean removeFriend(int friendID) {
             if (this.friends.contains(friendID)) {
-                this.friends.remove(friendID);
+                this.friends.remove(Integer.valueOf(friendID));
+                findPlayer(friendID).removeFriend(this.getUserID());
                 Database.updateFiles();
                 return true;
             }

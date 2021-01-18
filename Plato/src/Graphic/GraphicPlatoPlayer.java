@@ -80,10 +80,41 @@ public class GraphicPlatoPlayer implements Initializable {
         acceptCol.setCellValueFactory(new PropertyValueFactory<>("acceptRequest"));
         TableColumn declineCol = new TableColumn("Decline");
         declineCol.setCellValueFactory(new PropertyValueFactory<>("declineRequest"));
+        TableColumn removeCol = new TableColumn("Remove Friend");
+        removeCol.setCellValueFactory(new PropertyValueFactory<>("removeFriend"));
         for (Player player : Player.getPlayers()) {
             Button sendFriendRequest = new Button("Friend Request");
             Button accept = new Button("Accept");
             Button decline = new Button("Decline");
+            Button remove = new Button("Remove");
+            remove.setDisable(true);
+            remove.setOnMouseClicked(event -> {
+                String[] input = {"remove", Integer.toString(player.getUserID())};
+                try {
+                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
+                        friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
+                        remove.setDisable(true);
+                        sendFriendRequest.setDisable(false);
+                        sendFriendRequest.setText("Friend Request");
+                        accept.setDisable(true);
+                        decline.setDisable(true);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
+            sendFriendRequest.setOnMouseClicked(event -> {
+                String[] input = {"add", "friend", Integer.toString(player.getUserID())};
+                System.out.println("are are, are are");
+                try {
+                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
+                        sendFriendRequest.setText("Requested!");
+                        sendFriendRequest.setDisable(true);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            });
             if (player.getFriendRequests().contains(Player.getCurrentPlayer().getUserID())
                     || Player.getCurrentPlayer().getFriendRequests().contains(player.getUserID())) {
                 sendFriendRequest.setText("Requested!");
@@ -91,18 +122,7 @@ public class GraphicPlatoPlayer implements Initializable {
             } else if (player.getFriends().contains(Player.getCurrentPlayer().getUserID())) {
                 sendFriendRequest.setText("Friend!");
                 sendFriendRequest.setDisable(true);
-            } else {
-                sendFriendRequest.setOnMouseClicked(event -> {
-                    String[] input = {"add", "friend", Integer.toString(player.getUserID())};
-                    try {
-                        if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
-                            sendFriendRequest.setText("Requested!");
-                            sendFriendRequest.setDisable(true);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                });
+                remove.setDisable(false);
             }
             accept.setTextFill(Color.WHITE);
             accept.setStyle("-fx-background-color: Green");
@@ -112,6 +132,9 @@ public class GraphicPlatoPlayer implements Initializable {
                 try {
                     if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
                         System.out.println("Accept!");
+                        sendFriendRequest.setText("Friend!");
+                        friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
+                        remove.setDisable(false);
                         accept.setDisable(true);
                         decline.setDisable(true);
                     }
@@ -129,6 +152,8 @@ public class GraphicPlatoPlayer implements Initializable {
                         System.out.println("Decline!");
                         accept.setDisable(true);
                         decline.setDisable(true);
+                        sendFriendRequest.setDisable(false);
+                        sendFriendRequest.setText("Friend Request");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -139,7 +164,7 @@ public class GraphicPlatoPlayer implements Initializable {
                 decline.setDisable(false);
             }
             if (Player.getCurrentPlayer() != player) {
-                data.add(new FriendsData(player.getUsername(), player.getUserID(), sendFriendRequest, accept, decline));
+                data.add(new FriendsData(player.getUsername(), player.getUserID(), sendFriendRequest, accept, decline, remove));
             }
         }
         table.setItems(data);
@@ -148,7 +173,7 @@ public class GraphicPlatoPlayer implements Initializable {
                 setSelectionMode(SelectionMode.MULTIPLE);
         table.getColumns().
 
-                addAll(IDCol, nameCol, requestCol, acceptCol, declineCol);
+                addAll(IDCol, nameCol, requestCol, acceptCol, declineCol, removeCol);
         table.setPrefWidth(506);
         table.setMinHeight(647);
         table.setLayoutY(50);
