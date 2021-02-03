@@ -20,6 +20,7 @@ import static java.lang.System.exit;
 public class Client extends Application {
     public static ClientImp clientImp = new ClientImp();
     public static Player currentPlayer;
+    public static ArrayList<Player> players;
 
     public static void main(String[] args) {
         if (clientImp.run()) {
@@ -38,11 +39,11 @@ public class Client extends Application {
         return clientImp.handleConnection(userInput);
     }
 
-//    public static ArrayList<Player> getPlayers() {
-//        ArrayList<Player> players;
-//
-//        return players;
-//    }
+    public static ArrayList<Player> getPlayers() {
+        players = clientImp.getPlayersImp();
+        System.out.println();
+        return players;
+    }
 
     static class ClientImp {
         private Socket clientSocket;
@@ -71,6 +72,24 @@ public class Client extends Application {
                 e.printStackTrace();
             }
             return false;
+        }
+
+        public ArrayList<Player> getPlayersImp() {
+            try {
+                dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+                dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+                dataOutputStream.writeUTF("getPlayers");
+                dataOutputStream.flush();
+                String response = dataInputStream.readUTF();
+                Type type = new TypeToken<ArrayList<Player>>() {
+                }.getType();
+                Gson gson = new Gson();
+                ArrayList<Player> players = gson.fromJson(response, type);
+                return players;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
         }
 
         public boolean run() {

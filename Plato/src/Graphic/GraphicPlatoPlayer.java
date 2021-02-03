@@ -78,8 +78,6 @@ public class GraphicPlatoPlayer implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println(Client.currentPlayer.getUsername());
-        System.out.println(Client.currentPlayer.getRegisterDate().toString());
         long platoAgeDays = ChronoUnit.DAYS.between(Client.currentPlayer.getRegisterDate(), LocalDate.now());
         platoAge.setText(Long.toString(platoAgeDays) + "d");
         staticBioLabel = bioLabel;
@@ -118,7 +116,7 @@ public class GraphicPlatoPlayer implements Initializable {
         removeCol.setCellValueFactory(new PropertyValueFactory<>("removeFriend"));
         TableColumn infoCol = new TableColumn("Info");
         infoCol.setCellValueFactory(new PropertyValueFactory<>("personalInfo"));
-        for (Player player : Player.getPlayers()) {
+        for (Player player : Client.getPlayers()) {
             Button sendFriendRequest = new Button("Request");
             Button accept = new Button("Accept");
             Button decline = new Button("Decline");
