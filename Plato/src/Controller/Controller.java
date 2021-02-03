@@ -73,7 +73,11 @@ public class Controller {
         return false;
     }
 
-    public static boolean userMenu(int userID, String[] input) {
+    public static boolean userMenu(int userID, String userInput) {
+        Type type = new TypeToken<String[]>() {
+        }.getType();
+        Gson gson = new Gson();
+        String[] input = gson.fromJson(userInput, type);
         if (input.length == 4 && input[0].equalsIgnoreCase("change")
                 && input[1].equalsIgnoreCase("password")) {
             String currentPassword = input[2];

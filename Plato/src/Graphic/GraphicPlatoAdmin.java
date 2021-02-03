@@ -109,15 +109,15 @@ public class GraphicPlatoAdmin implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         String[] input = {"logout"};
-        if (Controller.userMenu(Admin.getCurrentAdmin().getUserID(), input)) {
-            Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
-            Stage stage = (Stage) logoutAdmin.getScene().getWindow();
-            StackPane parentContainer = (StackPane) logoutAdmin.getScene().getRoot();
-            parentContainer.getChildren().add(root);
-            parentContainer.getChildren().remove(platoTabs);
-            stage.setWidth(747);
-            stage.setHeight(616);
-        }
+//        if (Controller.userMenu(Admin.getCurrentAdmin().getUserID(), input)) {
+//            Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
+//            Stage stage = (Stage) logoutAdmin.getScene().getWindow();
+//            StackPane parentContainer = (StackPane) logoutAdmin.getScene().getRoot();
+//            parentContainer.getChildren().add(root);
+//            parentContainer.getChildren().remove(platoTabs);
+//            stage.setWidth(747);
+//            stage.setHeight(616);
+//        }
     }
 
     public void sendSuggest(ActionEvent actionEvent) throws ParseException {

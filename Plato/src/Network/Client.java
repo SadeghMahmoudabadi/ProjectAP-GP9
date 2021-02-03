@@ -58,11 +58,14 @@ public class Client extends Application {
                 dataOutputStream.writeUTF(input);
                 dataOutputStream.flush();
                 String response = dataInputStream.readUTF();
-                if (!response.equalsIgnoreCase("false")) {
+                System.out.println(response);
+                if (response.startsWith("{\"profile\":")) {
                     Type type = new TypeToken<Player>() {
                     }.getType();
                     Gson gson = new Gson();
                     currentPlayer = gson.fromJson(response, type);
+                    return true;
+                } if (Boolean.parseBoolean(response)) {
                     return true;
                 } else {
                     Errors.USER_OR_PASS_DOES_NOT_EXIST.showMessage();

@@ -20,11 +20,11 @@ public class UsernameController {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         String[] input = {"edit", "username", usernameText.getText()};
-        if (Controller.userMenu(Player.getCurrentPlayer().getUserID(), input)) {
-            GraphicPlatoPlayer.staticUsernameLabel.setText(usernameText.getText());
-            Stage usernameStage = (Stage) usernameText.getScene().getWindow();
-            usernameStage.close();
-            Database.updateFiles();
-        }
+//        if (Controller.userMenu(Player.getCurrentPlayer().getUserID(), input)) {
+//            GraphicPlatoPlayer.staticUsernameLabel.setText(usernameText.getText());
+//            Stage usernameStage = (Stage) usernameText.getScene().getWindow();
+//            usernameStage.close();
+//            Database.updateFiles();
+//        }
     }
 }

@@ -328,8 +328,8 @@ public class GraphicPlatoPlayer implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        String[] input = {"logout"};
-        if (Controller.userMenu(Player.getCurrentPlayer().getUserID(), input)) {
+        String[] input = {"user", "logout"};
+        if (Client.clientHandle(input)) {
             Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
             Stage stage = (Stage) logout.getScene().getWindow();
             StackPane parentContainer = (StackPane) logout.getScene().getRoot();
@@ -414,46 +414,46 @@ public class GraphicPlatoPlayer implements Initializable {
     }
 
     public void editField(MouseEvent mouseEvent) throws IOException {
-        if (!editFirstname.getText().isEmpty()) {
-            String[] input = {"edit", "firstname", editFirstname.getText()};
-            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
-            firstname.setText(Player.getCurrentPlayer().getFirstname());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Edit");
-            alert.setHeaderText("Edit successful");
-            alert.setContentText("You edit your firstname");
-            alert.show();
-        }
-        if (!editLastname.getText().isEmpty()) {
-            String[] input = {"edit", "lastname", editLastname.getText()};
-            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
-            lastname.setText(Player.getCurrentPlayer().getLastName());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Edit");
-            alert.setHeaderText("Edit successful");
-            alert.setContentText("You edit your lastname");
-            alert.show();
-        }
-        if (!editEmail.getText().isEmpty()) {
-            String[] input = {"edit", "email", editEmail.getText()};
-            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
-            email.setText(Player.getCurrentPlayer().getEmail());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Edit");
-            alert.setHeaderText("Edit successful");
-            alert.setContentText("You edit your email");
-            alert.show();
-        }
-        if (!editNumber.getText().isEmpty()) {
-            String[] input = {"edit", "phoneNumber", editNumber.getText()};
-            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
-            phoneNumber.setText(Player.getCurrentPlayer().getPhoneNumber());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Edit");
-            alert.setHeaderText("Edit successful");
-            alert.setContentText("You edit your phone number");
-            alert.show();
-        }
+//        if (!editFirstname.getText().isEmpty()) {
+//            String[] input = {"edit", "firstname", editFirstname.getText()};
+//            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
+//            firstname.setText(Player.getCurrentPlayer().getFirstname());
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Edit");
+//            alert.setHeaderText("Edit successful");
+//            alert.setContentText("You edit your firstname");
+//            alert.show();
+//        }
+//        if (!editLastname.getText().isEmpty()) {
+//            String[] input = {"edit", "lastname", editLastname.getText()};
+//            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
+//            lastname.setText(Player.getCurrentPlayer().getLastName());
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Edit");
+//            alert.setHeaderText("Edit successful");
+//            alert.setContentText("You edit your lastname");
+//            alert.show();
+//        }
+//        if (!editEmail.getText().isEmpty()) {
+//            String[] input = {"edit", "email", editEmail.getText()};
+//            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
+//            email.setText(Player.getCurrentPlayer().getEmail());
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Edit");
+//            alert.setHeaderText("Edit successful");
+//            alert.setContentText("You edit your email");
+//            alert.show();
+//        }
+//        if (!editNumber.getText().isEmpty()) {
+//            String[] input = {"edit", "phoneNumber", editNumber.getText()};
+//            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
+//            phoneNumber.setText(Player.getCurrentPlayer().getPhoneNumber());
+//            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//            alert.setTitle("Edit");
+//            alert.setHeaderText("Edit successful");
+//            alert.setContentText("You edit your phone number");
+//            alert.show();
+//        }
     }
 
     public void selectEventTab() {
