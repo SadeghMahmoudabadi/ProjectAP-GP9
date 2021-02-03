@@ -2,6 +2,7 @@ package Graphic;
 
 import Model.Database;
 import Model.Player;
+import Network.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,10 +31,12 @@ public class BioController implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        GraphicPlatoPlayer.staticBioLabel.setText(bioText.getText());
-        Player.getCurrentPlayer().setBio(bioText.getText());
-        Stage bioStage = (Stage) bioText.getScene().getWindow();
-        bioStage.close();
-        Database.updateFiles();
+        String[] input = {"player", "edit", "bio", bioText.getText()};
+        if (Client.requestToServer(input)) {
+            Stage bioStage = (Stage) bioText.getScene().getWindow();
+            bioStage.close();
+            GraphicPlatoPlayer.staticBioLabel.setText(bioText.getText());
+            Database.updateFiles();
+        }
     }
 }

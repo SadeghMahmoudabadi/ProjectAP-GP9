@@ -60,6 +60,7 @@ public class Server {
                         if (controller.equalsIgnoreCase("logister")) {
                             String response;
                             if (Controller.logisterMenu(input)) {
+                                System.out.println(input);
                                 response = new Gson().toJson(Player.getCurrentPlayer());
                             } else {
                                 response = "false";
@@ -77,8 +78,17 @@ public class Server {
                             }
                             dataOutputStream.writeUTF(response);
                             dataOutputStream.flush();
-                        }/* else if (controller.equalsIgnoreCase("player")) {
-                        return Controller.playerMenu(currentUserID, input);
+                        } else if (controller.equalsIgnoreCase("player")) {
+                            System.out.println(input);
+                            String response;
+                            int currentUserID = Player.getCurrentPlayer().getUserID();
+                            if (Controller.playerMenu(currentUserID, input)) {
+                                response = "true";
+                            } else {
+                                response = "false";
+                            }
+                            dataOutputStream.writeUTF(response);
+                            dataOutputStream.flush();
                     }/* else if (controller.equalsIgnoreCase("admin")) {
                         return Controller.adminMenu(currentUserID, input);
                     }*/
@@ -86,6 +96,8 @@ public class Server {
                 }
             } catch (IOException e) {
                 System.err.println(e.getMessage());
+            } finally {
+                Database.updateFiles();
             }
         }
 

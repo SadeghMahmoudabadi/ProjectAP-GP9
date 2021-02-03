@@ -152,40 +152,40 @@ public class GraphicPlatoPlayer implements Initializable {
                 infoStage.show();
             });
             remove.setDisable(true);
-            remove.setOnMouseClicked(event -> {
-                String path = ("Plato/src/Music/Menu Button.mp3");
-                Media media = new Media(new File(path).toURI().toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.play();
-                String[] input = {"remove", Integer.toString(player.getUserID())};
-                try {
-                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
-                        friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
-                        remove.setDisable(true);
-                        sendFriendRequest.setDisable(false);
-                        sendFriendRequest.setText("Request");
-                        accept.setDisable(true);
-                        decline.setDisable(true);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-            sendFriendRequest.setOnMouseClicked(event -> {
-                String path = ("Plato/src/Music/Menu Button.mp3");
-                Media media = new Media(new File(path).toURI().toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.play();
-                String[] input = {"add", "friend", Integer.toString(player.getUserID())};
-                try {
-                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
-                        sendFriendRequest.setText("Requested!");
-                        sendFriendRequest.setDisable(true);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+//            remove.setOnMouseClicked(event -> {
+//                String path = ("Plato/src/Music/Menu Button.mp3");
+//                Media media = new Media(new File(path).toURI().toString());
+//                MediaPlayer mediaPlayer = new MediaPlayer(media);
+//                mediaPlayer.play();
+//                String[] input = {"remove", Integer.toString(player.getUserID())};
+//                try {
+//                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
+//                        friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
+//                        remove.setDisable(true);
+//                        sendFriendRequest.setDisable(false);
+//                        sendFriendRequest.setText("Request");
+//                        accept.setDisable(true);
+//                        decline.setDisable(true);
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            });
+//            sendFriendRequest.setOnMouseClicked(event -> {
+//                String path = ("Plato/src/Music/Menu Button.mp3");
+//                Media media = new Media(new File(path).toURI().toString());
+//                MediaPlayer mediaPlayer = new MediaPlayer(media);
+//                mediaPlayer.play();
+//                String[] input = {"add", "friend", Integer.toString(player.getUserID())};
+//                try {
+//                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
+//                        sendFriendRequest.setText("Requested!");
+//                        sendFriendRequest.setDisable(true);
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            });
             if (player.getFriendRequests().contains(Client.currentPlayer.getUserID())
                     || Client.currentPlayer.getFriendRequests().contains(player.getUserID())) {
                 sendFriendRequest.setText("Requested!");
@@ -198,42 +198,42 @@ public class GraphicPlatoPlayer implements Initializable {
             accept.setTextFill(Color.WHITE);
             accept.setStyle("-fx-background-color: Green");
             accept.setDisable(true);
-            accept.setOnMouseClicked(event -> {
-                String[] input = {"accept", Integer.toString(player.getUserID())};
-                try {
-                    if (Controller.playerMenu(Client.currentPlayer.getUserID(), input)) {
-                        System.out.println("Accept!");
-                        sendFriendRequest.setText("Friend!");
-                        friendsNum.setText(Integer.toString(Client.currentPlayer.getFriends().size()));
-                        remove.setDisable(false);
-                        accept.setDisable(true);
-                        decline.setDisable(true);
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+//            accept.setOnMouseClicked(event -> {
+//                String[] input = {"accept", Integer.toString(player.getUserID())};
+//                try {
+//                    if (Controller.playerMenu(Client.currentPlayer.getUserID(), input)) {
+//                        System.out.println("Accept!");
+//                        sendFriendRequest.setText("Friend!");
+//                        friendsNum.setText(Integer.toString(Client.currentPlayer.getFriends().size()));
+//                        remove.setDisable(false);
+//                        accept.setDisable(true);
+//                        decline.setDisable(true);
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            });
             decline.setTextFill(Color.WHITE);
             decline.setStyle("-fx-background-color: Red");
             decline.setDisable(true);
-            decline.setOnMouseClicked(event -> {
-                String path = ("Plato/src/Music/Menu Button.mp3");
-                Media media = new Media(new File(path).toURI().toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.play();
-                String[] input = {"decline", Integer.toString(player.getUserID())};
-                try {
-                    if (Controller.playerMenu(Client.currentPlayer.getUserID(), input)) {
-                        System.out.println("Decline!");
-                        accept.setDisable(true);
-                        decline.setDisable(true);
-                        sendFriendRequest.setDisable(false);
-                        sendFriendRequest.setText("Request");
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+//            decline.setOnMouseClicked(event -> {
+//                String path = ("Plato/src/Music/Menu Button.mp3");
+//                Media media = new Media(new File(path).toURI().toString());
+//                MediaPlayer mediaPlayer = new MediaPlayer(media);
+//                mediaPlayer.play();
+//                String[] input = {"decline", Integer.toString(player.getUserID())};
+//                try {
+//                    if (Controller.playerMenu(Client.currentPlayer.getUserID(), input)) {
+//                        System.out.println("Decline!");
+//                        accept.setDisable(true);
+//                        decline.setDisable(true);
+//                        sendFriendRequest.setDisable(false);
+//                        sendFriendRequest.setText("Request");
+//                    }
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            });
             if (Client.currentPlayer.getFriendRequests().contains(player.getUserID())) {
                 accept.setDisable(false);
                 decline.setDisable(false);
@@ -372,14 +372,14 @@ public class GraphicPlatoPlayer implements Initializable {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         String[] input = {"delete", "account"};
-        if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
-            Stage accStage = (Stage) deleteAcc.getScene().getWindow();
-            accStage.close();
-            Stage loginStage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
-            loginStage.setScene(new Scene(root, 747, 616));
-            loginStage.show();
-        }
+//        if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
+//            Stage accStage = (Stage) deleteAcc.getScene().getWindow();
+//            accStage.close();
+//            Stage loginStage = new Stage();
+//            Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
+//            loginStage.setScene(new Scene(root, 747, 616));
+//            loginStage.show();
+//        }
     }
 
     public void addImage(MouseEvent mouseEvent) throws IOException {
@@ -390,59 +390,62 @@ public class GraphicPlatoPlayer implements Initializable {
     }
 
     public void addDotsFav(MouseEvent mouseEvent) throws IOException {
-        if (Player.getCurrentPlayer().getFavoriteGames().contains("dotsAndBoxes")) {
-            String[] input = {"remove", "favorite", "dotsAndBoxes"};
-            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
-            dotsFav.setVisible(false);
-        } else {
-            String[] input = {"add", "favorite", "dotsAndBoxes"};
-            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
-            dotsFav.setVisible(true);
-        }
+//        if (Player.getCurrentPlayer().getFavoriteGames().contains("dotsAndBoxes")) {
+//            String[] input = {"remove", "favorite", "dotsAndBoxes"};
+//            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
+//            dotsFav.setVisible(false);
+//        } else {
+//            String[] input = {"add", "favorite", "dotsAndBoxes"};
+//            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
+//            dotsFav.setVisible(true);
+//        }
     }
 
     public void addReversiFav(MouseEvent mouseEvent) throws IOException {
-        if (Player.getCurrentPlayer().getFavoriteGames().contains("reversi")) {
-            String[] input = {"remove", "favorite", "reversi"};
-            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
-            reversiFav.setVisible(false);
-        } else {
-            String[] input = {"add", "favorite", "reversi"};
-            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
-            reversiFav.setVisible(true);
-        }
+//        if (Player.getCurrentPlayer().getFavoriteGames().contains("reversi")) {
+//            String[] input = {"remove", "favorite", "reversi"};
+//            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
+//            reversiFav.setVisible(false);
+//        } else {
+//            String[] input = {"add", "favorite", "reversi"};
+//            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
+//            reversiFav.setVisible(true);
+//        }
     }
 
-    public void editField(MouseEvent mouseEvent) throws IOException {
+    public void editField(MouseEvent mouseEvent) {
         if (!editFirstname.getText().isEmpty()) {
             String[] input = {"user", "edit", "firstname", editFirstname.getText()};
-            Client.requestToServer(input);
-            firstname.setText(Client.currentPlayer.getFirstname());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Edit");
-            alert.setHeaderText("Edit successful");
-            alert.setContentText("You edit your firstname");
-            alert.show();
+            if (Client.requestToServer(input)) {
+                firstname.setText(Client.currentPlayer.getFirstname());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Edit");
+                alert.setHeaderText("Edit successful");
+                alert.setContentText("You edit your firstname");
+                alert.show();
+            }
         }
         if (!editLastname.getText().isEmpty()) {
             String[] input = {"user", "edit", "lastname", editLastname.getText()};
-            Client.requestToServer(input);
-            lastname.setText(Client.currentPlayer.getLastName());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Edit");
-            alert.setHeaderText("Edit successful");
-            alert.setContentText("You edit your lastname");
-            alert.show();
+            if (Client.requestToServer(input)) {
+                lastname.setText(Client.currentPlayer.getLastName());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Edit");
+                alert.setHeaderText("Edit successful");
+                alert.setContentText("You edit your lastname");
+                alert.show();
+            }
         }
         if (!editEmail.getText().isEmpty()) {
             String[] input = {"user", "edit", "email", editEmail.getText()};
-            Client.requestToServer(input);
-            email.setText(Client.currentPlayer.getEmail());
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Edit");
-            alert.setHeaderText("Edit successful");
-            alert.setContentText("You edit your email");
-            alert.show();
+            if(Client.requestToServer(input)) {
+                email.setText(Client.currentPlayer.getEmail());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Edit");
+                alert.setHeaderText("Edit successful");
+                alert.setContentText("You edit your email");
+                alert.show();
+            }
         }
         if (!editNumber.getText().isEmpty()) {
             String[] input = {"user", "edit", "phoneNumber", editNumber.getText()};

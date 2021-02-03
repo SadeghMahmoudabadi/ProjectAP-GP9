@@ -115,7 +115,11 @@ public class Controller {
         }
     }
 
-    public static boolean playerMenu(int playerID, String[] input) throws IOException {
+    public static boolean playerMenu(int playerID, String userInput) throws IOException {
+        Type type = new TypeToken<String[]>() {
+        }.getType();
+        Gson gson = new Gson();
+        String[] input = gson.fromJson(userInput, type);
         Player currentPlayer = Player.findPlayer(playerID);
         if (input.length == 3 && input[0].equalsIgnoreCase("add")
                 && input[1].equalsIgnoreCase("friend")) {
@@ -147,6 +151,10 @@ public class Controller {
             return currentPlayer.removeFavoriteGame(gameName);
         } else if (input.length == 2 && input[0].equalsIgnoreCase("delete") && input[1].equalsIgnoreCase("account")) {
             return Player.deletePlayer(currentPlayer.getUsername(), currentPlayer.getPassword());
+        } else if (input.length == 3 && input[0].equalsIgnoreCase("edit") && input[1].equalsIgnoreCase("bio")) {
+            String bio = input[2];
+            Player.getCurrentPlayer().setBio(bio);
+            return true;
         } else if (input.length == 4 && input[0].equalsIgnoreCase("play") && input[2].equalsIgnoreCase("with")) {
             String gameName = input[1];
             String username = input[4];
