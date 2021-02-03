@@ -1,6 +1,5 @@
 package Graphic;
 
-import Controller.Controller;
 import Model.Tools;
 import Network.Client;
 import com.jfoenix.controls.JFXButton;
@@ -65,7 +64,7 @@ public class GraphicLogister {
         String username = loginUser.getText();
         String password = loginPass.getText();
         String[] input = {"logister", "login", username, password};
-        if (Client.clientHandle(input)) {
+        if (Client.requestToServer(input)) {
             if (Tools.isAdmin(username)) {
                 Parent root = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
                 Stage loginStage = (Stage) login.getScene().getWindow();
@@ -119,7 +118,7 @@ public class GraphicLogister {
         String email = registerEmail.getText();
         String phoneNumber = registerPhoneNumber.getText();
         String[] input = {"logister", "register", username, password, firstname, lastname, email, phoneNumber};
-        if (Client.clientHandle(input)) {
+        if (Client.requestToServer(input)) {
             registerBack(mouseEvent);
         }
     }

@@ -35,7 +35,7 @@ public class Client extends Application {
         loginStage.show();
     }
 
-    public static boolean clientHandle(String[] userInput) {
+    public static boolean requestToServer(String[] userInput) {
         return clientImp.handleConnection(userInput);
     }
 

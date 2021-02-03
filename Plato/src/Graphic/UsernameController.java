@@ -3,6 +3,7 @@ package Graphic;
 import Controller.Controller;
 import Model.Database;
 import Model.Player;
+import Network.Client;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
@@ -19,12 +20,12 @@ public class UsernameController {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        String[] input = {"edit", "username", usernameText.getText()};
-//        if (Controller.userMenu(Player.getCurrentPlayer().getUserID(), input)) {
-//            GraphicPlatoPlayer.staticUsernameLabel.setText(usernameText.getText());
-//            Stage usernameStage = (Stage) usernameText.getScene().getWindow();
-//            usernameStage.close();
-//            Database.updateFiles();
-//        }
+        String[] input = {"user", "edit", "username", usernameText.getText()};
+        if (Client.requestToServer(input)) {
+            GraphicPlatoPlayer.staticUsernameLabel.setText(usernameText.getText());
+            Stage usernameStage = (Stage) usernameText.getScene().getWindow();
+            usernameStage.close();
+            Database.updateFiles();
+        }
     }
 }

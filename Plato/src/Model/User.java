@@ -77,7 +77,6 @@ public class User {
             Database.updateFiles();
             return true;
         } else {
-            Errors.WRONG_PASSWORD.showMessage();
             return false;
         }
     }
@@ -89,7 +88,6 @@ public class User {
                 Database.updateFiles();
                 return true;
             } else {
-                Errors.FIRSTNAME_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else if (field.equals("lastname")) {
@@ -98,7 +96,6 @@ public class User {
                 Database.updateFiles();
                 return true;
             } else {
-                Errors.LASTNAME_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else if (field.equals("username")) {
@@ -108,11 +105,9 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    Errors.EXIST_USERNAME.showMessage();
                     return false;
                 }
             } else {
-                Errors.USER_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else if (field.equals("email")) {
@@ -122,11 +117,9 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    Errors.EMAIL_EXIST.showMessage();
                     return false;
                 }
             } else {
-                Errors.EMAIL_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else if (field.equals("phoneNumber")) {
@@ -136,11 +129,9 @@ public class User {
                     Database.updateFiles();
                     return true;
                 } else {
-                    Errors.PHONE_NUMBER_EXIST.showMessage();
                     return false;
                 }
             } else {
-                Errors.PHONE_NUMBER_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else {
