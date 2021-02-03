@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class profileController {
+public class ProfileController {
 
     public ImageView photo1;
     public ImageView photo3;

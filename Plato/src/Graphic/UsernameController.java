@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
-public class usernameController {
+public class UsernameController {
     public TextField usernameText;
 
     public void okUsernameText(ActionEvent actionEvent) {

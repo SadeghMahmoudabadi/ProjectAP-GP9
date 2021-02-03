@@ -1,8 +1,9 @@
 package Graphic;
 
 import Controller.Controller;
+import Model.Event;
 import Model.Player;
-import Model.Tools;
+import Network.Client;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,15 +22,19 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ResourceBundle;
 
 public class GraphicPlatoPlayer implements Initializable {
@@ -56,50 +62,97 @@ public class GraphicPlatoPlayer implements Initializable {
     public AnchorPane friendsPage;
     public TextField searchBox;
     public JFXButton deleteAcc;
-    public ImageView addImage;
     public ImageView profilePic;
+    public AnchorPane platoBotMessage;
+    public ImageView dotsFav;
+    public ImageView reversiFav;
+    public TextField editFirstname;
+    public TextField editLastname;
+    public TextField editEmail;
+    public TextField editNumber;
+    public Label firstname;
+    public Label lastname;
+    public Label email;
+    public Label phoneNumber;
+    public AnchorPane eventsPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        System.out.println(Client.currentPlayer.getUsername());
+        System.out.println(Client.currentPlayer.getRegisterDate().toString());
+        long platoAgeDays = ChronoUnit.DAYS.between(Client.currentPlayer.getRegisterDate(), LocalDate.now());
+        platoAge.setText(Long.toString(platoAgeDays) + "d");
         staticBioLabel = bioLabel;
         staticUsernameLabel = username;
         staticProfilePic = profilePic;
-        username.setText(Player.getCurrentPlayer().getUsername());
-        coinsNum.setText(Integer.toString(Player.getCurrentPlayer().getCoin()));
-        winsNum.setText(Integer.toString(Player.getCurrentPlayer().getWins()));
-        friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
-        dotAndBoxLevel.setText(("Level: " + Player.getCurrentPlayer().getDotAndBoxLevel()));
-        dotAndBoxWins.setText(("Wins: " + Player.getCurrentPlayer().getDotAndBoxWins()));
-        dotAndBoxPlayedNum.setText(("Played: " + Player.getCurrentPlayer().getDotAndBoxPlayedNum()));
-        reversiLevel.setText(("Level: " + Player.getCurrentPlayer().getReversiLevel()));
-        reversiWins.setText(("Wins: " + Player.getCurrentPlayer().getReversiWins()));
-        reversiPlayedNum.setText(("Played: " + Player.getCurrentPlayer().getReversiPlayedNum()));
-        bioLabel.setText(Player.getCurrentPlayer().getBio());
-        if (Player.getCurrentPlayer().getProfile() != 0) {
-            String profilePath = String.format("..\\ProfilePhoto\\%d.png", Player.getCurrentPlayer().getProfile());
+        username.setText(Client.currentPlayer.getUsername());
+        coinsNum.setText(Integer.toString(Client.currentPlayer.getCoin()));
+        winsNum.setText(Integer.toString(Client.currentPlayer.getWins()));
+        friendsNum.setText(Integer.toString(Client.currentPlayer.getFriends().size()));
+        dotAndBoxLevel.setText(("Level: " + Client.currentPlayer.getDotAndBoxLevel()));
+        dotAndBoxWins.setText(("Wins: " + Client.currentPlayer.getDotAndBoxWins()));
+        dotAndBoxPlayedNum.setText(("Played: " + Client.currentPlayer.getDotAndBoxPlayedNum()));
+        reversiLevel.setText(("Level: " + Client.currentPlayer.getReversiLevel()));
+        reversiWins.setText(("Wins: " + Client.currentPlayer.getReversiWins()));
+        reversiPlayedNum.setText(("Played: " + Client.currentPlayer.getReversiPlayedNum()));
+        bioLabel.setText(Client.currentPlayer.getBio());
+        if (Client.currentPlayer.getProfile() != 0) {
+            String profilePath = String.format("..\\ProfilePhoto\\%d.png", Client.currentPlayer.getProfile());
             Image image = new Image(getClass().getResourceAsStream(profilePath));
             profilePic.setImage(image);
         }
-        Stage stage = new Stage();
         TableView<FriendsData> table = new TableView<>();
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ObservableList<FriendsData> data = FXCollections.observableArrayList();
         TableColumn IDCol = new TableColumn("ID");
         IDCol.setCellValueFactory(new PropertyValueFactory("ID"));
         TableColumn nameCol = new TableColumn("Name");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("friendName"));
-        TableColumn requestCol = new TableColumn("Friend Request");
+        TableColumn requestCol = new TableColumn("Friend");
         requestCol.setCellValueFactory(new PropertyValueFactory<>("sendFriendRequest"));
         TableColumn acceptCol = new TableColumn("Accept");
         acceptCol.setCellValueFactory(new PropertyValueFactory<>("acceptRequest"));
         TableColumn declineCol = new TableColumn("Decline");
         declineCol.setCellValueFactory(new PropertyValueFactory<>("declineRequest"));
-        TableColumn removeCol = new TableColumn("Remove Friend");
+        TableColumn removeCol = new TableColumn("Remove");
         removeCol.setCellValueFactory(new PropertyValueFactory<>("removeFriend"));
+        TableColumn infoCol = new TableColumn("Info");
+        infoCol.setCellValueFactory(new PropertyValueFactory<>("personalInfo"));
         for (Player player : Player.getPlayers()) {
-            Button sendFriendRequest = new Button("Friend Request");
+            Button sendFriendRequest = new Button("Request");
             Button accept = new Button("Accept");
             Button decline = new Button("Decline");
             Button remove = new Button("Remove");
+            Button info = new Button("Info");
+            info.setOnMouseClicked(event -> {
+                String path = ("Plato/src/Music/Menu Button.mp3");
+                Media media = new Media(new File(path).toURI().toString());
+                MediaPlayer mediaPlayer = new MediaPlayer(media);
+                mediaPlayer.play();
+                Stage infoStage = new Stage();
+                VBox infoVBox = new VBox();
+                String firstname = String.format("Firstname :    %s", player.getFirstname());
+                String lastname = String.format("Lastname :    %s", player.getLastName());
+                String email = String.format("Email :    %s", player.getEmail());
+                String phoneNumber = String.format("Phone number :    %s", player.getPhoneNumber());
+                String coins = String.format("Coin :    %s", player.getCoin());
+                Label firstnameLabel = new Label(firstname);
+                Label lastnameLabel = new Label(lastname);
+                Label emailLabel = new Label(email);
+                Label phoneNumberLabel = new Label(phoneNumber);
+                Label coinLabel = new Label(coins);
+                firstnameLabel.setFont(Font.font(13));
+                lastnameLabel.setFont(Font.font(13));
+                emailLabel.setFont(Font.font(13));
+                phoneNumberLabel.setFont(Font.font(13));
+                coinLabel.setFont(Font.font(13));
+                infoVBox.getChildren().addAll(firstnameLabel, lastnameLabel, emailLabel, phoneNumberLabel, coinLabel);
+                infoVBox.setAlignment(Pos.CENTER);
+                infoVBox.setSpacing(23);
+                Scene infoScene = new Scene(infoVBox, 350, 350);
+                infoStage.setScene(infoScene);
+                infoStage.show();
+            });
             remove.setDisable(true);
             remove.setOnMouseClicked(event -> {
                 String path = ("Plato/src/Music/Menu Button.mp3");
@@ -112,7 +165,7 @@ public class GraphicPlatoPlayer implements Initializable {
                         friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
                         remove.setDisable(true);
                         sendFriendRequest.setDisable(false);
-                        sendFriendRequest.setText("Friend Request");
+                        sendFriendRequest.setText("Request");
                         accept.setDisable(true);
                         decline.setDisable(true);
                     }
@@ -126,7 +179,6 @@ public class GraphicPlatoPlayer implements Initializable {
                 MediaPlayer mediaPlayer = new MediaPlayer(media);
                 mediaPlayer.play();
                 String[] input = {"add", "friend", Integer.toString(player.getUserID())};
-                System.out.println("are are, are are");
                 try {
                     if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
                         sendFriendRequest.setText("Requested!");
@@ -136,11 +188,11 @@ public class GraphicPlatoPlayer implements Initializable {
                     e.printStackTrace();
                 }
             });
-            if (player.getFriendRequests().contains(Player.getCurrentPlayer().getUserID())
-                    || Player.getCurrentPlayer().getFriendRequests().contains(player.getUserID())) {
+            if (player.getFriendRequests().contains(Client.currentPlayer.getUserID())
+                    || Client.currentPlayer.getFriendRequests().contains(player.getUserID())) {
                 sendFriendRequest.setText("Requested!");
                 sendFriendRequest.setDisable(true);
-            } else if (player.getFriends().contains(Player.getCurrentPlayer().getUserID())) {
+            } else if (player.getFriends().contains(Client.currentPlayer.getUserID())) {
                 sendFriendRequest.setText("Friend!");
                 sendFriendRequest.setDisable(true);
                 remove.setDisable(false);
@@ -151,10 +203,10 @@ public class GraphicPlatoPlayer implements Initializable {
             accept.setOnMouseClicked(event -> {
                 String[] input = {"accept", Integer.toString(player.getUserID())};
                 try {
-                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
+                    if (Controller.playerMenu(Client.currentPlayer.getUserID(), input)) {
                         System.out.println("Accept!");
                         sendFriendRequest.setText("Friend!");
-                        friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
+                        friendsNum.setText(Integer.toString(Client.currentPlayer.getFriends().size()));
                         remove.setDisable(false);
                         accept.setDisable(true);
                         decline.setDisable(true);
@@ -173,34 +225,31 @@ public class GraphicPlatoPlayer implements Initializable {
                 mediaPlayer.play();
                 String[] input = {"decline", Integer.toString(player.getUserID())};
                 try {
-                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
+                    if (Controller.playerMenu(Client.currentPlayer.getUserID(), input)) {
                         System.out.println("Decline!");
                         accept.setDisable(true);
                         decline.setDisable(true);
                         sendFriendRequest.setDisable(false);
-                        sendFriendRequest.setText("Friend Request");
+                        sendFriendRequest.setText("Request");
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             });
-            if (Player.getCurrentPlayer().getFriendRequests().contains(player.getUserID())) {
+            if (Client.currentPlayer.getFriendRequests().contains(player.getUserID())) {
                 accept.setDisable(false);
                 decline.setDisable(false);
             }
-            if (Player.getCurrentPlayer() != player) {
-                data.add(new FriendsData(player.getUsername(), player.getUserID(), sendFriendRequest, accept, decline, remove));
+            if (Client.currentPlayer != player) {
+                data.add(new FriendsData(player.getUsername(), player.getUserID(), sendFriendRequest, accept, decline, remove, info));
             }
         }
         table.setItems(data);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        table.getColumns().addAll(IDCol, nameCol, requestCol, acceptCol, declineCol, removeCol);
-        table.setPrefWidth(506);
+        table.getColumns().addAll(IDCol, nameCol, requestCol, acceptCol, declineCol, removeCol, infoCol);
+        table.setMinWidth(506);
         table.setMinHeight(647);
         table.setLayoutY(50);
-        Scene scene = new Scene(table, 395, 625);
-        stage.setTitle("Table View Example");
-        stage.setScene(scene);
         friendsPage.getChildren().add(table);
 
         FilteredList<FriendsData> filteredData = new FilteredList<>(data, b -> true);
@@ -225,6 +274,33 @@ public class GraphicPlatoPlayer implements Initializable {
         SortedList<FriendsData> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sortedData);
+        TableView<MessagesData> platoBotMessages = new TableView<>();
+        platoBotMessages.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        ObservableList<MessagesData> botData = FXCollections.observableArrayList();
+        TableColumn messageColumn = new TableColumn("Message");
+        messageColumn.setCellValueFactory(new PropertyValueFactory<>("message"));
+        int i = 0;
+        for (int messageID : Client.currentPlayer.getMessages().keySet()) {
+            MessagesData messagesData = new MessagesData(messageID, Client.currentPlayer.getMessages().get(messageID), Client.currentPlayer.getUsername());
+            botData.add(i++, messagesData);
+        }
+        platoBotMessages.setItems(botData);
+        platoBotMessages.getSelectionModel().setCellSelectionEnabled(true);
+        platoBotMessages.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        platoBotMessages.getColumns().addAll(messageColumn);
+        platoBotMessages.setPrefWidth(508);
+        platoBotMessages.setMinHeight(714);
+        platoBotMessage.getChildren().add(platoBotMessages);
+        if (Client.currentPlayer.getFavoriteGames().contains("dotsAndBoxes")) {
+            dotsFav.setVisible(true);
+        }
+        if (Client.currentPlayer.getFavoriteGames().contains("reversi")) {
+            reversiFav.setVisible(true);
+        }
+        firstname.setText(Client.currentPlayer.getFirstname());
+        lastname.setText(Client.currentPlayer.getLastName());
+        email.setText(Client.currentPlayer.getEmail());
+        phoneNumber.setText(Client.currentPlayer.getPhoneNumber());
     }
 
     public void editUsername(MouseEvent mouseEvent) throws IOException {
@@ -313,5 +389,88 @@ public class GraphicPlatoPlayer implements Initializable {
         Stage image = new Stage();
         image.setScene(new Scene(root, 600, 564));
         image.show();
+    }
+
+    public void addDotsFav(MouseEvent mouseEvent) throws IOException {
+        if (Player.getCurrentPlayer().getFavoriteGames().contains("dotsAndBoxes")) {
+            String[] input = {"remove", "favorite", "dotsAndBoxes"};
+            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
+            dotsFav.setVisible(false);
+        } else {
+            String[] input = {"add", "favorite", "dotsAndBoxes"};
+            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
+            dotsFav.setVisible(true);
+        }
+    }
+
+    public void addReversiFav(MouseEvent mouseEvent) throws IOException {
+        if (Player.getCurrentPlayer().getFavoriteGames().contains("reversi")) {
+            String[] input = {"remove", "favorite", "reversi"};
+            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
+            reversiFav.setVisible(false);
+        } else {
+            String[] input = {"add", "favorite", "reversi"};
+            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
+            reversiFav.setVisible(true);
+        }
+    }
+
+    public void editField(MouseEvent mouseEvent) throws IOException {
+        if (!editFirstname.getText().isEmpty()) {
+            String[] input = {"edit", "firstname", editFirstname.getText()};
+            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
+            firstname.setText(Player.getCurrentPlayer().getFirstname());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Edit");
+            alert.setHeaderText("Edit successful");
+            alert.setContentText("You edit your firstname");
+            alert.show();
+        }
+        if (!editLastname.getText().isEmpty()) {
+            String[] input = {"edit", "lastname", editLastname.getText()};
+            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
+            lastname.setText(Player.getCurrentPlayer().getLastName());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Edit");
+            alert.setHeaderText("Edit successful");
+            alert.setContentText("You edit your lastname");
+            alert.show();
+        }
+        if (!editEmail.getText().isEmpty()) {
+            String[] input = {"edit", "email", editEmail.getText()};
+            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
+            email.setText(Player.getCurrentPlayer().getEmail());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Edit");
+            alert.setHeaderText("Edit successful");
+            alert.setContentText("You edit your email");
+            alert.show();
+        }
+        if (!editNumber.getText().isEmpty()) {
+            String[] input = {"edit", "phoneNumber", editNumber.getText()};
+            Controller.userMenu(Player.getCurrentPlayer().getUserID(), input);
+            phoneNumber.setText(Player.getCurrentPlayer().getPhoneNumber());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Edit");
+            alert.setHeaderText("Edit successful");
+            alert.setContentText("You edit your phone number");
+            alert.show();
+        }
+    }
+
+    public void selectEventTab() {
+        VBox eventsVBox = new VBox();
+        eventsVBox.setSpacing(23);
+        eventsVBox.setLayoutX(13);
+        for (Event event : Event.getEvents()) {
+            try {
+                eventsVBox.getChildren().add(event.getEventScene().getRoot());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        eventsPane.getChildren().add(eventsVBox);
     }
 }

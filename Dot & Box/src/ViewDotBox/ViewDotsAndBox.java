@@ -6,6 +6,7 @@ import ModelDotBox.Dot;
 import ModelDotBox.Game;
 import ModelDotBox.Line;
 import ModelDotBox.PlayerDotBox;
+import javafx.scene.control.Alert;
 
 import java.util.Scanner;
 
@@ -87,11 +88,13 @@ public class ViewDotsAndBox {
 
     public static void showErrors(int errorID) {
         if (errorID == 1) {
-            System.out.println("in your turn you should draw a line");
-        } else if (errorID == 2) {
-            System.out.println("coordinates must be inside the table");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("in your turn you should draw a line");
+            alert.show();
         } else {
-            System.out.println("you can’t draw a line between these two");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("you can’t draw a line between these two");
+            alert.show();
         }
     }
 }

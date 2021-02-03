@@ -8,9 +8,7 @@ public class ControllerReversi {
 
     public static boolean run(String command) {
         if (command.equalsIgnoreCase("start Reversi game")) {
-            Game game = new Game(GraphicController.playerReversies, ViewReversi.getGrid());
-            ViewReversi.setIsGameStarted(true);
-            ViewReversi.showGrid();
+            Game.startGame();
             return true;
         } else if (command.startsWith("place disk on ")) {
             int x, y;
@@ -26,8 +24,6 @@ public class ControllerReversi {
         } else if (command.equalsIgnoreCase("end of my turn")) {
 
             Game.changeTurn();
-            //   } else if (command.equalsIgnoreCase("show available coordinates")) {
-            //   View.showAvailableCoordinates();
         } else if (command.equalsIgnoreCase("show grid")) {
             ViewReversi.showGrid();
         } else if (command.equalsIgnoreCase("who is next?")) {

@@ -1,18 +1,17 @@
 package ModelDotBox;
 
 import ControllerDotBox.ControllerDotAndBox;
-import Graphic.playDotsStageController;
 import GraphicDotBox.GraphicController;
 import Model.Player;
 import ViewDotBox.ViewDotsAndBox;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Random;
-import java.util.Scanner;
 
 public class Game {
     private PlayerDotBox[] playerDotBoxes;
     private int turn;
-    private Scanner scanner;
     private boolean isLineDrawn;        //check if line is drawn
     private boolean isGameEnd;
     Random generator = new Random();
@@ -44,6 +43,11 @@ public class Game {
     }
 
     public static void startTheGame() {
+        Line.availableLines = new ArrayList<>();
+        Line.drawnLines = new ArrayList<>();
+        Line.lines = new ArrayList<>();
+        Dot.availableDots = new ArrayList<>();
+        Dot.dots = new HashMap<>();
         ControllerDotAndBox.setPlayers(Player.getCurrentPlayer(), Player.getComponentPlayer());
         for (int i = 1; i < 9; i++) {
             for (int j = 1; j < 9; j++) {
@@ -125,27 +129,41 @@ public class Game {
     }
 
     public void endGame(String in) {
+        String end = null;
+        Player winner = null;
+        Player loser = null;
         System.out.println("Game over!");
         playerDotBoxes[0].getMainPlayer().incrementDotAndBoxPlayedNum();
         playerDotBoxes[1].getMainPlayer().incrementDotAndBoxPlayedNum();
         if (in.equalsIgnoreCase("end")) {
             if (playerDotBoxes[0].getScore() > playerDotBoxes[1].getScore()) {
-                System.out.println("Winner: " + playerDotBoxes[0].getUser());
-                playerDotBoxes[0].getMainPlayer().incrementDotAndBoxWins();
+                end = String.format("Winner: %s", playerDotBoxes[0].getUser());
+                winner = playerDotBoxes[0].getMainPlayer();
+                loser = playerDotBoxes[1].getMainPlayer();
             } else if (playerDotBoxes[1].getScore() > playerDotBoxes[0].getScore()) {
-                System.out.println("Winner: " + playerDotBoxes[1].getUser());
-                playerDotBoxes[1].getMainPlayer().incrementDotAndBoxWins();
+                end = String.format("Winner: %s", playerDotBoxes[1].getUser());
+                winner = playerDotBoxes[1].getMainPlayer();
+                loser = playerDotBoxes[0].getMainPlayer();
             } else {
-                System.out.println("Draw!");
+                end = String.format("Draw!");
+                playerDotBoxes[0].getMainPlayer().addMoney(10);
+                playerDotBoxes[1].getMainPlayer().addMoney(10);
+                return;
             }
+            winner.incrementDotAndBoxWins();
+            winner.addMoney(20);
+            loser.addMoney(5);
         } else if (in.equalsIgnoreCase("forfeit")) {
             if (playerDotBoxes[0].getScore() > playerDotBoxes[1].getScore()) {
-                System.out.println("Winner: " + playerDotBoxes[0].getUser());
-                playerDotBoxes[0].getMainPlayer().incrementDotAndBoxWins();
+                end = String.format("Winner: %s", playerDotBoxes[0].getUser());
+                winner = playerDotBoxes[0].getMainPlayer();
             } else if (playerDotBoxes[1].getScore() > playerDotBoxes[0].getScore()) {
-                System.out.println("Winner: " + playerDotBoxes[1].getUser());
-                playerDotBoxes[1].getMainPlayer().incrementDotAndBoxWins();
+                end = String.format("Winner: %s", playerDotBoxes[1].getUser());
+                winner = playerDotBoxes[1].getMainPlayer();
             }
+            winner.incrementDotAndBoxWins();
+            winner.addMoney(15);
         }
+        GraphicController.endGame(end);
     }
 }

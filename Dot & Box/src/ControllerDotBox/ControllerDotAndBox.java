@@ -1,6 +1,5 @@
 package ControllerDotBox;
 
-import Graphic.playDotsStageController;
 import Model.Player;
 import ModelDotBox.Dot;
 import ModelDotBox.Game;
@@ -8,9 +7,9 @@ import ModelDotBox.Line;
 import ModelDotBox.PlayerDotBox;
 
 public class ControllerDotAndBox {
-    private static ModelDotBox.Game game = new ModelDotBox.Game();
+    private static Game game;
 
-    public static ModelDotBox.Game getGame() {
+    public static Game getGame() {
         return game;
     }
 
@@ -19,6 +18,7 @@ public class ControllerDotAndBox {
 
     public static boolean run(String command) {
         if (command.equalsIgnoreCase("start dots and boxes game")) {
+            game = new Game();
             Game.startTheGame();
             return true;
         } else if (command.startsWith("draw line between")) {

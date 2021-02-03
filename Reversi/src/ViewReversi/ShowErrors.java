@@ -1,6 +1,6 @@
 package ViewReversi;
 
-import ViewReversi.ViewReversi;
+import javafx.scene.control.Alert;
 
 public enum ShowErrors {
     INVALID_COORDINATES("You cannot place the disk on this Coordinates");
@@ -13,9 +13,8 @@ public enum ShowErrors {
     }
 
     public void showMessage() {
-//        Alert alert = new Alert(Alert.AlertType.ERROR);
-//        alert.setContentText(this.message);
-//        alert.show();
-        System.out.println(message);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setContentText(this.message);
+        alert.show();
     }
 }

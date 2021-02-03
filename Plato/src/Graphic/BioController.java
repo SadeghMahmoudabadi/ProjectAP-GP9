@@ -14,7 +14,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class bioController implements Initializable {
+public class BioController implements Initializable {
 
     @FXML
     public TextField bioText;

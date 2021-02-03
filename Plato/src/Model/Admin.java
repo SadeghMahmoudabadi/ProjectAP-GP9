@@ -1,5 +1,7 @@
 package Model;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,11 +20,11 @@ public class Admin extends User {
         super(firstname, lastname, username, password, email, phoneNumber, userID);
     }
 
-    public static User getCurrentAdmin() {
+    public static Admin getCurrentAdmin() {
         return currentAdmin;
     }
 
-    public void addEvent(String gameName, Date startDate, Date endDate, int prize) {
+    public void addEvent(String gameName, LocalDateTime startDate, LocalDateTime endDate, int prize) {
         int eventID = Tools.Random();
         Event event = new Event(gameName, startDate, endDate, prize, eventID);
         Event.addEvent(event);
@@ -30,10 +32,8 @@ public class Admin extends User {
 
     public boolean addSuggestion(int playerID, String gameName) {
         Player player = Player.findPlayer(playerID);
-        if (!player.getSuggestedGames().contains(gameName)) {
-            String message = String.format("My suggestion to you is %s", gameName);
-            player.addSuggestedGame(gameName);
-            Tools.sendMessage(this.getUserID(), playerID, message);
+        if (!player.getSuggestedGames().values().contains(gameName)) {
+            Tools.sendSuggestion(playerID, gameName);
             return true;
         } else {
             Errors.EXIST_SUGGESTION.showMessage();
@@ -47,7 +47,8 @@ public class Admin extends User {
     }
 
     public void deleteMessages(int messageID) {
-        messages.remove(messageID);
+        messages.remove(Integer.valueOf(messageID));
+        Tools.removeID(messageID);
         Database.updateFiles();
     }
 
@@ -148,7 +149,8 @@ public class Admin extends User {
 
     public static void deleteAccount(Admin admin) {
         admins.remove(admin);
-        adminsID.remove(admin.getUserID());
+        adminsID.remove(Integer.valueOf(admin.getUserID()));
+        Tools.removeID(admin.getUserID());
         Database.updateFiles();
     }
 

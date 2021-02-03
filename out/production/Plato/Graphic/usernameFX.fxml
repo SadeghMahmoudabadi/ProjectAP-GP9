@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="183.0" prefWidth="293.0" style="-fx-background-color: #030734;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic.usernameController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="183.0" prefWidth="293.0" style="-fx-background-color: #030734;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic.UsernameController">
     <children>
         <TextField fx:id="usernameText" layoutX="67.0" layoutY="57.0" prefHeight="50.0" prefWidth="160.0" promptText="Username..." />
         <Button alignment="CENTER" layoutX="99.0" layoutY="138.0" mnemonicParsing="false" onAction="#okUsernameText" prefHeight="31.0" prefWidth="95.0" style="-fx-background-color: #6666cc;" text="OK!" textFill="WHITE" />

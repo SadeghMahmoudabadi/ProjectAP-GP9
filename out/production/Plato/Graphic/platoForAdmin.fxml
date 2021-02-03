@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -38,15 +39,15 @@
                                     <Font name="PMingLiU-ExtB" size="36.0" />
                                  </font>
                               </Label>
-                              <Button fx:id="addAdmin" alignment="CENTER" layoutX="143.0" layoutY="368.0" mnemonicParsing="false" onAction="#addAdmin" style="-fx-background-color: #4785ae; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="Add admin" />
-                              <JFXButton fx:id="logoutAdmin" buttonType="RAISED" layoutX="156.0" layoutY="202.0" onAction="#logout" text="Logout" textFill="WHITE" underline="true" />
+                              <Button fx:id="addAdmin" alignment="CENTER" layoutX="156.0" layoutY="368.0" mnemonicParsing="false" onAction="#addAdmin" style="-fx-background-color: #4785ae; -fx-background-radius: 10px; -fx-border-radius: 10px;" text="Add admin" />
+                              <JFXButton fx:id="logoutAdmin" buttonType="RAISED" layoutX="163.0" layoutY="202.0" onAction="#logout" text="Logout" textFill="WHITE" underline="true" />
                            </children>
                         </Pane>
                      </content>
                   </Tab>
                   <Tab closable="false" text="Events">
                      <content>
-                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="378.0" style="-fx-background-color: #030734;">
+                        <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="551.0" prefWidth="378.0" style="-fx-background-color: #030734;">
                            <children>
                               <ImageView fitHeight="150.0" fitWidth="372.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -60,7 +61,7 @@
                               </Text>
                               <Button fx:id="addEvent" layoutX="120.0" layoutY="282.0" mnemonicParsing="false" onAction="#addEvent" prefHeight="48.0" prefWidth="132.0" style="-fx-background-color: #6666cc; -fx-background-radius: 15px;" text="Add Event" textFill="WHITE" />
                               <Button fx:id="editEvent" alignment="CENTER" contentDisplay="CENTER" layoutX="120.0" layoutY="374.0" mnemonicParsing="false" onAction="#editEvent" prefHeight="48.0" prefWidth="132.0" style="-fx-background-color: #6666cc; -fx-background-radius: 15px;" text="Edit Event" textFill="WHITE" />
-                              <Text fontSmoothingType="LCD" layoutX="31.0" layoutY="167.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose how do you want :" wrappingWidth="341.15625166893005">
+                              <Text fontSmoothingType="LCD" layoutX="31.0" layoutY="140.0" smooth="false" strokeType="OUTSIDE" strokeWidth="0.0" text="Choose how do you want :" wrappingWidth="341.15625166893005">
                                  <font>
                                     <Font name="DejaVu Serif" size="24.0" />
                                  </font>
@@ -86,48 +87,48 @@
                      <content>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <ImageView fitHeight="638.0" fitWidth="531.0" layoutX="1.0" layoutY="-45.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="644.0" fitWidth="390.0" layoutX="-1.0" layoutY="-55.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../Photos/message%20admin%20back.jpg" />
                                  </image>
                               </ImageView>
-                              <TextField fx:id="gameName" alignment="CENTER" layoutX="114.0" layoutY="68.0" prefHeight="31.0" prefWidth="165.0" promptText="Game name" />
-                              <TextField fx:id="playerIDTextField" alignment="CENTER" layoutX="112.0" layoutY="159.0" prefHeight="31.0" prefWidth="165.0" promptText="player's ID" />
-                              <JFXButton fx:id="sendSuggest" buttonType="RAISED" layoutX="161.0" layoutY="210.0" onAction="#sendSuggest" ripplerFill="WHITE" text="Send!" textAlignment="CENTER" textFill="WHITE" />
-                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="162.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player">
+                              <JFXButton fx:id="sendSuggest" buttonType="RAISED" layoutX="169.0" layoutY="223.0" onAction="#sendSuggest" ripplerFill="WHITE" text="Send!" textAlignment="CENTER" textFill="WHITE" />
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="163.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player" textAlignment="CENTER">
                                  <font>
                                     <Font name="Times New Roman" size="22.0" />
                                  </font>
                               </Text>
-                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="164.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game">
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="165.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Game" textAlignment="CENTER">
                                  <font>
                                     <Font name="Times New Roman" size="22.0" />
                                  </font>
                               </Text>
-                              <Line endX="275.0" layoutX="76.0" layoutY="248.0" startX="-39.0" stroke="WHITE" />
-                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="119.0" layoutY="281.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete suggestion">
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="112.0" layoutY="274.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Delete message" textAlignment="CENTER">
                                  <font>
                                     <Font name="Times New Roman" size="22.0" />
                                  </font>
                               </Text>
-                              <TextField fx:id="suggestID" alignment="CENTER" layoutX="116.0" layoutY="309.0" prefHeight="31.0" prefWidth="164.0" promptText="Suggest ID" />
-                              <Line endX="275.0" layoutX="80.0" layoutY="396.0" startX="-39.0" stroke="WHITE" />
-                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="116.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show all Suggestions">
+                              <TextField fx:id="suggestID" alignment="CENTER" layoutX="111.0" layoutY="306.0" prefHeight="31.0" prefWidth="164.0" promptText="Message ID" />
+                              <Text fill="WHITE" fontSmoothingType="LCD" layoutX="97.0" layoutY="424.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Show all Messages">
                                  <font>
                                     <Font name="Times New Roman" size="22.0" />
                                  </font>
                               </Text>
-                              <JFXButton fx:id="okDeleteSuggest" buttonType="RAISED" layoutX="168.0" layoutY="352.0" ripplerFill="WHITE" text="OK!" textAlignment="CENTER" textFill="WHITE" />
-                              <JFXButton fx:id="showSuggest" buttonType="RAISED" layoutX="166.0" layoutY="464.0" onAction="#showSuggest" ripplerFill="WHITE" text="Show" textAlignment="CENTER" textFill="WHITE" />
+                              <JFXButton buttonType="RAISED" layoutX="175.0" layoutY="353.0" onMouseClicked="#okDeleteSuggest" ripplerFill="WHITE" text="OK!" textAlignment="CENTER" textFill="WHITE" />
+                              <JFXButton fx:id="showSuggest" buttonType="RAISED" layoutX="170.0" layoutY="459.0" onAction="#showSuggest" ripplerFill="WHITE" text="Show" textAlignment="CENTER" textFill="WHITE" />
+                              <TextField fx:id="playerIDTextField" alignment="CENTER" layoutX="110.0" layoutY="172.0" prefHeight="31.0" prefWidth="165.0" promptText="player's ID" />
+                              <Line endX="275.0" layoutX="72.0" layoutY="389.0" startX="-39.0" stroke="WHITE" />
+                              <Line endX="275.0" layoutX="73.0" layoutY="248.0" startX="-39.0" stroke="WHITE" />
+                              <ChoiceBox fx:id="gameName" layoutX="108.0" layoutY="67.0" prefHeight="31.0" prefWidth="165.0" />
                            </children>
                         </AnchorPane>
                      </content>
                   </Tab>
                   <Tab closable="false" text="Players">
                      <content>
-                        <Pane fx:id="playersTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="378.0" style="-fx-background-color: #030734;">
+                        <Pane fx:id="playersTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="378.0" style="-fx-background-color: #030734;">
                            <children>
-                              <Text fill="WHITE" layoutX="124.0" layoutY="216.0" strokeType="OUTSIDE" strokeWidth="0.0" text="table view" wrappingWidth="202.62109375">
+                              <Text fill="WHITE" layoutX="133.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="table view" wrappingWidth="112.62109375">
                                  <font>
                                     <Font size="24.0" />
                                  </font>

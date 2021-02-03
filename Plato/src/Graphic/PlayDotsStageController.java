@@ -19,7 +19,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class playDotsStageController {
+public class PlayDotsStageController {
 
     public TextField component;
     public static Player player2;

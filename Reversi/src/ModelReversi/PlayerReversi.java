@@ -34,6 +34,7 @@ public class PlayerReversi {
             if (bool) {
                 ViewReversi.showGrid();
                 Game.changeTurn();
+                ViewReversi.showWhoIsNext();
                 return true;
             } else {
                 ShowErrors.INVALID_COORDINATES.showMessage();

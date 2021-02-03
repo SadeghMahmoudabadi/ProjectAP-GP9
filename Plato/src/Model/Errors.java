@@ -26,8 +26,7 @@ public enum Errors {
     EVENT_ID("This event ID does not exist!"),
     REQUEST_FRIENDS("This user did not send request!"),
     FAVORITE_GAME("This game has been your favorite before"),
-    REQUEST_ID_AGAIN("You have already requested!")
-    ;
+    REQUEST_ID_AGAIN("You have already requested!");
 
     private String message;
 

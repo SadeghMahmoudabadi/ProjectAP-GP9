@@ -13,7 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
@@ -23,6 +23,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class GraphicPlatoAdmin implements Initializable {
@@ -31,7 +32,7 @@ public class GraphicPlatoAdmin implements Initializable {
     public TabPane platoTabs;
     public Button addAdmin;
     public JFXButton logoutAdmin;
-    public TextField gameName;
+    public ChoiceBox gameName;
     public TextField playerIDTextField;
     public JFXButton sendSuggest;
     public TextField suggestID;
@@ -39,13 +40,15 @@ public class GraphicPlatoAdmin implements Initializable {
     public JFXButton showSuggest;
     public Label adminUsername;
     public Pane playersTable;
+    ObservableList<String> gameChoiceBar = FXCollections.observableArrayList("Dots & Boxes", "Reversi");
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        gameName.setItems(gameChoiceBar);
         adminUsername.setText(Admin.getCurrentAdmin().getUsername());
-        Stage stage = new Stage();
         TableView<PlayersData> table = new TableView<PlayersData>();
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ObservableList<PlayersData> data = FXCollections.observableArrayList();
         TableColumn IDColumn = new TableColumn("ID");
         IDColumn.setCellValueFactory(new PropertyValueFactory("ID"));
@@ -55,15 +58,13 @@ public class GraphicPlatoAdmin implements Initializable {
         for (Player player : Player.getPlayers()) {
             data.add(i++, new PlayersData(player.getUsername(), player.getUserID()));
         }
-        ObservableList<String> list = FXCollections.observableArrayList();
         table.setItems(data);
+        table.getSelectionModel().setCellSelectionEnabled(true);
         table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         table.getColumns().addAll(IDColumn, nameColumn);
         table.setPrefWidth(377);
-        table.setMinHeight(539);
+        table.setMinHeight(548);
         Scene scene = new Scene(table, 395, 625);
-        stage.setTitle("Table View Example");
-        stage.setScene(scene);
         playersTable.getChildren().add(table);
     }
 
@@ -72,7 +73,7 @@ public class GraphicPlatoAdmin implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        Parent root = FXMLLoader.load(getClass().getResource("Create Events.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("createEvents.fxml"));
         Scene scene = new Scene(root, 600, 543);
         Stage stage = new Stage();
         stage.setScene(scene);
@@ -119,11 +120,13 @@ public class GraphicPlatoAdmin implements Initializable {
         }
     }
 
-    public void sendSuggest(ActionEvent actionEvent) {
+    public void sendSuggest(ActionEvent actionEvent) throws ParseException {
         String path = ("Plato/src/Music/Menu Button.mp3");
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+        String[] input = {"add", "suggestion", playerIDTextField.getText(), String.valueOf(gameName.getValue())};
+        Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input);
     }
 
     public void showSuggest(ActionEvent actionEvent) {
@@ -131,5 +134,40 @@ public class GraphicPlatoAdmin implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
+        Stage suggestionStage = new Stage();
+        TableView<MessagesData> table = new TableView<>();
+        table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        ObservableList<MessagesData> data = FXCollections.observableArrayList();
+        TableColumn IDColumn = new TableColumn("ID");
+        IDColumn.setCellValueFactory(new PropertyValueFactory("ID"));
+        TableColumn playerColumn = new TableColumn("Player");
+        playerColumn.setCellValueFactory(new PropertyValueFactory<>("receiverName"));
+        TableColumn messageColumn = new TableColumn("Message");
+        messageColumn.setCellValueFactory(new PropertyValueFactory<>("message"));
+        int i = 0;
+        for (Player player : Player.getPlayers()) {
+            for (int messageID : player.getMessages().keySet()) {
+                MessagesData messagesData = new MessagesData(messageID, player.getMessages().get(messageID), player.getUsername());
+                data.add(i++, messagesData);
+            }
+        }
+        table.setItems(data);
+        table.getSelectionModel().setCellSelectionEnabled(true);
+        table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        table.getColumns().addAll(IDColumn, playerColumn, messageColumn);
+        table.setPrefWidth(377);
+        table.setMinHeight(548);
+        Scene scene = new Scene(table, 395, 625);
+        suggestionStage.setScene(scene);
+        suggestionStage.show();
+    }
+
+    public void okDeleteSuggest(MouseEvent mouseEvent) throws ParseException {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+        String[] input = {"remove", "suggestion", suggestID.getText()};
+        Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input);
     }
 }

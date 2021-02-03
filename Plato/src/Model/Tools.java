@@ -21,7 +21,7 @@ public class Tools {
 
     public static void removeID(int ID) {
         if (IDs.contains(ID)) {
-            IDs.remove(ID);
+            IDs.remove(Integer.valueOf(ID));
         }
     }
 
@@ -48,24 +48,26 @@ public class Tools {
         return false;
     }
 
-    public static void sendMessage(int senderID, int receiverID, String message) {
-        if (isAdmin(senderID)) {
-            Admin sender = Admin.findAdmin(senderID);
-            Player receiver = Player.findPlayer(receiverID);
-            int messageID = Tools.Random();
-            //Time of sending message
-            message = String.format("Admin %s: %s", sender.getUsername(), message);
-            receiver.addMessage(messageID, message);
-            Admin.addMessage(messageID, message);
-        } else {
-            Player sender = Player.findPlayer(senderID);
-            Player receiver = Player.findPlayer(receiverID);
-            int messageID = Tools.Random();
-            //Time of sending message
-            message = String.format("Player %s: %s", sender.getUsername(), message);
-            receiver.addMessage(messageID, message);
-            Admin.addMessage(messageID, message);
-        }
+    public static void sendSuggestion(int receiverID, String gameName) {
+        Player receiver = Player.findPlayer(receiverID);
+        int messageID = Tools.Random();
+        String suggestion = String.format("I suggest you %s", gameName);
+        receiver.addMessage(messageID, suggestion);
+        receiver.addSuggestedGame(messageID, gameName);
+        Database.updateFiles();
+    }
+
+    public static void removeSuggestion(int suggestionID) {
+        Player.suggestedPlayer(suggestionID).deleteSuggestion(suggestionID);
+        Admin.getCurrentAdmin().deleteMessages(suggestionID);
+        removeID(suggestionID);
+    }
+
+    public static void sendMessage(int receiverID, String message) {
+        Player receiver = Player.findPlayer(receiverID);
+        int messageID = Tools.Random();
+        receiver.addMessage(messageID, message);
+        Database.updateFiles();
     }
 
     public static boolean sendFriendRequest(int senderID, int receiverID) {

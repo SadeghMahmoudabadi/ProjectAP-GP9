@@ -11,14 +11,16 @@ public class FriendsData {
     private Button acceptRequest;
     private Button declineRequest;
     private Button removeFriend;
+    private Button personalInfo;
 
-    FriendsData(String friendName, int ID, Button sendFriendRequest, Button acceptRequest, Button declineRequest, Button removeFriend) {
+    FriendsData(String friendName, int ID, Button sendFriendRequest, Button acceptRequest, Button declineRequest, Button removeFriend, Button personalInfo) {
         this.friendName = new SimpleStringProperty(friendName);
         this.ID = new SimpleIntegerProperty(ID);
         this.sendFriendRequest = sendFriendRequest;
         this.acceptRequest = acceptRequest;
         this.declineRequest = declineRequest;
         this.removeFriend = removeFriend;
+        this.personalInfo = personalInfo;
     }
 
     public String getFriendName() {
@@ -67,5 +69,21 @@ public class FriendsData {
 
     public void setRemoveFriend(Button removeFriend) {
         this.removeFriend = removeFriend;
+    }
+
+    public SimpleStringProperty friendNameProperty() {
+        return friendName;
+    }
+
+    public SimpleIntegerProperty IDProperty() {
+        return ID;
+    }
+
+    public Button getPersonalInfo() {
+        return personalInfo;
+    }
+
+    public void setPersonalInfo(Button personalInfo) {
+        this.personalInfo = personalInfo;
     }
 }

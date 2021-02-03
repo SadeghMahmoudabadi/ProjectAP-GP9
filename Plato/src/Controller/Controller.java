@@ -2,19 +2,26 @@ package Controller;
 
 import ControllerDotBox.ControllerDotAndBox;
 import Model.*;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.text.ParseException;
-import java.util.Date;
-import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Controller {
 
-    public static boolean logisterMenu(String[] input) {
+    public static boolean logisterMenu(String userInput) {
+        Type type = new TypeToken<String[]>() {
+        }.getType();
+        Gson gson = new Gson();
+        String[] input = gson.fromJson(userInput, type);
         if (input.length == 7 && input[0].equalsIgnoreCase("register")) {
             String firstname = input[3];
             String lastname = input[4];
@@ -38,7 +45,6 @@ public class Controller {
                         return Player.loginPlayer(username, password);
                     }
                 } else {
-                    Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
                     return false;
                 }
             }
@@ -174,8 +180,16 @@ public class Controller {
         if (input.length == 6 && input[0].equalsIgnoreCase("add")
                 && input[1].equalsIgnoreCase("event")) {
             String gameName = input[2];
-            Date startDate = new SimpleDateFormat("dd/MM/yyyy").parse(input[3]);
-            Date endDate = new SimpleDateFormat("dd/MM/yyyy").parse(input[4]);
+            String[] startDateString = input[3].split("-");
+            String[] endDateString = input[4].split("-");
+            int startYear = Integer.parseInt(startDateString[0]);
+            int startMonth = Integer.parseInt(startDateString[1]);
+            int startDay = Integer.parseInt(startDateString[2]);
+            int endYear = Integer.parseInt(endDateString[0]);
+            int endMonth = Integer.parseInt(endDateString[1]);
+            int endDay = Integer.parseInt(endDateString[2]);
+            LocalDateTime startDate = LocalDateTime.of(startYear, startMonth, startDay, LocalTime.now().getHour(), LocalTime.now().getMinute());
+            LocalDateTime endDate = LocalDateTime.of(endYear, endMonth, endDay, 23, 59);
             int prize = Integer.parseInt(input[5]);
             currentAdmin.addEvent(gameName, startDate, endDate, prize);
             return true;
@@ -198,7 +212,13 @@ public class Controller {
         } else if (input.length == 3 && input[0].equalsIgnoreCase("remove")
                 && input[1].equalsIgnoreCase("suggestion")) {
             int suggestionID = Integer.parseInt(input[2]);
-            currentAdmin.deleteMessages(suggestionID);
+            Tools.removeSuggestion(suggestionID);
+            return true;
+        } else if (input.length == 4 && input[0].equalsIgnoreCase("send")
+                && input[1].equalsIgnoreCase("message")) {
+            int playerID = Integer.parseInt(input[2]);
+            String message = input[4];
+            Tools.sendMessage(playerID, message);
             return true;
         } else {
             //Error

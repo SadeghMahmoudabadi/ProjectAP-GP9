@@ -2,13 +2,13 @@ package Model;
 
 import javafx.scene.image.Image;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
 public class Player extends User {
     private int profile;
-    private Date passedDays;
     private int coin;
     private int wins;
     private String lastGamePlayed;
@@ -19,11 +19,12 @@ public class Player extends User {
     private int reversiPlayedNum;
     private int reversiLevel;
     private int reversiWins;
+    private LocalDate registerDate;
     private ArrayList<String> favoriteGames;
     private ArrayList<Integer> friends;
     private ArrayList<Integer> friendRequests;
     private ArrayList<Event> events;
-    private ArrayList<String> suggestedGames;
+    private HashMap<Integer, String> suggestedGames;
     private HashMap<Integer, String> messages;
     private ArrayList<String> gameHistories;
     private HashMap<String, String> gameStatistics;
@@ -48,7 +49,7 @@ public class Player extends User {
         friends = new ArrayList<>();
         friendRequests = new ArrayList<>();
         events = new ArrayList<>();
-        suggestedGames = new ArrayList<>();
+        suggestedGames = new HashMap<>();
         messages = new HashMap<>();
         gameHistories = new ArrayList<>();
         gameStatistics = new HashMap<>();
@@ -78,7 +79,8 @@ public class Player extends User {
 
     public static void removePlayer(Player player) {
         players.remove(player);
-        playersID.remove(player.getUserID());
+        playersID.remove(Integer.valueOf(player.getUserID()));
+        Tools.removeID(player.getUserID());
         Database.updateFiles();
     }
 
@@ -96,7 +98,6 @@ public class Player extends User {
             Database.updateFiles();
             return true;
         } else {
-            Errors.REQUEST_FRIENDS.showMessage();
             return false;
         }
     }
@@ -113,7 +114,6 @@ public class Player extends User {
             Database.updateFiles();
             return true;
         } else {
-            //Error     این پلیر درخواست نداده
             return false;
         }
     }
@@ -125,16 +125,15 @@ public class Player extends User {
             Database.updateFiles();
             return true;
         }
-        //Error     این پلیر دوست شما نیست
         return false;
     }
 
     public boolean addFavoriteGame(String gameName) {
         if (this.favoriteGames.contains(gameName)) {
-            Errors.FAVORITE_GAME.showMessage();
             return false;
         } else {
             favoriteGames.add(gameName);
+            Database.updateFiles();
             return true;
         }
     }
@@ -145,21 +144,18 @@ public class Player extends User {
             Database.updateFiles();
             return true;
         } else {
-            //Error     این بازی در فیوریت نیست
             return false;
         }
     }
 
-    public void addWins(int wins) {
-        this.wins += wins;
-    }
-
     public void addMoney(int coin) {
         this.coin += coin;
+        Database.updateFiles();
     }
 
-    public void addSuggestedGame(String gameName) {
-        suggestedGames.add(gameName);
+    public void addSuggestedGame(int ID, String gameName) {
+        suggestedGames.put(ID, gameName);
+        Database.updateFiles();
     }
 
     public void addMessage(int messageID, String message) {
@@ -172,13 +168,28 @@ public class Player extends User {
             Database.updateFiles();
             return true;
         } else {
-            Errors.REQUEST_ID_AGAIN.showMessage();
             return false;
         }
     }
 
+    public void deleteSuggestion(int suggestionID) {
+        this.suggestedGames.remove(Integer.valueOf(suggestionID));
+        Tools.removeID(suggestionID);
+        this.deleteMessage(suggestionID);
+    }
+
     public void deleteMessage(int messageID) {
-        messages.remove(messageID);
+        messages.remove(Integer.valueOf(messageID));
+        Database.updateFiles();
+    }
+
+    public static Player suggestedPlayer(int suggestionID) {
+        for (Player player : players) {
+            if (player.getSuggestedGames().keySet().contains(suggestionID)) {
+                return player;
+            }
+        }
+        return null;
     }
 
     public static Player findPlayer(int userID) {
@@ -203,43 +214,40 @@ public class Player extends User {
         if (Tools.checkFormat("name", firstname)) {
             if (Tools.checkFormat("name", lastname)) {
                 if (Tools.checkFormat("username", username)) {
+                    if (Tools.isUsernameExist(username)) {
+                        return false;
+                    }
                     if (Tools.checkFormat("password", password)) {
                         if (Tools.checkFormat("email", email)) {
                             if (Tools.isEmailExist(email)) {
-                                Errors.EMAIL_EXIST.showMessage();
                                 return false;
                             }
                             if (Tools.checkFormat("phoneNumber", phoneNumber)) {
                                 if (Tools.isPhoneNumberExist(phoneNumber)) {
-                                    Errors.PHONE_NUMBER_EXIST.showMessage();
                                     return false;
                                 }
                                 int ID = Tools.Random();
                                 Player player = new Player(firstname, lastname, username, password, email, phoneNumber, ID);
+                                player.setRegisterDate(LocalDate.now());
                                 addPlayer(player);
+                                Tools.sendMessage(player.getUserID(), "Welcome to plato ;)");
                                 return true;
                             } else {
-                                Errors.PHONE_NUMBER_INCORRECT_FORMAT.showMessage();
                                 return false;
                             }
                         } else {
-                            Errors.EMAIL_INCORRECT_FORMAT.showMessage();
                             return false;
                         }
                     } else {
-                        Errors.PASS_INCORRECT_FORMAT.showMessage();
                         return false;
                     }
                 } else {
-                    Errors.USER_INCORRECT_FORMAT.showMessage();
                     return false;
                 }
             } else {
-                Errors.LASTNAME_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else {
-            Errors.FIRSTNAME_INCORRECT_FORMAT.showMessage();
             return false;
         }
     }
@@ -251,12 +259,10 @@ public class Player extends User {
                     login(player.getUserID());
                     return true;
                 } else {
-                    Errors.WRONG_PASSWORD.showMessage();
                     return false;
                 }
             }
         }
-        Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
         return false;
     }
 
@@ -264,8 +270,6 @@ public class Player extends User {
         if (playersID.contains(userID)) {
             loggedPlayers.add(findPlayer(userID));
             currentPlayer = findPlayer(userID);
-        } else {
-            Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
         }
     }
 
@@ -275,7 +279,6 @@ public class Player extends User {
             currentPlayer = null;
             return true;
         } else {
-            //Error     این پلیر لاگین نکرده
             return false;
         }
     }
@@ -287,18 +290,20 @@ public class Player extends User {
                     deleteAccount(player);
                     return true;
                 } else {
-                    Errors.WRONG_PASSWORD.showMessage();
                     return false;
                 }
             }
         }
-        Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
         return false;
     }
 
     public static void deleteAccount(Player player) {
         players.remove(player);
         playersID.remove(Integer.valueOf(player.getUserID()));
+        for (Integer messageID : player.getMessages().keySet()) {
+            Tools.removeID(messageID);
+        }
+        Tools.removeID(player.getUserID());
         Database.updateFiles();
     }
 
@@ -311,14 +316,24 @@ public class Player extends User {
         this.wins++;
     }
 
-    public void incrementDotAndBoxLevel() {
-        this.dotAndBoxLevel++;
-        Database.updateFiles();
-    }
-
     public void incrementDotAndBoxWins() {
         this.dotAndBoxWins++;
         this.incrementWins();
+        if (dotAndBoxWins >= 2) {
+            this.dotAndBoxLevel = 1;
+        }
+        if (dotAndBoxWins >= 5) {
+            this.dotAndBoxLevel = 2;
+        }
+        if (dotAndBoxWins >= 10) {
+            this.dotAndBoxLevel = 3;
+        }
+        if (dotAndBoxWins >= 20) {
+            this.dotAndBoxLevel = 4;
+        }
+        if (dotAndBoxWins >= 50) {
+            this.dotAndBoxLevel = 5;
+        }
         Database.updateFiles();
     }
 
@@ -327,18 +342,28 @@ public class Player extends User {
         Database.updateFiles();
     }
 
-    public void incrementReversiLevel() {
-        this.reversiLevel++;
-        Database.updateFiles();
-    }
-
     public void incrementReversiWins() {
         this.reversiWins++;
         this.incrementWins();
+        if (reversiWins >= 2) {
+            this.reversiLevel = 1;
+        }
+        if (reversiWins >= 5) {
+            this.reversiLevel = 2;
+        }
+        if (reversiWins >= 10) {
+            this.reversiLevel = 3;
+        }
+        if (reversiWins >= 20) {
+            this.reversiLevel = 4;
+        }
+        if (reversiWins >= 50) {
+            this.reversiLevel = 5;
+        }
         Database.updateFiles();
     }
 
-    public ArrayList<String> getSuggestedGames() {
+    public HashMap<Integer, String> getSuggestedGames() {
         return suggestedGames;
     }
 
@@ -380,10 +405,6 @@ public class Player extends User {
 
     public String getBio() {
         return bio;
-    }
-
-    public Date getPassedDays() {
-        return passedDays;
     }
 
     public int getCoin() {
@@ -452,6 +473,14 @@ public class Player extends User {
 
     public static void setPlayers(ArrayList<Player> players) {
         Player.players = players;
+    }
+
+    public void setRegisterDate(LocalDate registerDate) {
+        this.registerDate = registerDate;
+    }
+
+    public LocalDate getRegisterDate() {
+        return registerDate;
     }
 
     public static void setPlayersID() {

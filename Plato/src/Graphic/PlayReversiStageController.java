@@ -1,6 +1,6 @@
 package Graphic;
 
-import GraphicReversi.GraphicController;
+import GraphicDotBox.GraphicController;
 import Model.Errors;
 import Model.Player;
 import javafx.event.ActionEvent;
@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class playReversiStageController {
+public class PlayReversiStageController {
     public ImageView backReversiStage;
     public TextField component;
     public static Player player2;

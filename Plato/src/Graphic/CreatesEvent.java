@@ -22,7 +22,9 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 
 public class CreatesEvent {
     public DatePicker startsDate;
@@ -32,6 +34,8 @@ public class CreatesEvent {
     public Button createEvents;
     public ImageView backCreates;
     public static String eventCoin;
+    public static long eventDaysLeft;
+    public static long eventHoursLeft;
     ObservableList<String> gameChoiceBar = FXCollections.observableArrayList("Dots & Boxes", "Reversi");
 
     @FXML
@@ -61,25 +65,27 @@ public class CreatesEvent {
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         String gameName = (String) gameChoiceBox.getValue();
-        System.out.println(gameName);
+        LocalDate endEvent = endsDate.getValue();
+        eventDaysLeft = ChronoUnit.DAYS.between(LocalDate.now(), endEvent);
+        if (eventDaysLeft == 0) {
+            eventHoursLeft = ChronoUnit.HOURS.between(LocalDateTime.now(), endEvent);
+        }
         eventCoin = coinsEvents.getText();
         if (gameName.equalsIgnoreCase("Dots & Boxes")) {
-            String[] input = {"add", "event", "dotBox", "11/01/2020", "12/01/2020", eventCoin};
+            String[] input = {"add", "event", "Dots & Boxes", startsDate.getValue().toString(), endsDate.getValue().toString(), eventCoin};
             if (Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input)) {
-                Parent root = FXMLLoader.load(getClass().getResource("DotsEvent.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("dotsEvent.fxml"));
                 Scene scene = new Scene(root, 470, 224);
                 Stage stage = new Stage();
                 stage.setScene(scene);
-                stage.show();
             }
         } else if (gameName.equalsIgnoreCase("Reversi")) {
-            String[] input = {"add", "event", "reversi", "11/01/2020", "12/01/2020", eventCoin};
+            String[] input = {"add", "event", "reversi", startsDate.getValue().toString(), endsDate.getValue().toString(), eventCoin};
             if (Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input)) {
                 Parent root = FXMLLoader.load(getClass().getResource("ReversiEvent.fxml"));
                 Scene scene = new Scene(root, 470, 224);
                 Stage stage = new Stage();
                 stage.setScene(scene);
-                stage.show();
             }
         }
     }

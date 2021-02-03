@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -12,7 +13,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Circle?>
@@ -134,9 +134,9 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="bioLabel" alignment="CENTER" contentDisplay="TOP" layoutX="186.0" layoutY="425.0" prefHeight="51.0" prefWidth="140.0" text="Bio" wrapText="true">
+                              <Label fx:id="bioLabel" alignment="TOP_CENTER" contentDisplay="TOP" layoutX="189.0" layoutY="438.0" prefHeight="66.0" prefWidth="140.0" text="Bio" wrapText="true">
                                  <font>
-                                    <Font size="17.0" />
+                                    <Font size="14.0" />
                                  </font>
                               </Label>
                               <Label fx:id="friendsNum" alignment="CENTER" contentDisplay="CENTER" layoutX="88.0" layoutY="523.0" prefHeight="21.0" prefWidth="25.0" text="20">
@@ -178,13 +178,25 @@
                                  </ripplerFill>
                               </JFXButton>
                               <JFXButton fx:id="deleteAcc" layoutX="74.0" layoutY="334.0" onMouseClicked="#deleteAccount" text="Delete Account" textFill="#e50000" />
+                              <Button layoutX="282.0" layoutY="706.0" mnemonicParsing="false" onMouseClicked="#addDotsFav" prefHeight="25.0" prefWidth="65.0" text="Favorite" />
+                              <ImageView fx:id="dotsFav" fitHeight="39.0" fitWidth="37.0" layoutX="13.0" layoutY="723.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../Photos/star.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="reversiFav" fitHeight="39.0" fitWidth="37.0" layoutX="13.0" layoutY="832.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                                 <image>
+                                    <Image url="@../Photos/star.png" />
+                                 </image>
+                              </ImageView>
+                              <Button layoutX="282.0" layoutY="808.0" mnemonicParsing="false" onMouseClicked="#addReversiFav" prefHeight="25.0" prefWidth="65.0" text="Favorite" />
                            </children>
                         </Pane>
                      </content>
                   </ScrollPane>
                </content>
             </Tab>
-            <Tab closable="false" text="Events">
+            <Tab onSelectionChanged="#selectEventTab" closable="false" text="Events">
                <content>
                   <AnchorPane prefHeight="714.0" prefWidth="610.0">
                      <children>
@@ -193,13 +205,9 @@
                               <Image url="@../Photos/events.jpg" />
                            </image>
                         </ImageView>
-                        <ScrollPane layoutY="127.0" prefHeight="577.0" prefWidth="508.0" style="-fx-background-color: #364A56;">
+                        <ScrollPane layoutY="127.0" prefHeight="587.0" style="-fx-background-color: #364A56;">
                            <content>
-                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="576.0" prefWidth="506.0" style="-fx-background-color: #452E5F;">
-                                 <children>
-                                    <VBox layoutX="-1.0" prefHeight="580.0" prefWidth="490.0" />
-                                 </children>
-                              </AnchorPane>
+                              <AnchorPane fx:id="eventsPane" prefWidth="506.0" style="-fx-background-color: #452E5F;" />
                            </content>
                         </ScrollPane>
                         <Text fill="#fffdfd" layoutX="99.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENTS">
@@ -213,21 +221,51 @@
             </Tab>
             <Tab closable="false" text="Friends">
                <content>
-                  <AnchorPane fx:id="friendsPage" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="searchBox" layoutX="52.0" layoutY="14.0" prefHeight="34.0" prefWidth="442.0" promptText="Search username or ID" />
-                        <ImageView fitHeight="29.0" fitWidth="36.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../Photos/magnifier.png" />
-                           </image>
-                        </ImageView>
-                     </children></AnchorPane>
+                  <ScrollPane>
+                     <content>
+                        <AnchorPane fx:id="friendsPage" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <TextField fx:id="searchBox" layoutX="52.0" layoutY="14.0" prefHeight="34.0" prefWidth="442.0" promptText="Search username or ID" />
+                              <ImageView fitHeight="29.0" fitWidth="36.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../Photos/magnifier.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </ScrollPane>
                </content>
             </Tab>
             <Tab closable="false" text="Plato bot message">
                <content>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                  <AnchorPane fx:id="platoBotMessage" prefHeight="200.0" prefWidth="200.0" />
                </content>
+            </Tab>
+            <Tab text="Personal Inf">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #5ad4dd;">
+                     <children>
+                        <Label fx:id="firstname" alignment="CENTER" contentDisplay="CENTER" layoutX="147.0" layoutY="38.0" prefHeight="35.0" prefWidth="209.0" text="Label" />
+                        <Label fx:id="lastname" alignment="CENTER" layoutX="147.0" layoutY="141.0" prefHeight="35.0" prefWidth="209.0" text="Label" />
+                        <Label fx:id="email" alignment="CENTER" layoutX="147.0" layoutY="254.0" prefHeight="35.0" prefWidth="209.0" text="Label" />
+                        <Label fx:id="phoneNumber" alignment="CENTER" layoutX="147.0" layoutY="374.0" prefHeight="35.0" prefWidth="209.0" text="Label" />
+                        <Text layoutX="56.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Firstname" />
+                        <Text layoutX="57.0" layoutY="163.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Lastname" />
+                        <Text layoutX="67.0" layoutY="276.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" />
+                        <Text layoutX="41.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number" />
+                        <Button layoutX="67.0" layoutY="543.0" mnemonicParsing="false" onMouseClicked="#editField" prefHeight="60.0" prefWidth="376.0" text="Edit">
+                           <font>
+                              <Font name="Castellar" size="23.0" />
+                           </font>
+                        </Button>
+                        <TextField fx:id="editFirstname" layoutX="180.0" layoutY="84.0" promptText="Edit firstname" />
+                        <TextField fx:id="editLastname" layoutX="177.0" layoutY="187.0" promptText="Edit lastname" />
+                        <TextField fx:id="editEmail" layoutX="177.0" layoutY="303.0" promptText="Edit email" />
+                        <TextField fx:id="editNumber" layoutX="177.0" layoutY="427.0" promptText="Edit phone number" />
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
          </tabs>
       </TabPane>

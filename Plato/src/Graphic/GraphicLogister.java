@@ -2,6 +2,7 @@ package Graphic;
 
 import Controller.Controller;
 import Model.Tools;
+import Network.Client;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -14,8 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -29,7 +28,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class GraphicLogister {
-    private static Button testButton;
     @FXML
     public Button login;
     @FXML
@@ -58,81 +56,6 @@ public class GraphicLogister {
     public StackPane parentContainer;
     @FXML
     public GridPane gridRoot;
-    public Label adminUsername;
-    public TabPane platoTabs;
-    public Button addEvent;
-    public Button editEvent;
-
-    public static void greetClient() {
-        System.out.println("Welcome to this application; choose one from below menu:");
-    }
-
-    public static void showAuthorizationMenu() {
-        System.out.println("" +
-                "- Register\n" +
-                "- Login\n" +
-                "- exit"
-        );
-    }
-
-    public static void getName() {
-        System.out.print("Enter Name: ");
-    }
-
-    public static void getLastName() {
-        System.out.print("Enter Last Name: ");
-    }
-
-    public static void getEmail() {
-        System.out.print("Enter Email: ");
-    }
-
-    public static void getPhoneNumber() {
-        System.out.print("Enter Phone Number: ");
-    }
-
-    public static void getUsername() {
-        System.out.print("Enter Username: ");
-    }
-
-    public static void getPassword() {
-        System.out.print("Enter Password: ");
-    }
-
-
-    /*public static void showProfile(User currentUser) {
-        System.out.println(currentUser);
-
-    }*/
-
-    public static void showError(String message) {
-        System.out.println(message);
-    }
-
-    public static void Play() {
-        System.out.println("" +
-                "- Reversi\n" +
-                "- Dot_and_Box\n" +
-                "- Back\n" +
-                " - exit"
-        );
-    }
-
-    public static void showEditMenu() {
-        System.out.println("" +
-                "- Name\n" +
-                "- LastName\n" +
-                "- Email\n" +
-                "- username\n" +
-                "- password\n" +
-                "- phoneNumber\n" +
-                "- Back\n" +
-                "- exit");
-    }
-
-    public static void showFieldEdition(String field) {
-        System.out.println("Your new " + field + " is : ");
-    }
 
     public void login(MouseEvent mouseEvent) throws IOException {
         String path = ("Plato/src/Music/Menu Button.mp3");
@@ -141,8 +64,8 @@ public class GraphicLogister {
         mediaPlayer.play();
         String username = loginUser.getText();
         String password = loginPass.getText();
-        String[] input = {"login", username, password};
-        if (Controller.logisterMenu(input)) {
+        String[] input = {"logister", "login", username, password};
+        if (Client.clientHandle(input)) {
             if (Tools.isAdmin(username)) {
                 Parent root = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
                 Stage loginStage = (Stage) login.getScene().getWindow();
@@ -195,8 +118,8 @@ public class GraphicLogister {
         String lastname = registerLastname.getText();
         String email = registerEmail.getText();
         String phoneNumber = registerPhoneNumber.getText();
-        String[] input = {"register", username, password, firstname, lastname, email, phoneNumber};
-        if (Controller.logisterMenu(input)) {
+        String[] input = {"logister", "register", username, password, firstname, lastname, email, phoneNumber};
+        if (Client.clientHandle(input)) {
             registerBack(mouseEvent);
         }
     }

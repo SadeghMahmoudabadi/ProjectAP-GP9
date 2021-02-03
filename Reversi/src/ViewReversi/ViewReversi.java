@@ -40,7 +40,6 @@ public class ViewReversi {
                     System.out.println("black turn!");
                 } else if ((GraphicController.playerReversies[0].hasTurn()) || (GraphicController.playerReversies[1].hasTurn())) {
                     Game.changeTurn();
-                    //View.showErrors(1);
                 } else {
                     Game.setIsGameOver(true);
                 }

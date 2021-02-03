@@ -9,8 +9,8 @@ public class Dot {
     private int yPosition;
     private ArrayList<Dot> sideDots;
     private int sideDotsNum;
-    private static HashMap<Integer, Dot> dots = new HashMap<>();
-    private static ArrayList<Dot> availableDots = new ArrayList<>();
+    public static HashMap<Integer, Dot> dots;
+    public static ArrayList<Dot> availableDots;
 
     {
         sideDots = new ArrayList<>();

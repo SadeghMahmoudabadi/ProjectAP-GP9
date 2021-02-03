@@ -13,9 +13,9 @@ public class Line {
     private int yStart;
     private int xFinish;
     private int yFinish;
-    private static ArrayList<Line> lines = new ArrayList<>();
-    private static ArrayList<Line> drawnLines = new ArrayList<>();
-    private static ArrayList<Line> availableLines = new ArrayList<>();
+    public static ArrayList<Line> lines;
+    public static ArrayList<Line> drawnLines;
+    public static ArrayList<Line> availableLines;
 
     public Line(Dot startDot, Dot finishDot) {
         this.startDot = startDot;

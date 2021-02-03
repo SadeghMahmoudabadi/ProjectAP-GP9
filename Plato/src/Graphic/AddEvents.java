@@ -31,7 +31,7 @@ public class AddEvents implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        Parent root = FXMLLoader.load(getClass().getResource("Create Events.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("createEvents.fxml"));
         Stage addEvent = new Stage();
         addEvent.setScene(new Scene(root, 600, 543));
         addEvent.show();
