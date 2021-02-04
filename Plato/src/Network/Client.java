@@ -59,13 +59,7 @@ public class Client extends Application {
                 dataOutputStream.flush();
                 String response = dataInputStream.readUTF();
                 System.out.println(response);
-                if (response.startsWith("{\"profile\":")) {
-                    Type type = new TypeToken<Player>() {
-                    }.getType();
-                    Gson gson = new Gson();
-                    currentPlayer = gson.fromJson(response, type);
-                    return true;
-                } if (Boolean.parseBoolean(response)) {
+                if (Boolean.parseBoolean(response)) {
                     return true;
                 } else {
                     Errors.USER_OR_PASS_DOES_NOT_EXIST.showMessage();
@@ -73,8 +67,10 @@ public class Client extends Application {
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                return false;
+            } finally {
+                setCurrentPlayer();
             }
-            return false;
         }
 
         public ArrayList<Player> getPlayersImp() {
@@ -92,6 +88,23 @@ public class Client extends Application {
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
+            }
+        }
+
+        private void setCurrentPlayer() {
+            try {
+                dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+                dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+                dataOutputStream.writeUTF("getCurrentPlayer");
+                dataOutputStream.flush();
+                String response = dataInputStream.readUTF();
+                System.out.println(response);
+                Type type = new TypeToken<Player>() {
+                }.getType();
+                Gson gson = new Gson();
+                currentPlayer = gson.fromJson(response, type);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 

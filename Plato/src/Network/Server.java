@@ -42,7 +42,12 @@ public class Server {
                 while (true) {
                     String input = dataInputStream.readUTF();
                     System.out.println("Client send:" + input);
-                    if (input.equalsIgnoreCase("getPlayers")) {
+                    if (input.equalsIgnoreCase("getCurrentPlayer")) {
+                        String response;
+                        response = new Gson().toJson(Player.getCurrentPlayer());
+                        dataOutputStream.writeUTF(response);
+                        dataOutputStream.flush();
+                    } else if (input.equalsIgnoreCase("getPlayers")) {
                         String response = new Gson().toJson(Player.getPlayers());
                         dataOutputStream.writeUTF(response);
                         dataOutputStream.flush();
@@ -61,7 +66,7 @@ public class Server {
                             String response;
                             if (Controller.logisterMenu(input)) {
                                 System.out.println(input);
-                                response = new Gson().toJson(Player.getCurrentPlayer());
+                                response = "true";
                             } else {
                                 response = "false";
                             }

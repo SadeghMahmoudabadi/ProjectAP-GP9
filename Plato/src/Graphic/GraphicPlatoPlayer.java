@@ -390,27 +390,27 @@ public class GraphicPlatoPlayer implements Initializable {
     }
 
     public void addDotsFav(MouseEvent mouseEvent) throws IOException {
-//        if (Player.getCurrentPlayer().getFavoriteGames().contains("dotsAndBoxes")) {
-//            String[] input = {"remove", "favorite", "dotsAndBoxes"};
-//            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
-//            dotsFav.setVisible(false);
-//        } else {
-//            String[] input = {"add", "favorite", "dotsAndBoxes"};
-//            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
-//            dotsFav.setVisible(true);
-//        }
+        if (Client.currentPlayer.getFavoriteGames().contains("dotsAndBoxes")) {
+            String[] input = {"player", "remove", "favorite", "dotsAndBoxes"};
+            Client.requestToServer(input);
+            dotsFav.setVisible(false);
+        } else {
+            String[] input = {"player", "add", "favorite", "dotsAndBoxes"};
+            Client.requestToServer(input);
+            dotsFav.setVisible(true);
+        }
     }
 
     public void addReversiFav(MouseEvent mouseEvent) throws IOException {
-//        if (Player.getCurrentPlayer().getFavoriteGames().contains("reversi")) {
-//            String[] input = {"remove", "favorite", "reversi"};
-//            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
-//            reversiFav.setVisible(false);
-//        } else {
-//            String[] input = {"add", "favorite", "reversi"};
-//            Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input);
-//            reversiFav.setVisible(true);
-//        }
+        if (Client.currentPlayer.getFavoriteGames().contains("reversi")) {
+            String[] input = {"player", "remove", "favorite", "reversi"};
+            Client.requestToServer(input);
+            reversiFav.setVisible(false);
+        } else {
+            String[] input = {"player", "add", "favorite", "reversi"};
+            Client.requestToServer(input);
+            reversiFav.setVisible(true);
+        }
     }
 
     public void editField(MouseEvent mouseEvent) {
