@@ -155,6 +155,10 @@ public class Controller {
             String bio = input[2];
             Player.getCurrentPlayer().setBio(bio);
             return true;
+        } else if (input.length == 3 && input[0].equalsIgnoreCase("edit") && input[1].equalsIgnoreCase("profile")) {
+            int profilePicture = Integer.parseInt(input[2]);
+            Player.getCurrentPlayer().setProfile(profilePicture);
+            return true;
         } else if (input.length == 4 && input[0].equalsIgnoreCase("play") && input[2].equalsIgnoreCase("with")) {
             String gameName = input[1];
             String username = input[4];
