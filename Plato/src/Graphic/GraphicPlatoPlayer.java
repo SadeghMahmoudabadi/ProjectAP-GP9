@@ -117,129 +117,115 @@ public class GraphicPlatoPlayer implements Initializable {
         TableColumn infoCol = new TableColumn("Info");
         infoCol.setCellValueFactory(new PropertyValueFactory<>("personalInfo"));
         for (Player player : Client.getPlayers()) {
-            Button sendFriendRequest = new Button("Request");
-            Button accept = new Button("Accept");
-            Button decline = new Button("Decline");
-            Button remove = new Button("Remove");
-            Button info = new Button("Info");
-            info.setOnMouseClicked(event -> {
-                String path = ("Plato/src/Music/Menu Button.mp3");
-                Media media = new Media(new File(path).toURI().toString());
-                MediaPlayer mediaPlayer = new MediaPlayer(media);
-                mediaPlayer.play();
-                Stage infoStage = new Stage();
-                VBox infoVBox = new VBox();
-                String firstname = String.format("Firstname :    %s", player.getFirstname());
-                String lastname = String.format("Lastname :    %s", player.getLastName());
-                String email = String.format("Email :    %s", player.getEmail());
-                String phoneNumber = String.format("Phone number :    %s", player.getPhoneNumber());
-                String coins = String.format("Coin :    %s", player.getCoin());
-                Label firstnameLabel = new Label(firstname);
-                Label lastnameLabel = new Label(lastname);
-                Label emailLabel = new Label(email);
-                Label phoneNumberLabel = new Label(phoneNumber);
-                Label coinLabel = new Label(coins);
-                firstnameLabel.setFont(Font.font(13));
-                lastnameLabel.setFont(Font.font(13));
-                emailLabel.setFont(Font.font(13));
-                phoneNumberLabel.setFont(Font.font(13));
-                coinLabel.setFont(Font.font(13));
-                infoVBox.getChildren().addAll(firstnameLabel, lastnameLabel, emailLabel, phoneNumberLabel, coinLabel);
-                infoVBox.setAlignment(Pos.CENTER);
-                infoVBox.setSpacing(23);
-                Scene infoScene = new Scene(infoVBox, 350, 350);
-                infoStage.setScene(infoScene);
-                infoStage.show();
-            });
-            remove.setDisable(true);
-//            remove.setOnMouseClicked(event -> {
-//                String path = ("Plato/src/Music/Menu Button.mp3");
-//                Media media = new Media(new File(path).toURI().toString());
-//                MediaPlayer mediaPlayer = new MediaPlayer(media);
-//                mediaPlayer.play();
-//                String[] input = {"remove", Integer.toString(player.getUserID())};
-//                try {
-//                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
-//                        friendsNum.setText(Integer.toString(Player.getCurrentPlayer().getFriends().size()));
-//                        remove.setDisable(true);
-//                        sendFriendRequest.setDisable(false);
-//                        sendFriendRequest.setText("Request");
-//                        accept.setDisable(true);
-//                        decline.setDisable(true);
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            });
-//            sendFriendRequest.setOnMouseClicked(event -> {
-//                String path = ("Plato/src/Music/Menu Button.mp3");
-//                Media media = new Media(new File(path).toURI().toString());
-//                MediaPlayer mediaPlayer = new MediaPlayer(media);
-//                mediaPlayer.play();
-//                String[] input = {"add", "friend", Integer.toString(player.getUserID())};
-//                try {
-//                    if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
-//                        sendFriendRequest.setText("Requested!");
-//                        sendFriendRequest.setDisable(true);
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            });
-            if (player.getFriendRequests().contains(Client.currentPlayer.getUserID())
-                    || Client.currentPlayer.getFriendRequests().contains(player.getUserID())) {
-                sendFriendRequest.setText("Requested!");
-                sendFriendRequest.setDisable(true);
-            } else if (player.getFriends().contains(Client.currentPlayer.getUserID())) {
-                sendFriendRequest.setText("Friend!");
-                sendFriendRequest.setDisable(true);
-                remove.setDisable(false);
-            }
-            accept.setTextFill(Color.WHITE);
-            accept.setStyle("-fx-background-color: Green");
-            accept.setDisable(true);
-//            accept.setOnMouseClicked(event -> {
-//                String[] input = {"accept", Integer.toString(player.getUserID())};
-//                try {
-//                    if (Controller.playerMenu(Client.currentPlayer.getUserID(), input)) {
-//                        System.out.println("Accept!");
-//                        sendFriendRequest.setText("Friend!");
-//                        friendsNum.setText(Integer.toString(Client.currentPlayer.getFriends().size()));
-//                        remove.setDisable(false);
-//                        accept.setDisable(true);
-//                        decline.setDisable(true);
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            });
-            decline.setTextFill(Color.WHITE);
-            decline.setStyle("-fx-background-color: Red");
-            decline.setDisable(true);
-//            decline.setOnMouseClicked(event -> {
-//                String path = ("Plato/src/Music/Menu Button.mp3");
-//                Media media = new Media(new File(path).toURI().toString());
-//                MediaPlayer mediaPlayer = new MediaPlayer(media);
-//                mediaPlayer.play();
-//                String[] input = {"decline", Integer.toString(player.getUserID())};
-//                try {
-//                    if (Controller.playerMenu(Client.currentPlayer.getUserID(), input)) {
-//                        System.out.println("Decline!");
-//                        accept.setDisable(true);
-//                        decline.setDisable(true);
-//                        sendFriendRequest.setDisable(false);
-//                        sendFriendRequest.setText("Request");
-//                    }
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            });
-            if (Client.currentPlayer.getFriendRequests().contains(player.getUserID())) {
-                accept.setDisable(false);
-                decline.setDisable(false);
-            }
-            if (Client.currentPlayer != player) {
-                data.add(new FriendsData(player.getUsername(), player.getUserID(), sendFriendRequest, accept, decline, remove, info));
+            if (player.getUserID() != Client.currentPlayer.getUserID()) {
+                Button sendFriendRequest = new Button("Request");
+                Button accept = new Button("Accept");
+                Button decline = new Button("Decline");
+                Button remove = new Button("Remove");
+                Button info = new Button("Info");
+                info.setOnMouseClicked(event -> {
+                    String path = ("Plato/src/Music/Menu Button.mp3");
+                    Media media = new Media(new File(path).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    mediaPlayer.play();
+                    Stage infoStage = new Stage();
+                    VBox infoVBox = new VBox();
+                    String firstname = String.format("Firstname :    %s", player.getFirstname());
+                    String lastname = String.format("Lastname :    %s", player.getLastName());
+                    String email = String.format("Email :    %s", player.getEmail());
+                    String phoneNumber = String.format("Phone number :    %s", player.getPhoneNumber());
+                    String coins = String.format("Coin :    %s", player.getCoin());
+                    Label firstnameLabel = new Label(firstname);
+                    Label lastnameLabel = new Label(lastname);
+                    Label emailLabel = new Label(email);
+                    Label phoneNumberLabel = new Label(phoneNumber);
+                    Label coinLabel = new Label(coins);
+                    firstnameLabel.setFont(Font.font(13));
+                    lastnameLabel.setFont(Font.font(13));
+                    emailLabel.setFont(Font.font(13));
+                    phoneNumberLabel.setFont(Font.font(13));
+                    coinLabel.setFont(Font.font(13));
+                    infoVBox.getChildren().addAll(firstnameLabel, lastnameLabel, emailLabel, phoneNumberLabel, coinLabel);
+                    infoVBox.setAlignment(Pos.CENTER);
+                    infoVBox.setSpacing(23);
+                    Scene infoScene = new Scene(infoVBox, 350, 350);
+                    infoStage.setScene(infoScene);
+                    infoStage.show();
+                });
+                remove.setDisable(true);
+                remove.setOnMouseClicked(event -> {
+                    String path = ("Plato/src/Music/Menu Button.mp3");
+                    Media media = new Media(new File(path).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    mediaPlayer.play();
+                    String[] input = {"player", "remove", Integer.toString(player.getUserID())};
+                    if (Client.requestToServer(input)) {
+                        friendsNum.setText(Integer.toString(Client.currentPlayer.getFriends().size()));
+                        remove.setDisable(true);
+                        sendFriendRequest.setDisable(false);
+                        sendFriendRequest.setText("Request");
+                        accept.setDisable(true);
+                        decline.setDisable(true);
+                    }
+                });
+                sendFriendRequest.setOnMouseClicked(event -> {
+                    String path = ("Plato/src/Music/Menu Button.mp3");
+                    Media media = new Media(new File(path).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    mediaPlayer.play();
+                    String[] input = {"player", "add", "friend", Integer.toString(player.getUserID())};
+                    if (Client.requestToServer(input)) {
+                        sendFriendRequest.setText("Requested!");
+                        sendFriendRequest.setDisable(true);
+                    }
+                });
+                if (player.getFriendRequests().contains(Client.currentPlayer.getUserID())
+                        || Client.currentPlayer.getFriendRequests().contains(player.getUserID())) {
+                    sendFriendRequest.setText("Requested!");
+                    sendFriendRequest.setDisable(true);
+                } else if (player.getFriends().contains(Client.currentPlayer.getUserID())) {
+                    sendFriendRequest.setText("Friend!");
+                    sendFriendRequest.setDisable(true);
+                    remove.setDisable(false);
+                }
+                accept.setTextFill(Color.WHITE);
+                accept.setStyle("-fx-background-color: Green");
+                accept.setDisable(true);
+                accept.setOnMouseClicked(event -> {
+                    String[] input = {"player", "accept", Integer.toString(player.getUserID())};
+                    if (Client.requestToServer(input)) {
+                        System.out.println("Accept!");
+                        sendFriendRequest.setText("Friend!");
+                        friendsNum.setText(Integer.toString(Client.currentPlayer.getFriends().size()));
+                        remove.setDisable(false);
+                        accept.setDisable(true);
+                        decline.setDisable(true);
+                    }
+                });
+                decline.setTextFill(Color.WHITE);
+                decline.setStyle("-fx-background-color: Red");
+                decline.setDisable(true);
+                decline.setOnMouseClicked(event -> {
+                    String path = ("Plato/src/Music/Menu Button.mp3");
+                    Media media = new Media(new File(path).toURI().toString());
+                    MediaPlayer mediaPlayer = new MediaPlayer(media);
+                    mediaPlayer.play();
+                    String[] input = {"player", "decline", Integer.toString(player.getUserID())};
+                    if (Client.requestToServer(input)) {
+                        System.out.println("Decline!");
+                        accept.setDisable(true);
+                        decline.setDisable(true);
+                        sendFriendRequest.setDisable(false);
+                        sendFriendRequest.setText("Request");
+                    }
+                });
+                if (Client.currentPlayer.getFriendRequests().contains(player.getUserID())) {
+                    accept.setDisable(false);
+                    decline.setDisable(false);
+                }
+                if (Client.currentPlayer != player) {
+                    data.add(new FriendsData(player.getUsername(), player.getUserID(), sendFriendRequest, accept, decline, remove, info));
+                }
             }
         }
         table.setItems(data);
@@ -251,9 +237,7 @@ public class GraphicPlatoPlayer implements Initializable {
         friendsPage.getChildren().add(table);
 
         FilteredList<FriendsData> filteredData = new FilteredList<>(data, b -> true);
-        searchBox.textProperty().addListener((observable, oldValue, newValue) ->
-
-        {
+        searchBox.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(friendsData -> {
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
@@ -438,7 +422,7 @@ public class GraphicPlatoPlayer implements Initializable {
         }
         if (!editEmail.getText().isEmpty()) {
             String[] input = {"user", "edit", "email", editEmail.getText()};
-            if(Client.requestToServer(input)) {
+            if (Client.requestToServer(input)) {
                 email.setText(Client.currentPlayer.getEmail());
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Edit");
