@@ -59,12 +59,8 @@ public class Client extends Application {
                 dataOutputStream.flush();
                 String response = dataInputStream.readUTF();
                 System.out.println(response);
-                if (Boolean.parseBoolean(response)) {
-                    return true;
-                } else {
-                    Errors.USER_OR_PASS_DOES_NOT_EXIST.showMessage();
-                    return false;
-                }
+                return Boolean.parseBoolean(response);
+
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;
