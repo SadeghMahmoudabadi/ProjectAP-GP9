@@ -355,15 +355,15 @@ public class GraphicPlatoPlayer implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        String[] input = {"delete", "account"};
-//        if (Controller.playerMenu(Player.getCurrentPlayer().getUserID(), input)) {
-//            Stage accStage = (Stage) deleteAcc.getScene().getWindow();
-//            accStage.close();
-//            Stage loginStage = new Stage();
-//            Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
-//            loginStage.setScene(new Scene(root, 747, 616));
-//            loginStage.show();
-//        }
+        String[] input = {"player", "delete", "account"};
+        if (Client.requestToServer(input)) {
+            Stage accStage = (Stage) deleteAcc.getScene().getWindow();
+            accStage.close();
+            Stage loginStage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
+            loginStage.setScene(new Scene(root, 747, 616));
+            loginStage.show();
+        }
     }
 
     public void addImage(MouseEvent mouseEvent) throws IOException {
