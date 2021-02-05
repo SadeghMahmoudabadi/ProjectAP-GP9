@@ -1,6 +1,7 @@
 package Graphic;
 
 import Model.Player;
+import Network.Client;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
