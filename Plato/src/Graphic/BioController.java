@@ -1,8 +1,6 @@
 package Graphic;
 
 import Model.Database;
-import Model.Player;
-import Network.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

@@ -1,9 +1,6 @@
 package Graphic;
 
-import Controller.Controller;
 import Model.Database;
-import Model.Player;
-import Network.Client;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
