@@ -1,6 +1,6 @@
 package Network;
 
-import Model.Errors;
+import Model.Admin;
 import Model.Player;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -20,6 +20,7 @@ import static java.lang.System.exit;
 public class Client extends Application {
     public static ClientImp clientImp = new ClientImp();
     public static Player currentPlayer;
+    public static Admin currentAdmin;
     public static ArrayList<Player> players;
 
     public static void main(String[] args) {
@@ -60,12 +61,11 @@ public class Client extends Application {
                 String response = dataInputStream.readUTF();
                 System.out.println(response);
                 return Boolean.parseBoolean(response);
-
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;
             } finally {
-                setCurrentPlayer();
+                setCurrentUser();
             }
         }
 
@@ -87,18 +87,27 @@ public class Client extends Application {
             }
         }
 
-        private void setCurrentPlayer() {
+        private void setCurrentUser() {
             try {
                 dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
                 dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
                 dataOutputStream.writeUTF("getCurrentPlayer");
                 dataOutputStream.flush();
-                String response = dataInputStream.readUTF();
-                System.out.println(response);
-                Type type = new TypeToken<Player>() {
+                String responsePlayer = dataInputStream.readUTF();
+                System.out.println(responsePlayer);
+                Type playerType = new TypeToken<Player>() {
                 }.getType();
-                Gson gson = new Gson();
-                currentPlayer = gson.fromJson(response, type);
+                Gson gson1 = new Gson();
+                currentPlayer = gson1.fromJson(responsePlayer, playerType);dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+                dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+                dataOutputStream.writeUTF("getCurrentAdmin");
+                dataOutputStream.flush();
+                String responseAdmin = dataInputStream.readUTF();
+                System.out.println(responseAdmin);
+                Type adminType = new TypeToken<Admin>() {
+                }.getType();
+                Gson gson2 = new Gson();
+                currentAdmin = gson2.fromJson(responseAdmin, adminType);
             } catch (IOException e) {
                 e.printStackTrace();
             }

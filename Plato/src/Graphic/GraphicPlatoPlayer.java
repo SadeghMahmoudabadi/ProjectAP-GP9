@@ -1,6 +1,5 @@
 package Graphic;
 
-import Controller.Controller;
 import Model.Event;
 import Model.Player;
 import Network.Client;

@@ -2,6 +2,7 @@ package Graphic;
 
 import Model.Tools;
 import Network.Client;
+import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -65,7 +66,11 @@ public class GraphicLogister {
         String password = loginPass.getText();
         String[] input = {"logister", "login", username, password};
         if (Client.requestToServer(input)) {
-            if (Tools.isAdmin(username)) {
+            String[] request = {"tools", "isAdmin", username};
+            System.out.println(username);
+            System.out.println(Tools.isAdmin(username));
+            System.out.println(Tools.isUsernameExist(username));
+            if (Client.requestToServer(request)) {
                 Parent root = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
                 Stage loginStage = (Stage) login.getScene().getWindow();
                 loginStage.close();

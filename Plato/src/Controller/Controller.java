@@ -17,11 +17,7 @@ import java.time.LocalTime;
 
 public class Controller {
 
-    public static boolean logisterMenu(String userInput) {
-        Type type = new TypeToken<String[]>() {
-        }.getType();
-        Gson gson = new Gson();
-        String[] input = gson.fromJson(userInput, type);
+    public static boolean logisterMenu(String[] input) {
         if (input.length == 7 && input[0].equalsIgnoreCase("register")) {
             String firstname = input[3];
             String lastname = input[4];
@@ -73,11 +69,7 @@ public class Controller {
         return false;
     }
 
-    public static boolean userMenu(int userID, String userInput) {
-        Type type = new TypeToken<String[]>() {
-        }.getType();
-        Gson gson = new Gson();
-        String[] input = gson.fromJson(userInput, type);
+    public static boolean userMenu(int userID, String[] input) {
         if (input.length == 4 && input[0].equalsIgnoreCase("change")
                 && input[1].equalsIgnoreCase("password")) {
             String currentPassword = input[2];
@@ -115,11 +107,7 @@ public class Controller {
         }
     }
 
-    public static boolean playerMenu(int playerID, String userInput) throws IOException {
-        Type type = new TypeToken<String[]>() {
-        }.getType();
-        Gson gson = new Gson();
-        String[] input = gson.fromJson(userInput, type);
+    public static boolean playerMenu(int playerID, String[] input) throws IOException {
         Player currentPlayer = Player.findPlayer(playerID);
         if (input.length == 3 && input[0].equalsIgnoreCase("add")
                 && input[1].equalsIgnoreCase("friend")) {

@@ -3,6 +3,7 @@ package Graphic;
 import Controller.Controller;
 import Model.Admin;
 import Model.Player;
+import Network.Client;
 import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,7 +47,7 @@ public class GraphicPlatoAdmin implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         gameName.setItems(gameChoiceBar);
-        adminUsername.setText(Admin.getCurrentAdmin().getUsername());
+        adminUsername.setText(Client.currentAdmin.getUsername());
         TableView<PlayersData> table = new TableView<PlayersData>();
         table.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         ObservableList<PlayersData> data = FXCollections.observableArrayList();
@@ -55,7 +56,7 @@ public class GraphicPlatoAdmin implements Initializable {
         TableColumn nameColumn = new TableColumn("Name");
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("playerName"));
         int i  = 0;
-        for (Player player : Player.getPlayers()) {
+        for (Player player : Client.getPlayers()) {
             data.add(i++, new PlayersData(player.getUsername(), player.getUserID()));
         }
         table.setItems(data);
@@ -64,7 +65,6 @@ public class GraphicPlatoAdmin implements Initializable {
         table.getColumns().addAll(IDColumn, nameColumn);
         table.setPrefWidth(377);
         table.setMinHeight(548);
-        Scene scene = new Scene(table, 395, 625);
         playersTable.getChildren().add(table);
     }
 

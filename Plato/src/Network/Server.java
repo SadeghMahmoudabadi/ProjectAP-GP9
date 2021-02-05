@@ -1,8 +1,10 @@
 package Network;
 
 import Controller.Controller;
+import Model.Admin;
 import Model.Database;
 import Model.Player;
+import Model.Tools;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -11,6 +13,7 @@ import java.lang.reflect.Type;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.function.ToLongBiFunction;
 
 public class Server {
 
@@ -47,59 +50,66 @@ public class Server {
                         response = new Gson().toJson(Player.getCurrentPlayer());
                         dataOutputStream.writeUTF(response);
                         dataOutputStream.flush();
+                    } else if (input.equalsIgnoreCase("getCurrentAdmin")) {
+                        String response;
+                        response = new Gson().toJson(Admin.getCurrentAdmin());
+                        dataOutputStream.writeUTF(response);
+                        dataOutputStream.flush();
                     } else if (input.equalsIgnoreCase("getPlayers")) {
                         String response = new Gson().toJson(Player.getPlayers());
                         dataOutputStream.writeUTF(response);
                         dataOutputStream.flush();
                     } else {
+                        String response = null;
                         Type type = new TypeToken<String[]>() {
                         }.getType();
                         Gson gson = new Gson();
                         String[] userInput = gson.fromJson(input, type);
                         String controller = userInput[0];
                         String[] correctedUserInput = new String[userInput.length - 1];
-                        for (int i = 0; i < userInput.length - 1; i++) {
+                        for (int i = 0; i < correctedUserInput.length; i++) {
                             correctedUserInput[i] = userInput[i + 1];
                         }
-                        input = new Gson().toJson(correctedUserInput);
                         if (controller.equalsIgnoreCase("logister")) {
-                            String response;
-                            if (Controller.logisterMenu(input)) {
-                                System.out.println(input);
+                            if (Controller.logisterMenu(correctedUserInput)) {
+                                System.out.println(correctedUserInput);
                                 response = "true";
                             } else {
                                 response = "false";
                             }
-                            dataOutputStream.writeUTF(response);
-                            dataOutputStream.flush();
                         } else if (controller.equalsIgnoreCase("user")) {
-                            System.out.println(input);
-                            String response;
+                            System.out.println(correctedUserInput);
                             int currentUserID = Player.getCurrentPlayer().getUserID();
-                            if (Controller.userMenu(currentUserID, input)) {
+                            if (Controller.userMenu(currentUserID, correctedUserInput)) {
                                 response = "true";
                             } else {
                                 response = "false";
                             }
-                            dataOutputStream.writeUTF(response);
-                            dataOutputStream.flush();
                         } else if (controller.equalsIgnoreCase("player")) {
-                            System.out.println(input);
-                            String response;
+                            System.out.println(correctedUserInput);
                             int currentUserID = Player.getCurrentPlayer().getUserID();
-                            if (Controller.playerMenu(currentUserID, input)) {
+                            if (Controller.playerMenu(currentUserID, correctedUserInput)) {
                                 response = "true";
                             } else {
                                 response = "false";
                             }
-                            dataOutputStream.writeUTF(response);
-                            dataOutputStream.flush();
-                    }/* else if (controller.equalsIgnoreCase("admin")) {
+                        }/* else if (controller.equalsIgnoreCase("admin")) {
                         return Controller.adminMenu(currentUserID, input);
-                    }*/
+                    }*/ else if (controller.equalsIgnoreCase("tools")) {
+                            if (correctedUserInput[0].equalsIgnoreCase("isAdmin")) {
+                                String username = correctedUserInput[1];
+                                if (Tools.isAdmin(username)) {
+                                    response = "true";
+                                } else {
+                                    response = "false";
+                                }
+                            }
+                        }
+                        dataOutputStream.writeUTF(response);
+                        dataOutputStream.flush();
                     }
                 }
-            } catch (IOException e) {
+            } catch (Exception e) {
                 System.err.println(e.getMessage());
             } finally {
                 Database.updateFiles();
