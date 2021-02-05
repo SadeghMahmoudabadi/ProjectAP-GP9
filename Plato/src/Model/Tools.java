@@ -64,6 +64,7 @@ public class Tools {
     }
 
     public static void sendMessage(int receiverID, String message) {
+        System.out.println("Send message tools");
         Player receiver = Player.findPlayer(receiverID);
         int messageID = Tools.Random();
         receiver.addMessage(messageID, message);

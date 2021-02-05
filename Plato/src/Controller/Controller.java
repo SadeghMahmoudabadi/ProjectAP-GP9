@@ -180,6 +180,7 @@ public class Controller {
     }
 
     public static boolean adminMenu(int adminID, String[] input) throws ParseException {
+        System.out.println("I'm in admin menu");
         Admin currentAdmin = Admin.findAdmin(adminID);
         if (input.length == 6 && input[0].equalsIgnoreCase("add")
                 && input[1].equalsIgnoreCase("event")) {
@@ -220,8 +221,9 @@ public class Controller {
             return true;
         } else if (input.length == 4 && input[0].equalsIgnoreCase("send")
                 && input[1].equalsIgnoreCase("message")) {
+            System.out.println("I'm going to send message");
             int playerID = Integer.parseInt(input[2]);
-            String message = input[4];
+            String message = input[3];
             Tools.sendMessage(playerID, message);
             return true;
         } else {

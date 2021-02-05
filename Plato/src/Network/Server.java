@@ -96,6 +96,7 @@ public class Server {
                                 response = "false";
                             }
                         } else if (controller.equalsIgnoreCase("admin")) {
+                            System.out.println("I'm in admin server");
                             int currentUserID = Admin.getCurrentAdmin().getUserID();
                             if (Controller.adminMenu(currentUserID, correctedUserInput)) {
                                 response = "true";

@@ -174,5 +174,11 @@ public class GraphicPlatoAdmin implements Initializable {
     }
 
     public void sendMessage(ActionEvent actionEvent) {
+        String path = ("Plato/src/Music/Menu Button.mp3");
+        Media media = new Media(new File(path).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.play();
+        String[] input = {"admin", "send", "message", playerIDText.getText(), message.getText()};
+        Client.requestToServer(input);
     }
 }
