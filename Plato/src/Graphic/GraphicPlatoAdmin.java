@@ -125,8 +125,8 @@ public class GraphicPlatoAdmin implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        String[] input = {"add", "suggestion", playerIDTextField.getText(), String.valueOf(gameName.getValue())};
-        Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input);
+        String[] input = {"admin", "add", "suggestion", playerIDTextField.getText(), String.valueOf(gameName.getValue())};
+        Client.requestToServer(input);
     }
 
     public void showMessages(ActionEvent actionEvent) {
