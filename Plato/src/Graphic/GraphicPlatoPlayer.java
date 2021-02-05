@@ -311,7 +311,7 @@ public class GraphicPlatoPlayer implements Initializable {
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        String[] input = {"player", "logout"};
+        String[] input = {"user", "logout"};
         if (Client.requestToServer(input)) {
             Parent root = FXMLLoader.load(getClass().getResource("loginFX.fxml"));
             Stage stage = (Stage) logout.getScene().getWindow();
