@@ -17,7 +17,7 @@
             <Image url="@../Photos/Reversi.png" />
          </image>
       </ImageView>
-      <Button fx:id="joinReversiEvent" layoutX="361.0" layoutY="175.0" mnemonicParsing="false" onAction="#openJoinReversi" prefHeight="38.0" prefWidth="88.0" style="-fx-background-color: #8a7408; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-color: #ffff;" text="JOIN">
+      <Button layoutX="361.0" layoutY="175.0" mnemonicParsing="false" onAction="#joinEvent" prefHeight="38.0" prefWidth="88.0" style="-fx-background-color: #8a7408; -fx-background-radius: 15px; -fx-border-radius: 15px; -fx-border-color: #ffff;" text="JOIN">
          <font>
             <Font name="Castellar" size="18.0" />
          </font>

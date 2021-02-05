@@ -17,14 +17,13 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ReversiEventController implements Initializable {
-    public Button joinReversiEvent;
     public Label eventPrize;
     public static String eventCoin;
     public static long eventDaysLeft;
     public static long eventHoursLeft;
     public Label leftLabel;
 
-    public void openJoinReversi(ActionEvent actionEvent) throws IOException {
+    public void joinEvent(ActionEvent actionEvent) throws IOException {
         String path = ("Plato/src/Music/Menu Button.mp3");
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
