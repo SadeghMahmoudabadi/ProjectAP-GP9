@@ -1,4 +1,4 @@
-package Model;
+package Graphic;
 
 import javafx.scene.control.Alert;
 

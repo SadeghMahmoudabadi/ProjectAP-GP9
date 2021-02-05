@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="424.0" style="-fx-background-color: #662A1F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="618.0" prefWidth="424.0" style="-fx-background-color: #662A1F;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Graphic.ReversiGameEvent">
    <children>
       <ImageView fitHeight="225.0" fitWidth="424.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -63,7 +63,7 @@
             </LinearGradient>
          </textFill>
       </JFXButton>
-      <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="94.0" layoutY="555.0" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #384338; -fx-background-radius: 100px; -fx-border-radius: 100px; -fx-border-color: #ffff;" text="Cancel" textFill="#dadada">
+      <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="94.0" layoutY="555.0" onAction="#cancelButton" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #384338; -fx-background-radius: 100px; -fx-border-radius: 100px; -fx-border-color: #ffff;" text="Cancel" textFill="#dadada">
          <font>
             <Font size="18.0" />
          </font>

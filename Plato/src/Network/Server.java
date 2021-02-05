@@ -1,6 +1,7 @@
 package Network;
 
 import Controller.Controller;
+import Graphic.Errors;
 import Model.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

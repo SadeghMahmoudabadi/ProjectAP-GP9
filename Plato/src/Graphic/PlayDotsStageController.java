@@ -1,14 +1,11 @@
 package Graphic;
 
-import ControllerDotBox.ControllerDotAndBox;
 import GraphicDotBox.GraphicController;
-import Model.Errors;
 import Model.Player;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -35,8 +32,6 @@ public class PlayDotsStageController {
         if (player2 != null) {
             Player.setComponentPlayer(player2);
             GraphicController.startGame();
-        } else {
-            Errors.THIS_USER_DOES_NOT_EXIST.showMessage();
         }
     }
 
