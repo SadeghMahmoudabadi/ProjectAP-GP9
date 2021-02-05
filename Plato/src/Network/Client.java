@@ -1,6 +1,7 @@
 package Network;
 
 import Model.Admin;
+import Model.Event;
 import Model.Player;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -21,7 +22,6 @@ public class Client extends Application {
     public static ClientImp clientImp = new ClientImp();
     public static Player currentPlayer;
     public static Admin currentAdmin;
-    public static ArrayList<Player> players;
 
     public static void main(String[] args) {
         if (clientImp.run()) {
@@ -41,8 +41,11 @@ public class Client extends Application {
     }
 
     public static ArrayList<Player> getPlayers() {
-        players = clientImp.getPlayersImp();
-        return players;
+        return clientImp.getPlayersImp();
+    }
+
+    public static ArrayList<Event> getEvents() {
+        return clientImp.getEventsImp();
     }
 
     static class ClientImp {
@@ -76,11 +79,31 @@ public class Client extends Application {
                 dataOutputStream.writeUTF("getPlayers");
                 dataOutputStream.flush();
                 String response = dataInputStream.readUTF();
+                System.out.println("Server send: " + response);
                 Type type = new TypeToken<ArrayList<Player>>() {
                 }.getType();
                 Gson gson = new Gson();
                 ArrayList<Player> players = gson.fromJson(response, type);
                 return players;
+            } catch (IOException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }
+
+        public ArrayList<Event> getEventsImp() {
+            try {
+                dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+                dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+                dataOutputStream.writeUTF("getEvents");
+                dataOutputStream.flush();
+                String response = dataInputStream.readUTF();
+                System.out.println("Server send: " + response);
+                Type type = new TypeToken<ArrayList<Event>>() {
+                }.getType();
+                Gson gson = new Gson();
+                ArrayList<Event> events = gson.fromJson(response, type);
+                return events;
             } catch (IOException e) {
                 e.printStackTrace();
                 return null;
