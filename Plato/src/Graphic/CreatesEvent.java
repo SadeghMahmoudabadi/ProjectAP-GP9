@@ -2,6 +2,7 @@ package Graphic;
 
 import Controller.Controller;
 import Model.Admin;
+import Network.Client;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -59,7 +60,7 @@ public class CreatesEvent {
     }
 
 
-    public void createEvent(ActionEvent actionEvent) throws ParseException, IOException {
+    public void createEvent(ActionEvent actionEvent) throws IOException {
         String path = ("Plato/src/Music/Menu Button.mp3");
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -72,16 +73,16 @@ public class CreatesEvent {
         }
         eventCoin = coinsEvents.getText();
         if (gameName.equalsIgnoreCase("Dots & Boxes")) {
-            String[] input = {"add", "event", "Dots & Boxes", startsDate.getValue().toString(), endsDate.getValue().toString(), eventCoin};
-            if (Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input)) {
+            String[] input = {"admin", "add", "event", "Dots & Boxes", startsDate.getValue().toString(), endsDate.getValue().toString(), eventCoin};
+            if (Client.requestToServer(input)) {
                 Parent root = FXMLLoader.load(getClass().getResource("dotsEvent.fxml"));
                 Scene scene = new Scene(root, 470, 224);
                 Stage stage = new Stage();
                 stage.setScene(scene);
             }
         } else if (gameName.equalsIgnoreCase("Reversi")) {
-            String[] input = {"add", "event", "reversi", startsDate.getValue().toString(), endsDate.getValue().toString(), eventCoin};
-            if (Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input)) {
+            String[] input = {"admin", "add", "event", "reversi", startsDate.getValue().toString(), endsDate.getValue().toString(), eventCoin};
+            if (Client.requestToServer(input)) {
                 Parent root = FXMLLoader.load(getClass().getResource("ReversiEvent.fxml"));
                 Scene scene = new Scene(root, 470, 224);
                 Stage stage = new Stage();
