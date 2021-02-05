@@ -143,7 +143,6 @@ public class Event {
             Database.updateFiles();
             return true;
         } else {
-            Errors.EVENT_FIELD.showMessage();
             return false;
         }
     }
@@ -157,7 +156,6 @@ public class Event {
             Database.updateFiles();
             return true;
         } else {
-            Errors.EVENT_ID.showMessage();
             return false;
         }
 

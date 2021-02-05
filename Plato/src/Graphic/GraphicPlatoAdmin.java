@@ -126,6 +126,8 @@ public class GraphicPlatoAdmin implements Initializable {
         mediaPlayer.play();
         String[] input = {"admin", "add", "suggestion", playerIDTextField.getText(), String.valueOf(gameName.getValue())};
         Client.requestToServer(input);
+        playerIDTextField.setText("");
+        gameName.setValue("");
     }
 
     public void showMessages(ActionEvent actionEvent) {
@@ -168,6 +170,7 @@ public class GraphicPlatoAdmin implements Initializable {
         mediaPlayer.play();
         String[] input = {"admin", "delete", "message", suggestID.getText()};
         Client.requestToServer(input);
+        suggestID.setText("");
     }
 
     public void sendMessage(ActionEvent actionEvent) {
@@ -177,5 +180,7 @@ public class GraphicPlatoAdmin implements Initializable {
         mediaPlayer.play();
         String[] input = {"admin", "send", "message", playerIDText.getText(), message.getText()};
         Client.requestToServer(input);
+        playerIDText.setText("");
+        message.setText("");
     }
 }

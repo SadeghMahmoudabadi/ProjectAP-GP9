@@ -36,7 +36,6 @@ public class Admin extends User {
             Tools.sendSuggestion(playerID, gameName);
             return true;
         } else {
-            Errors.EXIST_SUGGESTION.showMessage();
             return false;
         }
     }
@@ -64,27 +63,21 @@ public class Admin extends User {
                                 addAdmin(admin);
                                 return true;
                             } else {
-                                Errors.PHONE_NUMBER_INCORRECT_FORMAT.showMessage();
                                 return false;
                             }
                         } else {
-                            Errors.EMAIL_INCORRECT_FORMAT.showMessage();
                             return false;
                         }
                     } else {
-                        Errors.PASS_INCORRECT_FORMAT.showMessage();
                         return false;
                     }
                 } else {
-                    Errors.USER_INCORRECT_FORMAT.showMessage();
                     return false;
                 }
             } else {
-                Errors.LASTNAME_INCORRECT_FORMAT.showMessage();
                 return false;
             }
         } else {
-            Errors.FIRSTNAME_INCORRECT_FORMAT.showMessage();
             return false;
         }
     }
@@ -97,20 +90,16 @@ public class Admin extends User {
                     currentAdmin = admin;
                     return true;
                 } else {
-                    Errors.WRONG_PASSWORD.showMessage();
                     return false;
                 }
             }
         }
-        Errors.DOES_NOT_EXIST_ADMIN.showMessage();
         return false;
     }
 
     public static void login(int userID) {
         if (adminsID.contains(userID)) {
             loggedAdmins.add(findAdmin(userID));
-        } else {
-            Errors.DOES_NOT_EXIST_ADMIN_USERNAME.showMessage();
         }
     }
 
@@ -137,12 +126,10 @@ public class Admin extends User {
                     deleteAccount(admin);
                     return true;
                 } else {
-                Errors.WRONG_PASSWORD.showMessage();
                     return false;
                 }
             }
         }
-        Errors.ADMIN_DELETED.showMessage();
         return false;
     }
 
