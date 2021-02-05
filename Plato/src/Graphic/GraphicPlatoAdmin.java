@@ -41,6 +41,8 @@ public class GraphicPlatoAdmin implements Initializable {
     public JFXButton showSuggest;
     public Label adminUsername;
     public Pane playersTable;
+    public TextField message;
+    public TextField playerIDText;
     ObservableList<String> gameChoiceBar = FXCollections.observableArrayList("Dots & Boxes", "Reversi");
 
 
@@ -169,5 +171,8 @@ public class GraphicPlatoAdmin implements Initializable {
         mediaPlayer.play();
         String[] input = {"remove", "suggestion", suggestID.getText()};
         Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input);
+    }
+
+    public void sendMessage(ActionEvent actionEvent) {
     }
 }
