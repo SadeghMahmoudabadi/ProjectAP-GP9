@@ -42,7 +42,6 @@ public class Client extends Application {
 
     public static ArrayList<Player> getPlayers() {
         players = clientImp.getPlayersImp();
-        System.out.println();
         return players;
     }
 
@@ -59,7 +58,7 @@ public class Client extends Application {
                 dataOutputStream.writeUTF(input);
                 dataOutputStream.flush();
                 String response = dataInputStream.readUTF();
-                System.out.println(response);
+                System.out.println("Server send: " + response);
                 return Boolean.parseBoolean(response);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -94,12 +93,12 @@ public class Client extends Application {
                 dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
                 dataOutputStream.writeUTF("getCurrentPlayer");
                 dataOutputStream.flush();
-                String responsePlayer = dataInputStream.readUTF();
-                System.out.println(responsePlayer);
-                Type playerType = new TypeToken<Player>() {
+                String response = dataInputStream.readUTF();
+                System.out.println("Server send: " + response);
+                Type type = new TypeToken<Player>() {
                 }.getType();
-                Gson gson1 = new Gson();
-                currentPlayer = gson1.fromJson(responsePlayer, playerType);dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+                Gson gson = new Gson();
+                currentPlayer = gson.fromJson(response, type);dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -111,12 +110,12 @@ public class Client extends Application {
                 dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
                 dataOutputStream.writeUTF("getCurrentAdmin");
                 dataOutputStream.flush();
-                String responseAdmin = dataInputStream.readUTF();
-                System.out.println(responseAdmin);
-                Type adminType = new TypeToken<Admin>() {
+                String response = dataInputStream.readUTF();
+                System.out.println("Server send: " + response);
+                Type type = new TypeToken<Admin>() {
                 }.getType();
-                Gson gson2 = new Gson();
-                currentAdmin = gson2.fromJson(responseAdmin, adminType);
+                Gson gson = new Gson();
+                currentAdmin = gson.fromJson(response, type);
             } catch (IOException e) {
                 e.printStackTrace();
             }

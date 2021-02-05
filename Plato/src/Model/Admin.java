@@ -120,7 +120,6 @@ public class Admin extends User {
             currentAdmin = null;
             return true;
         } else {
-            //Error     این ادمین لاگین نیست
             return false;
         }
     }

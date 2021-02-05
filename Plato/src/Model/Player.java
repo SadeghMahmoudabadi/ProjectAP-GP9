@@ -31,6 +31,7 @@ public class Player extends User {
     private static ArrayList<Integer> playersID = new ArrayList<>();
     private static ArrayList<Player> players = new ArrayList<>();
     private static ArrayList<Player> loggedPlayers = new ArrayList<>();
+    private static ArrayList<Integer> suggestMessagesID = new ArrayList<>();
     private static Player currentPlayer;
     private static Player componentPlayer;
 
@@ -155,6 +156,7 @@ public class Player extends User {
 
     public void addSuggestedGame(int ID, String gameName) {
         suggestedGames.put(ID, gameName);
+        suggestMessagesID.add(ID);
         Database.updateFiles();
     }
 
@@ -186,6 +188,15 @@ public class Player extends User {
     public static Player suggestedPlayer(int suggestionID) {
         for (Player player : players) {
             if (player.getSuggestedGames().keySet().contains(suggestionID)) {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public static Player receiverPlayer(int messageID) {
+        for (Player player : players) {
+            if (player.getMessages().keySet().contains(messageID)) {
                 return player;
             }
         }
@@ -481,6 +492,10 @@ public class Player extends User {
 
     public LocalDate getRegisterDate() {
         return registerDate;
+    }
+
+    public static ArrayList<Integer> getSuggestMessagesID() {
+        return suggestMessagesID;
     }
 
     public static void setPlayersID() {

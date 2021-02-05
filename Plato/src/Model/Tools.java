@@ -63,8 +63,18 @@ public class Tools {
         removeID(suggestionID);
     }
 
+    public static void deleteMessage(int messageID) {
+        System.out.println("Delete message tools");
+        if (Player.getSuggestMessagesID().contains(messageID)) {
+            removeSuggestion(messageID);
+        } else {
+            Player.receiverPlayer(messageID).deleteMessage(messageID);
+            Admin.getCurrentAdmin().deleteMessages(messageID);
+            removeID(messageID);
+        }
+    }
+
     public static void sendMessage(int receiverID, String message) {
-        System.out.println("Send message tools");
         Player receiver = Player.findPlayer(receiverID);
         int messageID = Tools.Random();
         receiver.addMessage(messageID, message);

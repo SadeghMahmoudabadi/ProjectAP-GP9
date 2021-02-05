@@ -214,20 +214,18 @@ public class Controller {
             int playerID = Integer.parseInt(input[2]);
             String gameName = input[3];
             return currentAdmin.addSuggestion(playerID, gameName);
-        } else if (input.length == 3 && input[0].equalsIgnoreCase("remove")
-                && input[1].equalsIgnoreCase("suggestion")) {
-            int suggestionID = Integer.parseInt(input[2]);
-            Tools.removeSuggestion(suggestionID);
-            return true;
         } else if (input.length == 4 && input[0].equalsIgnoreCase("send")
                 && input[1].equalsIgnoreCase("message")) {
-            System.out.println("I'm going to send message");
             int playerID = Integer.parseInt(input[2]);
             String message = input[3];
             Tools.sendMessage(playerID, message);
             return true;
+        } else if (input.length == 3 && input[0].equalsIgnoreCase("delete")
+                && input[1].equalsIgnoreCase("message")) {
+            int messageID = Integer.parseInt(input[2]);
+            Tools.deleteMessage(messageID);
+            return true;
         } else {
-            //Error
             return false;
         }
     }

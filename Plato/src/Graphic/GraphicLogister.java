@@ -67,9 +67,6 @@ public class GraphicLogister {
         String[] input = {"logister", "login", username, password};
         if (Client.requestToServer(input)) {
             String[] request = {"tools", "isAdmin", username};
-            System.out.println(username);
-            System.out.println(Tools.isAdmin(username));
-            System.out.println(Tools.isUsernameExist(username));
             if (Client.requestToServer(request)) {
                 Parent root = FXMLLoader.load(getClass().getResource("platoForAdmin.fxml"));
                 Stage loginStage = (Stage) login.getScene().getWindow();

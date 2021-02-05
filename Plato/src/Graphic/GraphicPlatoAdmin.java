@@ -1,7 +1,5 @@
 package Graphic;
 
-import Controller.Controller;
-import Model.Admin;
 import Model.Player;
 import Network.Client;
 import com.jfoenix.controls.JFXButton;
@@ -164,13 +162,13 @@ public class GraphicPlatoAdmin implements Initializable {
         suggestionStage.show();
     }
 
-    public void okDeleteSuggest(MouseEvent mouseEvent) throws ParseException {
+    public void okDeleteMessage(ActionEvent mouseEvent) throws ParseException {
         String path = ("Plato/src/Music/Menu Button.mp3");
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
-        String[] input = {"remove", "suggestion", suggestID.getText()};
-        Controller.adminMenu(Admin.getCurrentAdmin().getUserID(), input);
+        String[] input = {"admin", "delete", "message", suggestID.getText()};
+        Client.requestToServer(input);
     }
 
     public void sendMessage(ActionEvent actionEvent) {

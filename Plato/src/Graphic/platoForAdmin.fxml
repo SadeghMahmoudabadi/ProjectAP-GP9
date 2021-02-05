@@ -117,7 +117,7 @@
                                           <Font name="Times New Roman" size="22.0" />
                                        </font>
                                     </Text>
-                                    <JFXButton buttonType="RAISED" layoutX="177.0" layoutY="497.0" onMouseClicked="#okDeleteSuggest" ripplerFill="WHITE" text="OK!" textAlignment="CENTER" textFill="WHITE" />
+                                    <JFXButton buttonType="RAISED" layoutX="177.0" layoutY="497.0" onAction="#okDeleteMessage" ripplerFill="WHITE" text="OK!" textAlignment="CENTER" textFill="WHITE" />
                                     <JFXButton fx:id="showSuggest" buttonType="RAISED" layoutX="172.0" layoutY="603.0" onAction="#showMessages" ripplerFill="WHITE" text="Show" textAlignment="CENTER" textFill="WHITE" />
                                     <TextField fx:id="playerIDTextField" alignment="CENTER" layoutX="110.0" layoutY="128.0" prefHeight="31.0" prefWidth="165.0" promptText="player's ID" />
                                     <Line endX="275.0" layoutX="74.0" layoutY="533.0" startX="-49.0" stroke="WHITE" />
