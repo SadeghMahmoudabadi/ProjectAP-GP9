@@ -65,7 +65,8 @@ public class Client extends Application {
                 e.printStackTrace();
                 return false;
             } finally {
-                setCurrentUser();
+                setCurrentPlayer();
+                setCurrentAdmin();
             }
         }
 
@@ -87,7 +88,7 @@ public class Client extends Application {
             }
         }
 
-        private void setCurrentUser() {
+        private void setCurrentPlayer() {
             try {
                 dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
                 dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
@@ -99,6 +100,14 @@ public class Client extends Application {
                 }.getType();
                 Gson gson1 = new Gson();
                 currentPlayer = gson1.fromJson(responsePlayer, playerType);dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        private void setCurrentAdmin() {
+            try {
+                dataInputStream = new DataInputStream(new BufferedInputStream(clientSocket.getInputStream()));
                 dataOutputStream = new DataOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
                 dataOutputStream.writeUTF("getCurrentAdmin");
                 dataOutputStream.flush();

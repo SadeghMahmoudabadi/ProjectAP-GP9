@@ -72,30 +72,37 @@ public class Server {
                         }
                         if (controller.equalsIgnoreCase("logister")) {
                             if (Controller.logisterMenu(correctedUserInput)) {
-                                System.out.println(correctedUserInput);
                                 response = "true";
                             } else {
                                 response = "false";
                             }
                         } else if (controller.equalsIgnoreCase("user")) {
-                            System.out.println(correctedUserInput);
-                            int currentUserID = Player.getCurrentPlayer().getUserID();
+                            int currentUserID;
+                            try {
+                                currentUserID = Player.getCurrentPlayer().getUserID();
+                            } catch (NullPointerException e) {
+                                currentUserID = Admin.getCurrentAdmin().getUserID();
+                            }
                             if (Controller.userMenu(currentUserID, correctedUserInput)) {
                                 response = "true";
                             } else {
                                 response = "false";
                             }
                         } else if (controller.equalsIgnoreCase("player")) {
-                            System.out.println(correctedUserInput);
                             int currentUserID = Player.getCurrentPlayer().getUserID();
                             if (Controller.playerMenu(currentUserID, correctedUserInput)) {
                                 response = "true";
                             } else {
                                 response = "false";
                             }
-                        }/* else if (controller.equalsIgnoreCase("admin")) {
-                        return Controller.adminMenu(currentUserID, input);
-                    }*/ else if (controller.equalsIgnoreCase("tools")) {
+                        } else if (controller.equalsIgnoreCase("admin")) {
+                            int currentUserID = Admin.getCurrentAdmin().getUserID();
+                            if (Controller.adminMenu(currentUserID, correctedUserInput)) {
+                                response = "true";
+                            } else {
+                                response = "false";
+                            }
+                        } else if (controller.equalsIgnoreCase("tools")) {
                             if (correctedUserInput[0].equalsIgnoreCase("isAdmin")) {
                                 String username = correctedUserInput[1];
                                 if (Tools.isAdmin(username)) {
