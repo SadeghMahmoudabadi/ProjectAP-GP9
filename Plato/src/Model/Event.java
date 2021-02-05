@@ -95,22 +95,26 @@ public class Event {
 
     public Scene getEventScene() throws ParseException, IOException {
         Scene scene = null;
-        if (this.game.equalsIgnoreCase("Dots & Boxes")) {
-            DotsEventController.eventCoin = Integer.toString(this.prize);
-            DotsEventController.eventDaysLeft = ChronoUnit.DAYS.between(LocalDateTime.now(), endDate);
-            DotsEventController.eventHoursLeft = ChronoUnit.HOURS.between(LocalDateTime.now(), endDate);
-            Parent root = FXMLLoader.load(getClass().getResource("dotsEvent.fxml"));
-            scene = new Scene(root, 470, 224);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-        } else if (this.game.equalsIgnoreCase("Reversi")) {
-            ReversiEventController.eventCoin = Integer.toString(this.prize);
-            ReversiEventController.eventDaysLeft = ChronoUnit.DAYS.between(LocalDateTime.now(), endDate);
-            ReversiEventController.eventHoursLeft = ChronoUnit.HOURS.between(LocalDateTime.now(), endDate);
-            Parent root = FXMLLoader.load(getClass().getResource("reversiEvent.fxml"));
-            scene = new Scene(root, 470, 224);
-            Stage stage = new Stage();
-            stage.setScene(scene);
+        if ((ChronoUnit.SECONDS.between(LocalDateTime.now(), endDate)) < 0) {
+            Event.deleteEvent(eventID);
+        } else {
+            if (this.game.equalsIgnoreCase("Dots & Boxes")) {
+                DotsEventController.eventCoin = Integer.toString(this.prize);
+                DotsEventController.eventDaysLeft = ChronoUnit.DAYS.between(LocalDateTime.now(), endDate);
+                DotsEventController.eventHoursLeft = ChronoUnit.HOURS.between(LocalDateTime.now(), endDate);
+                Parent root = FXMLLoader.load(getClass().getResource("dotsEvent.fxml"));
+                scene = new Scene(root, 470, 224);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+            } else if (this.game.equalsIgnoreCase("Reversi")) {
+                ReversiEventController.eventCoin = Integer.toString(this.prize);
+                ReversiEventController.eventDaysLeft = ChronoUnit.DAYS.between(LocalDateTime.now(), endDate);
+                ReversiEventController.eventHoursLeft = ChronoUnit.HOURS.between(LocalDateTime.now(), endDate);
+                Parent root = FXMLLoader.load(getClass().getResource("reversiEvent.fxml"));
+                scene = new Scene(root, 470, 224);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+            }
         }
         return scene;
     }

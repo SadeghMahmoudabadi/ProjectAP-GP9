@@ -450,9 +450,11 @@ public class GraphicPlatoPlayer implements Initializable {
             try {
                 eventsVBox.getChildren().add(event.getEventScene().getRoot());
             } catch (ParseException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
             } catch (IOException e) {
-                e.printStackTrace();
+                System.out.println(e.getMessage());
+            } catch (NullPointerException e) {
+                System.out.println(e.getMessage());
             }
         }
         eventsPane.getChildren().add(eventsVBox);
