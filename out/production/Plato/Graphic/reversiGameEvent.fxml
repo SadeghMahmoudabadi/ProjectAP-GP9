@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -27,30 +26,7 @@
             </LinearGradient>
          </stroke>
       </Line>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="143.0" layoutY="261.0" prefHeight="42.0" prefWidth="149.0" style="-fx-background-color: #AB5306;" text="PRIZE Per Game">
-         <textFill>
-            <LinearGradient endY="1.0">
-               <stops>
-                  <Stop color="#a8ff69" />
-                  <Stop color="WHITE" offset="1.0" />
-               </stops>
-            </LinearGradient>
-         </textFill>
-         <font>
-            <Font size="21.0" />
-         </font>
-      </Label>
-      <Label fx:id="prize" layoutX="217.0" layoutY="329.0" text="+100" textFill="WHITE">
-         <font>
-            <Font name="System Italic" size="18.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="29.0" fitWidth="87.0" layoutX="181.0" layoutY="328.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Photos/coin.png" />
-         </image>
-      </ImageView>
-      <JFXButton fx:id="joinEventReversi" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="26.0" layoutY="478.0" onAction="#joinEventReversi" prefHeight="67.0" prefWidth="385.0" ripplerFill="#5b3e3e" style="-fx-background-color: #0F83C6; -fx-background-radius: 150px; -fx-border-color: #ffff; -fx-border-radius: 150px;" text="JOIN" textAlignment="CENTER">
+      <JFXButton fx:id="joinEventReversi" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" layoutX="25.0" layoutY="309.0" onAction="#joinEventReversi" prefHeight="67.0" prefWidth="385.0" ripplerFill="#5b3e3e" style="-fx-background-color: #0F83C6; -fx-background-radius: 150px; -fx-border-color: #ffff; -fx-border-radius: 150px;" text="JOIN" textAlignment="CENTER">
          <font>
             <Font name="Castellar" size="29.0" />
          </font>
@@ -63,7 +39,7 @@
             </LinearGradient>
          </textFill>
       </JFXButton>
-      <JFXButton alignment="CENTER" buttonType="RAISED" layoutX="94.0" layoutY="555.0" onAction="#cancelButton" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #384338; -fx-background-radius: 100px; -fx-border-radius: 100px; -fx-border-color: #ffff;" text="Cancel" textFill="#dadada">
+      <JFXButton fx:id="cancelButton" alignment="CENTER" buttonType="RAISED" layoutX="100.0" layoutY="460.0" onAction="#cancelButton" prefHeight="49.0" prefWidth="235.0" style="-fx-background-color: #384338; -fx-background-radius: 100px; -fx-border-radius: 100px; -fx-border-color: #ffff;" text="Cancel" textFill="#dadada">
          <font>
             <Font size="18.0" />
          </font>
@@ -76,15 +52,5 @@
             </LinearGradient>
          </ripplerFill>
       </JFXButton>
-      <ImageView fitHeight="27.0" fitWidth="29.0" layoutX="316.0" layoutY="498.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Photos/coin.png" />
-         </image>
-      </ImageView>
-      <Label fx:id="joinCoin" layoutX="343.0" layoutY="498.0" prefHeight="27.0" prefWidth="47.0" text="150" textFill="WHITE">
-         <font>
-            <Font name="System Italic" size="18.0" />
-         </font>
-      </Label>
    </children>
 </Pane>

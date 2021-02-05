@@ -2,14 +2,15 @@ package Graphic;
 
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class ReversiGameEvent {
-    public Label prize;
     public JFXButton joinEventReversi;
-    public Label joinCoin;
+    public JFXButton cancelButton;
 
     public void cancelButton(ActionEvent actionEvent) {
+        Stage stage = (Stage) cancelButton.getScene().getWindow();
+        stage.close();
     }
 
     public void joinEventReversi(ActionEvent actionEvent) {
