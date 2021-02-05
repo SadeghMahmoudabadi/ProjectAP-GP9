@@ -446,7 +446,7 @@ public class GraphicPlatoPlayer implements Initializable {
         VBox eventsVBox = new VBox();
         eventsVBox.setSpacing(23);
         eventsVBox.setLayoutX(13);
-        for (Event event : Event.getEvents()) {
+        for (Event event : Client.getEvents()) {
             try {
                 eventsVBox.getChildren().add(event.getEventScene().getRoot());
             } catch (ParseException e) {

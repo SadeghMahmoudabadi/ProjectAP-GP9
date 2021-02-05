@@ -196,18 +196,18 @@
                   </ScrollPane>
                </content>
             </Tab>
-            <Tab onSelectionChanged="#selectEventTab" closable="false" text="Events">
+            <Tab closable="false" onSelectionChanged="#selectEventTab" text="Events">
                <content>
-                  <AnchorPane prefHeight="714.0" prefWidth="610.0">
+                  <AnchorPane prefHeight="714.0" prefWidth="610.0" style="-fx-background-color: #452E5F;">
                      <children>
                         <ImageView fitHeight="133.0" fitWidth="508.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../Photos/events.jpg" />
                            </image>
                         </ImageView>
-                        <ScrollPane layoutY="127.0" prefHeight="587.0" style="-fx-background-color: #364A56;">
+                        <ScrollPane layoutY="127.0" prefHeight="587.0" prefWidth="508.0" style="-fx-background-color: #452E5F;">
                            <content>
-                              <AnchorPane fx:id="eventsPane" prefWidth="506.0" style="-fx-background-color: #452E5F;" />
+                              <AnchorPane fx:id="eventsPane" prefHeight="0.0" prefWidth="506.0" style="-fx-background-color: #452E5F;" />
                            </content>
                         </ScrollPane>
                         <Text fill="#fffdfd" layoutX="99.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EVENTS">

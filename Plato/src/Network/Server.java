@@ -1,10 +1,7 @@
 package Network;
 
 import Controller.Controller;
-import Model.Admin;
-import Model.Database;
-import Model.Player;
-import Model.Tools;
+import Model.*;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -57,6 +54,10 @@ public class Server {
                         dataOutputStream.flush();
                     } else if (input.equalsIgnoreCase("getPlayers")) {
                         String response = new Gson().toJson(Player.getPlayers());
+                        dataOutputStream.writeUTF(response);
+                        dataOutputStream.flush();
+                    } else if (input.equalsIgnoreCase("getEvents")) {
+                        String response = new Gson().toJson(Event.getEvents());
                         dataOutputStream.writeUTF(response);
                         dataOutputStream.flush();
                     } else {
