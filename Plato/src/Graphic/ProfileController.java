@@ -1,13 +1,9 @@
 package Graphic;
 
-import Model.Player;
-import Network.Client;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import java.io.File;
 
 public class ProfileController {
 

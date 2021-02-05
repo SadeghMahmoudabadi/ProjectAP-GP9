@@ -1,8 +1,5 @@
 package Graphic;
 
-import Model.Tools;
-import Network.Client;
-import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
